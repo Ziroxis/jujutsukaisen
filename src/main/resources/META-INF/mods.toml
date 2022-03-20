@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+modId="jujutsukaisen"
+version="${file.jarVersion}"
+displayName="JJK mod"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/block-clover"
+logoFile="logo.png"
+credits="Credit goes to your mom, supporting me physically during this process"
+authors="Beosti and Conzilla"
+
+description='''
+JJK mod, that's based on... You guessed it, jjk
+'''
+
+[[dependencies.blackclover]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.blackclover]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
