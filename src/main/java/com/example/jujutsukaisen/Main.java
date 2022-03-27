@@ -1,18 +1,15 @@
 package com.example.jujutsukaisen;
 
 import com.example.jujutsukaisen.client.ClientHandler;
-import com.example.jujutsukaisen.client.renderer.entities.curses.RoppongiRenderer;
-import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
+import com.example.jujutsukaisen.events.CursedSpiritInvincibility;
 import com.example.jujutsukaisen.events.ModEventBusEvents;
 import com.example.jujutsukaisen.init.ModEntities;
+import com.example.jujutsukaisen.init.ModItems;
 import net.minecraft.block.Block;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -35,6 +32,7 @@ public class Main
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEntities.ENTITIES.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
 
 
 
@@ -57,8 +55,7 @@ public class Main
 
     private void doClientStuff(final FMLClientSetupEvent event)
     {
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ROPPONGI.get(), new RoppongiRenderer.Factory());
-
+        ClientHandler.OnSetup();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

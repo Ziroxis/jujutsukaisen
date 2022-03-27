@@ -1,7 +1,9 @@
 package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.entities.curses.LizardEntity;
 import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
+import com.example.jujutsukaisen.entities.curses.SmallPoxEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +24,20 @@ public class ModEntities {
                             .fireImmune()
                             .setTrackingRange(10)
                             .build(new ResourceLocation(Main.MODID, "roppongi_entity").toString()));
+    public static final RegistryObject<EntityType<SmallPoxEntity>> SMALL_POX = ENTITIES
+            .register("smallpox_entity",
+                    () -> EntityType.Builder.of(SmallPoxEntity::new, EntityClassification.CREATURE)
+                            .sized(4f, 5f)
+                            .fireImmune()
+                            .setTrackingRange(15)
+                            .build(new ResourceLocation(Main.MODID, "smallpox_entity").toString()));
+    public static final RegistryObject<EntityType<LizardEntity>> LIZARD = ENTITIES
+            .register("lizard_entity",
+                    () -> EntityType.Builder.of(LizardEntity::new, EntityClassification.CREATURE)
+                            .sized(1f, 2f)
+                            .fireImmune()
+                            .setTrackingRange(15)
+                            .build(new ResourceLocation(Main.MODID, "lizard_entity").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);
