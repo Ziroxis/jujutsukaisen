@@ -23,8 +23,6 @@ public class SmallPoxEntity extends CurseEntity {
     public SmallPoxEntity(EntityType<? extends SmallPoxEntity> type, World world)
     {
         super(type, world);
-        this.maxML = 1;
-        this.minML = 4;
         this.statXPDrop = 100;
     }
 

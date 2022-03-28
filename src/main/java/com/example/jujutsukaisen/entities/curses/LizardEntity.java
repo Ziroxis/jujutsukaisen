@@ -23,8 +23,6 @@ public class LizardEntity extends CurseEntity {
 
     public LizardEntity(EntityType<? extends LizardEntity> type, World world) {
         super(type, world);
-        this.maxML = 1;
-        this.minML = 4;
         this.statXPDrop = 50;
     }
 

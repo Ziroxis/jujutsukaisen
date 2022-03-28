@@ -19,8 +19,6 @@ public class RoppongiEntity extends CurseEntity {
 
     public RoppongiEntity(EntityType<? extends RoppongiEntity> type, World world) {
         super(type, world);
-        this.maxML = 1;
-        this.minML = 4;
         this.statXPDrop = 50;
     }
 

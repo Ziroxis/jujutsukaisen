@@ -110,7 +110,6 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
         } else if (Beapi.isNullOrEmpty(this.getMobTexture()))
             this.setTexture(this.getDefaultTexture());
 
-        this.setCurseGrade((int) Beapi.randomWithRange(minML, maxML));
 
         return spawnData;
     }
