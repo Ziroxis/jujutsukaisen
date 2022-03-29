@@ -13,7 +13,7 @@ import net.minecraftforge.fml.client.gui.GuiUtils;
 public class SpellsScreen extends Screen {
 
     //256, 256
-    private final ResourceLocation background = new ResourceLocation(Main.MODID, "textures/gui/backgrounds/background.png");
+    private final ResourceLocation background = new ResourceLocation(Main.MODID, "textures/gui/backgrounds/playerstats.png");
 
     private final int xSize = 256;
     private final int ySize = 256;

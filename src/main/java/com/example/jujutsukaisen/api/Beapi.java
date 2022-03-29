@@ -248,4 +248,15 @@ public class Beapi
             return false;
         return true;
     }
+
+    public static String getResourceName(String text)
+    {
+        return text
+                .replaceAll("[ \\t]+$", "")
+                .replaceAll("\\(","")
+                .replaceAll("\\)","")
+                .replaceAll("\\s+", "_")
+                .replaceAll("[\\'\\:\\-\\,\\#]", "")
+                .replaceAll("\\&", "and").toLowerCase();
+    }
 }

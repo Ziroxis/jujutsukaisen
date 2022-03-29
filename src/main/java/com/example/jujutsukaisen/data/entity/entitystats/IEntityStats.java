@@ -10,11 +10,23 @@ public interface IEntityStats {
     boolean hasClan();
     void setClan(String value);
     String getClan();
+    //CLANS
+    boolean isKamo();
+    boolean isGojo();
+    boolean isZenin();
+    boolean isInumaki();
+    boolean isSuguru();
 
     //Things related with the technique
     boolean hasTechnique();
     void setTechnique(String value);
     String getTechnique();
+    boolean hasHeavenlyRestriction();
+
+
+    boolean hasCurseGrade();
+    void setCurseGrade(String value);
+    String getCurseGrade();
 
     //Things related with the levels
     int getLevel();
