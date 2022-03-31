@@ -55,7 +55,7 @@ public class SpellsScreen extends Screen {
 
     public void backgroundRendering(MatrixStack matrixStack)
     {
-        minecraft.getTextureManager().getTexture(background);
+        minecraft.getTextureManager().bind(background);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft , guiTop + 20, 0, 0, xSize, ySize, 0);
 
         drawString(matrixStack, font, "Work in progress", guiLeft + 80, guiTop + 110, 16777215);

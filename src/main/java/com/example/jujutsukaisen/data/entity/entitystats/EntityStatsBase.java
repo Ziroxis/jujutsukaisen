@@ -7,7 +7,7 @@ public class EntityStatsBase implements IEntityStats{
 
     private String clan = "";
     private String technique = "";
-    private String Grade = "";
+    private String grade = "";
     private int level;
     private int experience;
     private int maxExperience;
@@ -37,9 +37,11 @@ public class EntityStatsBase implements IEntityStats{
         return true;
     }
 
+
+
     @Override
     public void setClan(String value) {
-        this.clan = Beapi.getResourceName(value);
+        this.clan = value;
     }
 
     @Override
@@ -112,7 +114,7 @@ public class EntityStatsBase implements IEntityStats{
 
     @Override
     public boolean hasCurseGrade() {
-        if (Beapi.isNullOrEmpty(this.Grade))
+        if (Beapi.isNullOrEmpty(this.grade))
             return false;
 
         return true;
@@ -120,12 +122,12 @@ public class EntityStatsBase implements IEntityStats{
 
     @Override
     public void setCurseGrade(String value) {
-        this.Grade = Beapi.getResourceName(value);
+        this.grade = value;
     }
 
     @Override
     public String getCurseGrade() {
-        return this.Grade;
+        return this.grade;
     }
 
     @Override

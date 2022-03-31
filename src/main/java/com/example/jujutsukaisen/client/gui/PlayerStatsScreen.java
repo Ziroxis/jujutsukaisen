@@ -30,7 +30,7 @@ public class PlayerStatsScreen extends Screen {
 
 
     //256, 256
-    private final ResourceLocation PLAYERSTATS = new ResourceLocation("jujutsukaisen:textures/gui/backgrounds/playerstats.png");
+    private final ResourceLocation playerstats = new ResourceLocation("jujutsukaisen:textures/gui/backgrounds/playerstats.png");
 
     private final int xSize = 256;
     private final int ySize = 256;
@@ -53,30 +53,8 @@ public class PlayerStatsScreen extends Screen {
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
         this.renderBackground(matrixStack);
-        //backgroundRendering(matrixStack);
-
-        this.minecraft.textureManager.getTexture(PLAYERSTATS);
-        this.blit(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize);
-
-        PlayerEntity player = this.getMinecraft().player;
-        IEntityStats props = EntityStatsCapability.get(player);
-
-        String name = player.getName().getString();
-        String clan = props.getClan();
-        String grade = props.getCurseGrade();
-
-        //TODO make it more clean without the colors looking messy
-        drawString(matrixStack, this.font, "INFO CARD", guiLeft + 82, guiTop + 30, Color.GRAY.getRGB());
-        drawString(matrixStack, this.font, "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
-        drawString(matrixStack, this.font, "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
-        drawString(matrixStack, this.font, "Grade: " + grade, guiLeft + 5, guiTop + 80, 16777215);
-        /*
-
-        minecraft.getTextureManager().getTexture(playerstats);
-        GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
-         */
-
-        //renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player);
+        backgroundRendering(matrixStack);
+        renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
@@ -93,7 +71,7 @@ public class PlayerStatsScreen extends Screen {
         this.addButton(Skills);
     }
 
-    /*
+
     public void backgroundRendering(MatrixStack matrixStack)
     {
 
@@ -104,18 +82,20 @@ public class PlayerStatsScreen extends Screen {
         String name = player.getName().getString();
         String clan = props.getClan();
         String grade = props.getCurseGrade();
+        String technique = props.getTechnique();
 
-        minecraft.getTextureManager().getTexture(playerstats);
+        minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
         //TODO make it more clean without the colors looking messy
-        drawString(matrixStack, font, "INFO CARD", guiLeft + 82, guiTop + 30, Color.GRAY.getRGB());
+        drawString(matrixStack, font, "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
         drawString(matrixStack, font, "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
         drawString(matrixStack, font, "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
-        drawString(matrixStack, font, "Grade: " + grade, guiLeft + 5, guiTop + 80, 16777215);
+        drawString(matrixStack, font, "Technique: " + technique, guiLeft + 5, guiTop + 80, 16777215);
+        //TODO grade not showing
+        drawString(matrixStack, font, "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
 
     }
-    */
 
     public static void renderEntityInInventory(int p_228187_0_, int p_228187_1_, int p_228187_2_, float p_228187_3_, float p_228187_4_, LivingEntity p_228187_5_) {
         float f = (float)Math.atan((double)(p_228187_3_ / 40.0F));
