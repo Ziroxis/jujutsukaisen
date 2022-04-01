@@ -1,13 +1,13 @@
 package com.example.jujutsukaisen;
 
+import com.example.jujutsukaisen.api.ability.AbilityArgument;
 import com.example.jujutsukaisen.client.ClientHandler;
 import com.example.jujutsukaisen.events.CursedSpiritInvincibility;
 import com.example.jujutsukaisen.events.ModEventBusEvents;
-import com.example.jujutsukaisen.init.ModCapabilities;
-import com.example.jujutsukaisen.init.ModEntities;
-import com.example.jujutsukaisen.init.ModItems;
-import com.example.jujutsukaisen.init.ModNetwork;
+import com.example.jujutsukaisen.init.*;
 import net.minecraft.block.Block;
+import net.minecraft.command.arguments.ArgumentSerializer;
+import net.minecraft.command.arguments.ArgumentTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -52,6 +52,7 @@ public class Main
 
     private void setup(final FMLCommonSetupEvent event)
     {
+        ArgumentTypes.register("ability", AbilityArgument.class, new ArgumentSerializer<>(AbilityArgument::ability));
         MinecraftForge.EVENT_BUS.register(ModEventBusEvents.class);
         ModCapabilities.init();
         ModNetwork.init();
@@ -60,6 +61,7 @@ public class Main
     private void doClientStuff(final FMLClientSetupEvent event)
     {
         ClientHandler.OnSetup();
+        ModKeyBinds.init();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

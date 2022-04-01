@@ -2,6 +2,10 @@ package com.example.jujutsukaisen.data.entity.entitystats;
 
 public interface IEntityStats {
 
+    //Combat related
+    boolean isInCombatMode();
+    void setCombatMode(boolean value);
+
     //Things related with the cursed energy unlock
     boolean hasCursedEnergy();
     boolean hasCursedEnergyUnlocked();
@@ -35,4 +39,5 @@ public interface IEntityStats {
     int getMaxExperience();
     void alterMaxExperience(int value);
     void setMaxExperience(int value);
+
 }

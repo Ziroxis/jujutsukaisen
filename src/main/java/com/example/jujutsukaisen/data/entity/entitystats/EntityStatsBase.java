@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.init.ModValues;
 
 public class EntityStatsBase implements IEntityStats{
 
+    private boolean inCombatMode = false;
     private String clan = "";
     private String technique = "";
     private String grade = "";
@@ -13,6 +14,16 @@ public class EntityStatsBase implements IEntityStats{
     private int maxExperience;
     private int alterMaxExperience;
 
+
+    @Override
+    public boolean isInCombatMode() {
+        return this.inCombatMode;
+    }
+
+    @Override
+    public void setCombatMode(boolean value) {
+        this.inCombatMode = value;
+    }
 
     @Override
     public boolean hasCursedEnergy() {

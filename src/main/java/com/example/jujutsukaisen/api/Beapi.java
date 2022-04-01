@@ -3,14 +3,22 @@ package com.example.jujutsukaisen.api;
 
 import com.example.jujutsukaisen.Main;
 import com.google.common.collect.Lists;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -18,17 +26,121 @@ import net.minecraft.world.gen.feature.template.*;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Beapi
 {
+    public static List<String> splitString(FontRenderer font, String text, int posX, int wrapWidth)
+    {
+        while (text != null && text.endsWith("\n"))
+        {
+            text = text.substring(0, text.length() - 1);
+        }
+
+        List<String> newText = new ArrayList<String>();
+
+        //for (IReorderingProcessor proc : font.split(new StringTextComponent(text), wrapWidth))
+        //{
+        //}
+
+		/*for (String s : font.listFormattedStringToWidth(text, wrapWidth))
+		{
+			if (font.isBidirectional())
+			{
+				int i = font.width(font.bidirectionalShaping(s));
+				posX += wrapWidth - i;
+			}
+
+			newText.add(s);
+		}*/
+
+        return newText;
+    }
+
+    public static void drawStringWithBorder(FontRenderer font, MatrixStack matrixStack, IReorderingProcessor text, int posX, int posY, int color)
+    {
+        matrixStack.pushPose();
+        font.drawShadow(matrixStack, text, posX, posY - 0.7f, 1);
+        font.drawShadow(matrixStack, text, posX, posY + 0.7f, 1);
+        font.drawShadow(matrixStack, text, posX + 0.7f, posY, 1);
+        font.drawShadow(matrixStack, text, posX - 0.7f, posY, 1);
+        matrixStack.translate(0, 0, 1);
+        font.draw(matrixStack, text, posX, posY, color);
+        matrixStack.popPose();
+        RenderSystem.enableAlphaTest();
+        RenderSystem.enableBlend();
+    }
+
+    public static void drawIcon(Matrix4f matrix, ResourceLocation rs, int x, int y, int u, int v)
+    {
+        Minecraft.getInstance().getTextureManager().bind(rs);
+        BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.vertex(matrix, x, y + v, 1).uv(0.0f, 1.0f).endVertex();
+        bufferbuilder.vertex(matrix, x + u, y + v, 1).uv(1.0f, 1.0f).endVertex();
+        bufferbuilder.vertex(matrix, x + u, y, 1).uv(1.0f, 0.0f).endVertex();
+        bufferbuilder.vertex(matrix, x, y, 1).uv(0.0f, 0.0f).endVertex();
+        Tessellator.getInstance().end();
+    }
+
+    public static void drawIcon(ResourceLocation rs, int x, int y, int u, int v)
+    {
+        Minecraft.getInstance().getTextureManager().bind(rs);
+        BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.vertex(x, y + v, 1).uv(0.0f, 1.0f).endVertex();
+        bufferbuilder.vertex(x + u, y + v, 1).uv(1.0f, 1.0f).endVertex();
+        bufferbuilder.vertex(x + u, y, 1).uv(1.0f, 0.0f).endVertex();
+        bufferbuilder.vertex(x, y, 1).uv(0.0f, 0.0f).endVertex();
+        Tessellator.getInstance().end();
+    }
+
+    public static Color hexToRGB(String hexColor)
+    {
+        if (hexColor.startsWith("#"))
+            hexColor = hexColor.substring(1);
+
+        if (hexColor.length() == 8)
+        {
+            int r = Integer.parseInt(hexColor.substring(0, 2), 16);
+            int g = Integer.parseInt(hexColor.substring(2, 4), 16);
+            int b = Integer.parseInt(hexColor.substring(4, 6), 16);
+            int a = Integer.parseInt(hexColor.substring(6, 8), 16);
+            return new Color(r, g, b, a);
+        }
+        else
+            return Color.decode("#" + hexColor);
+    }
+
     public static RayTraceResult rayTraceBlocksAndEntities(Entity entity) {
         return Beapi.rayTraceBlocksAndEntities(entity, 1024, 0.4f);
     }
 
     public static RayTraceResult rayTraceBlocksAndEntities(Entity entity, double distance) {
         return Beapi.rayTraceBlocksAndEntities(entity, distance, 0.2f);
+    }
+
+    public static void drawStringWithBorder(FontRenderer font, MatrixStack matrixStack, String text, int posX, int posY, int color)
+    {
+        matrixStack.pushPose();
+        String unformattedText = escapeTextFormattingChars(text);
+        font.drawShadow(matrixStack, unformattedText, posX, posY - 0.7f, 0);
+        font.drawShadow(matrixStack, unformattedText, posX, posY + 0.7f, 0);
+        font.drawShadow(matrixStack, unformattedText, posX + 0.7f, posY, 0);
+        font.drawShadow(matrixStack, unformattedText, posX - 0.7f, posY, 0);
+        matrixStack.translate(0, 0, 1);
+        font.draw(matrixStack, unformattedText, posX, posY, -1);
+        matrixStack.popPose();
+        RenderSystem.enableAlphaTest();
+        RenderSystem.enableBlend();
+    }
+
+    public static String escapeTextFormattingChars(String text)
+    {
+        return text.replaceAll("§[0-9a-f]", "");
     }
 
     public static EntityRayTraceResult rayTraceEntities(Entity entity, double distance, float entityBoxRange) {
@@ -281,5 +393,29 @@ public class Beapi
                 .replaceAll("\\s+", "_")
                 .replaceAll("[\\'\\:\\-\\,\\#]", "")
                 .replaceAll("\\&", "and").toLowerCase();
+    }
+
+    public static void drawAbilityIcon(String iconName, int x, int y, int z, int u, int v)
+    {
+        drawAbilityIcon(iconName, x, y, z, u, v, 1, 1, 1);
+    }
+
+    public static void drawAbilityIcon(String iconName, int x, int y, int z, int u, int v, float red, float green, float blue)
+    {
+        RenderSystem.enableAlphaTest();
+        RenderSystem.enableBlend();
+        Minecraft.getInstance().getTextureManager().bind(new ResourceLocation(Main.MODID, "textures/abilities/" + Beapi.getResourceName(iconName) + ".png"));
+        BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR_TEX);
+        bufferbuilder.vertex(x, y + v, z).color(red, green, blue, 1f).uv(0.0f, 1.0f).endVertex();
+        bufferbuilder.vertex(x + u, y + v, z).color(red, green, blue, 1f).uv(1.0f, 1.0f).endVertex();
+        bufferbuilder.vertex(x + u, y, z).color(red, green, blue, 1f).uv(1.0f, 0.0f).endVertex();
+        bufferbuilder.vertex(x, y, z).color(red, green, blue, 1f).uv(0f, 0f).endVertex();
+        Tessellator.getInstance().end();
+    }
+
+    public static void drawAbilityIcon(String iconName, int x, int y, int u, int v)
+    {
+        drawAbilityIcon(iconName, x, y, 1, u, v);
     }
 }

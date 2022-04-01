@@ -16,7 +16,7 @@ public class TestEvents {
     {
         if (event.getMessage().contains("gui"))
         {
-            Minecraft.getInstance().setScreen(new PlayerStatsScreen(Minecraft.getInstance()));
+            Minecraft.getInstance().setScreen(new PlayerStatsScreen());
         }
     }
 }

@@ -28,7 +28,6 @@ public class PlayerStatsScreen extends Screen {
 
     //Initialisation of everything needed in the class//
 
-
     //256, 256
     private final ResourceLocation playerstats = new ResourceLocation("jujutsukaisen:textures/gui/backgrounds/playerstats.png");
 
@@ -41,22 +40,15 @@ public class PlayerStatsScreen extends Screen {
     ITextComponent skills = new StringTextComponent("skills");
 
 
-    private Minecraft minecraft;
+    private final PlayerEntity player;
 
-    public PlayerStatsScreen(Minecraft mc)
+    public PlayerStatsScreen()
     {
         super(new StringTextComponent(""));
-        minecraft = mc;
+        this.player = Minecraft.getInstance().player;
     }
 
-    @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
-    {
-        this.renderBackground(matrixStack);
-        backgroundRendering(matrixStack);
-        renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-    }
+
 
     @Override
     public void init()
@@ -64,13 +56,21 @@ public class PlayerStatsScreen extends Screen {
         guiLeft = (this.width - this.xSize) / 2;
         guiTop = (this.height - this.ySize) / 2;
 
-        Button Skills = new Button(guiLeft + 10, guiTop + 195, 100, 20, skills, b ->
+        Button Skills = new Button(guiLeft + 10, guiTop + 195, 20, 20, skills, b ->
         {
             Minecraft.getInstance().setScreen(new SpellsScreen(Minecraft.getInstance()));
         });
         this.addButton(Skills);
     }
 
+    @Override
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
+    {
+        this.renderBackground(matrixStack);
+        backgroundRendering(matrixStack);
+        //renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+    }
 
     public void backgroundRendering(MatrixStack matrixStack)
     {
@@ -90,7 +90,6 @@ public class PlayerStatsScreen extends Screen {
         drawString(matrixStack, font, "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
         drawString(matrixStack, font, "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
         drawString(matrixStack, font, "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
-        //TODO grade not showing
         drawString(matrixStack, font, "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
 
     }
@@ -140,5 +139,11 @@ public class PlayerStatsScreen extends Screen {
     {
         return false;
     }
+
+    public static void open()
+    {
+        Minecraft.getInstance().setScreen(new PlayerStatsScreen());
+    }
+
 
 }

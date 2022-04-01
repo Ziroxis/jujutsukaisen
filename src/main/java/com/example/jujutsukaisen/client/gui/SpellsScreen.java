@@ -39,7 +39,7 @@ public class SpellsScreen extends Screen {
 
         Button Back = new Button(guiLeft + 230, guiTop + 25, 20, 20, back, b ->
         {
-            Minecraft.getInstance().setScreen(new PlayerStatsScreen(Minecraft.getInstance()));
+            Minecraft.getInstance().setScreen(new PlayerStatsScreen());
         });
         this.addButton(Back);
     }
