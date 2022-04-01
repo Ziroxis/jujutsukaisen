@@ -23,7 +23,7 @@ public class GetStatsFirstTimeEvent {
 
         if (!props.hasClan())
         {
-            props.setCurseGrade(ModValues.grade_4);
+            props.setCurseGrade(ModValues.locked);
             props.setLevel(0);
             props.setExperience(0);
             props.setMaxExperience(50);

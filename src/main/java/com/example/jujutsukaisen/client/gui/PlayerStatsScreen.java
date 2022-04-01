@@ -82,7 +82,6 @@ public class PlayerStatsScreen extends Screen {
         String name = player.getName().getString();
         String clan = props.getClan();
         String grade = props.getCurseGrade();
-        String technique = props.getTechnique();
 
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
@@ -91,7 +90,6 @@ public class PlayerStatsScreen extends Screen {
         drawString(matrixStack, font, "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
         drawString(matrixStack, font, "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
         drawString(matrixStack, font, "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
-        drawString(matrixStack, font, "Technique: " + technique, guiLeft + 5, guiTop + 80, 16777215);
         //TODO grade not showing
         drawString(matrixStack, font, "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
 

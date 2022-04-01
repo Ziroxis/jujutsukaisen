@@ -16,6 +16,7 @@ public class ModValues {
     public static final String grade_4 = "Grade 4 Sorcerer";
     public static final String special = "Special";
     public static final String rogue = "Rogue";
+    public static final String locked = "None";
 
     public static final String Divine_Dogs = "Divine_Dogs";
     public static final String Six_Eyes = "Six_Eyes";

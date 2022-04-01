@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.template.*;
 import net.minecraft.world.server.ServerWorld;
 
@@ -247,6 +248,28 @@ public class Beapi
         if (str != null && !str.isEmpty() && !str.equalsIgnoreCase("n/a"))
             return false;
         return true;
+    }
+
+    public static boolean setBlockStateInChunk(World world, BlockPos pos, BlockState newState, int flags)
+    {
+        if (World.isOutsideBuildHeight(pos))
+            return false;
+        else if (!world.isClientSide && world.isDebug())
+            return false;
+        else
+        {
+            Chunk chunk = world.getChunkAt(pos);
+            pos = pos.immutable();
+
+            BlockState blockstate = chunk.setBlockState(pos, newState, (flags & 64) != 0);
+            if (blockstate != null)
+            {
+                //world.markAndNotifyBlock(pos, chunk, blockstate, newState, flags);
+                if ((flags & 2) != 0 && (!world.isClientSide || (flags & 4) == 0))
+                    world.markAndNotifyBlock(pos, chunk, blockstate, newState, flags, 256);
+            }
+            return true;
+        }
     }
 
     public static String getResourceName(String text)

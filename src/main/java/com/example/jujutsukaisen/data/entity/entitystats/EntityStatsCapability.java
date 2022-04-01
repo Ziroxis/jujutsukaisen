@@ -23,7 +23,6 @@ public class EntityStatsCapability {
                 CompoundNBT props = new CompoundNBT();
 
                 props.putString("clan", instance.getClan());
-                props.putString("technique", instance.getTechnique());
                 props.putString("grade", instance.getCurseGrade());
                 props.putInt("level", instance.getLevel());
                 props.putInt("experience", instance.getExperience());
@@ -38,7 +37,6 @@ public class EntityStatsCapability {
                 CompoundNBT props = (CompoundNBT) nbt;
 
                 instance.setClan(props.getString("clan"));
-                instance.setTechnique(props.getString("technique"));
                 instance.setCurseGrade(props.getString("grade"));
                 instance.setLevel(props.getInt("level"));
                 instance.setExperience(props.getInt("experience"));

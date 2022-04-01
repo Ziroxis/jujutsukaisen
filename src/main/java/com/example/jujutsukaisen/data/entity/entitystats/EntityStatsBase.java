@@ -13,11 +13,9 @@ public class EntityStatsBase implements IEntityStats{
     private int maxExperience;
     private int alterMaxExperience;
 
+
     @Override
     public boolean hasCursedEnergy() {
-        if (this.hasHeavenlyRestriction())
-            return false;
-
         return true;
     }
 
@@ -89,28 +87,8 @@ public class EntityStatsBase implements IEntityStats{
         return this.clan.equalsIgnoreCase(ModValues.Suguru);
     }
 
-    @Override
-    public boolean hasTechnique() {
-        if (Beapi.isNullOrEmpty(this.technique))
-            return false;
 
-        return true;
-    }
 
-    @Override
-    public void setTechnique(String value) {
-        this.technique = Beapi.getResourceName(value);
-    }
-
-    @Override
-    public String getTechnique() {
-        return this.technique;
-    }
-
-    @Override
-    public boolean hasHeavenlyRestriction() {
-        return false;
-    }
 
     @Override
     public boolean hasCurseGrade() {
