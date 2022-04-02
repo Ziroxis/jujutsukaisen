@@ -17,7 +17,6 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -25,12 +24,8 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.lwjgl.glfw.GLFW;
 
-import javax.swing.text.JTextComponent;
-import java.awt.event.KeyEvent;
 
 @Mod.EventBusSubscriber(modid = Main.MODID, value = Dist.CLIENT)
 public class ModKeyBinds {
@@ -158,7 +153,6 @@ public class ModKeyBinds {
 
         if (infoCard.isDown())
         {
-            System.out.println("Check 1");
             if(Minecraft.getInstance().screen != null)
                 return;
 

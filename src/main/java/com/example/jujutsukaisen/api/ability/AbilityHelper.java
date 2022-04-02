@@ -224,6 +224,11 @@ public class AbilityHelper {
                 };
     }
 
+    public static Api.AbilityCategory getTechniqueCategory()
+    {
+        return Api.AbilityCategory.valueOf("TECHNIQUE");
+    }
+
     public static ExplosionAbility newExplosion(Entity entity, World world, double posX, double posY, double posZ, float size)
     {
         return new ExplosionAbility(entity, world, posX, posY, posZ, size);

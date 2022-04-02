@@ -1,6 +1,9 @@
 package com.example.jujutsukaisen.client.gui;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.api.ability.Api;
+import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
+import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -17,6 +20,7 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.gui.GuiUtils;
@@ -56,11 +60,27 @@ public class PlayerStatsScreen extends Screen {
         guiLeft = (this.width - this.xSize) / 2;
         guiTop = (this.height - this.ySize) / 2;
 
+        int posX = ((this.width - 256) / 2) - 110;
+        int posY = (this.height - 256) / 2;
+        IAbilityData abilityProps = AbilityDataCapability.get(this.player);
+
+        boolean hasAbilities = abilityProps.countUnlockedAbilities(Api.AbilityCategory.ALL) > 0;
+        posX += 80;
+        Button abilitiesButton = new Button(posX, posY + 210, 70, 20, new TranslationTextComponent("gui.abilities", "Abilities"), b ->
+        {
+            Minecraft.getInstance().setScreen(new SelectHotbarAbilitiesScreen(this.player));
+        });
+        if (!hasAbilities)
+            abilitiesButton.active = false;
+        this.addButton(abilitiesButton);
+
+        /*
         Button Skills = new Button(guiLeft + 10, guiTop + 195, 20, 20, skills, b ->
         {
             Minecraft.getInstance().setScreen(new SpellsScreen(Minecraft.getInstance()));
         });
         this.addButton(Skills);
+         */
     }
 
     @Override

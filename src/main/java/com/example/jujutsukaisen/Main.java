@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen;
 
 import com.example.jujutsukaisen.api.ability.AbilityArgument;
+import com.example.jujutsukaisen.api.ability.Api;
 import com.example.jujutsukaisen.client.ClientHandler;
 import com.example.jujutsukaisen.events.CursedSpiritInvincibility;
 import com.example.jujutsukaisen.events.ModEventBusEvents;
@@ -35,8 +36,8 @@ public class Main
 
         ModEntities.ENTITIES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
-
-
+        ModAbilities.register(modEventBus);
+        Api.AbilityCategory.create("TECHNIQUE", (player) -> null);
 
 
 

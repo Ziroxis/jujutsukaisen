@@ -28,11 +28,20 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 public class Beapi
 {
+
+    private static HashMap<String, String> langMap = new HashMap<String, String>();
+
+    public static HashMap<String, String> getLangMap()
+    {
+        return langMap;
+    }
+
     public static List<String> splitString(FontRenderer font, String text, int posX, int wrapWidth)
     {
         while (text != null && text.endsWith("\n"))

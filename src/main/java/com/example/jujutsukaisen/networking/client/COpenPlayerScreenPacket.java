@@ -39,7 +39,6 @@ public class COpenPlayerScreenPacket
 				PacketHandler.sendTo(new SOpenPlayerScreenPacket(), player);
 			});
 		}
-		System.out.println("Check 2");
 		ctx.get().setPacketHandled(true);
 	}
 }

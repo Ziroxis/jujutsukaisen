@@ -36,7 +36,6 @@ public class SOpenPlayerScreenPacket
 		@OnlyIn(Dist.CLIENT)
 		public static void handle(SOpenPlayerScreenPacket message)
 		{
-			System.out.println("Check 3");
 			PlayerStatsScreen.open();
 		}
 	}
