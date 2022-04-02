@@ -37,7 +37,6 @@ public class Main
         ModEntities.ENTITIES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModAbilities.register(modEventBus);
-        Api.AbilityCategory.create("TECHNIQUE", (player) -> null);
 
 
 
