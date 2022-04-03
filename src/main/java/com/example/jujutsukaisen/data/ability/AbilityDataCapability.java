@@ -131,7 +131,9 @@ public class AbilityDataCapability
 						}
 						catch(Exception e)
 						{
+							//TODO stumble on this
 							System.out.println(nbtAbility.getString("name") + " not registering");
+							e.printStackTrace();
 						}
 					}
 

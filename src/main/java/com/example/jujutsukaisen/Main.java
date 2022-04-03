@@ -47,6 +47,7 @@ public class Main
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+        MinecraftForge.EVENT_BUS.register(new ModCapabilities.Registry());
         MinecraftForge.EVENT_BUS.register(this);
     }
 
