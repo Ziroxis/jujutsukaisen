@@ -48,9 +48,6 @@ public class ModAbilities {
 
     public static void register(IEventBus eventBus)
     {
-        ABILITIES.register(eventBus);
+        registerAbilities(TENSHADOW_TECHNIQUE);
     }
-
-
-
 }
