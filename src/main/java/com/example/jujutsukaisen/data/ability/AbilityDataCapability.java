@@ -114,6 +114,7 @@ public class AbilityDataCapability
 
 						try
 						{
+							//TODO fix this shit
 							Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Main.MODID, nbtAbility.getString("name"))).create();
 							if(ability == null)
 								continue;

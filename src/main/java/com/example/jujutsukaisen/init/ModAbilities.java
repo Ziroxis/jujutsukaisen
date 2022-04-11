@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
+import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +27,7 @@ public class ModAbilities {
     public static final IForgeRegistry<Ability> ABILITIES_REGISTRY = RegistryManager.ACTIVE.getRegistry(Ability.class);
     private static final DeferredRegister<Ability> ABILITIES = DeferredRegister.create(ABILITIES_REGISTRY, Main.MODID);
 
-    public static final Ability[] TENSHADOW_TECHNIQUE = new Ability[] {DivineDogsAbility.INSTANCE};
+    public static final Ability[] TENSHADOW_TECHNIQUE = new Ability[] {DivineDogsAbility.INSTANCE, ShadowInventoryAbility.INSTANCE};
 
     private static Ability registerAbility(Ability ability)
     {
@@ -49,5 +50,6 @@ public class ModAbilities {
     public static void register(IEventBus eventBus)
     {
         registerAbilities(TENSHADOW_TECHNIQUE);
+        ABILITIES.register(eventBus);
     }
 }

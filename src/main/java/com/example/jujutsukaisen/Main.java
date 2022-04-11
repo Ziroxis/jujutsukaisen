@@ -1,14 +1,18 @@
 package com.example.jujutsukaisen;
 
+import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.AbilityArgument;
 import com.example.jujutsukaisen.api.ability.Api;
 import com.example.jujutsukaisen.client.ClientHandler;
-import com.example.jujutsukaisen.events.CursedSpiritInvincibility;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.events.ModEventBusEvents;
 import com.example.jujutsukaisen.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.command.arguments.ArgumentSerializer;
 import net.minecraft.command.arguments.ArgumentTypes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,6 +27,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.function.Function;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Main.MODID)
 public class Main
@@ -30,6 +36,17 @@ public class Main
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "jujutsukaisen";
+
+
+    private static final Function<PlayerEntity, ResourceLocation> GET_CLAN_ICON = (player) ->
+    {
+        IEntityStats props = EntityStatsCapability.get(player);
+        String iconName = props.getClan();
+        ResourceLocation icon = null;
+        icon = new ResourceLocation(Main.MODID, "textures/clan/" + Beapi.getResourceName(iconName) + ".png");
+
+        return icon;
+    };
 
     public Main() {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -39,8 +56,7 @@ public class Main
         ModAbilities.register(modEventBus);
 
 
-
-
+        Api.AbilityCategory.create("TECHNIQUE", GET_CLAN_ICON);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);

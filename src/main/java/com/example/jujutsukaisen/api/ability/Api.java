@@ -10,8 +10,7 @@ import java.util.function.Function;
 public class Api {
     public static enum AbilityCategory implements IExtensibleEnum
     {
-        ALL,
-        TECHNIQUE;
+        ALL;
 
         private Function<PlayerEntity, ResourceLocation> iconFunction;
 

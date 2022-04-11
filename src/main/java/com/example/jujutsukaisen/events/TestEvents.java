@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
+import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.client.gui.PlayerStatsScreen;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
@@ -26,7 +27,12 @@ public class TestEvents {
             IAbilityData props = AbilityDataCapability.get(event.getPlayer());
             props.addUnlockedAbility(DivineDogsAbility.INSTANCE);
             PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
-
+        }
+        if (event.getMessage().contains("another"))
+        {
+            IAbilityData props = AbilityDataCapability.get(event.getPlayer());
+            props.addUnlockedAbility(ShadowInventoryAbility.INSTANCE);
+            PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         }
     }
 }
