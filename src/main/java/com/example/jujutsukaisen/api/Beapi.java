@@ -27,6 +27,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,10 @@ import java.util.Random;
 
 public class Beapi
 {
+    public static boolean isDebug()
+    {
+        return ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+    }
 
     private static HashMap<String, String> langMap = new HashMap<String, String>();
 

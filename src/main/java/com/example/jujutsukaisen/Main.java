@@ -38,32 +38,21 @@ public class Main
     public static final String MODID = "jujutsukaisen";
 
 
-    private static final Function<PlayerEntity, ResourceLocation> GET_CLAN_ICON = (player) ->
-    {
-        IEntityStats props = EntityStatsCapability.get(player);
-        String iconName = props.getClan();
-        ResourceLocation icon = null;
-        icon = new ResourceLocation(Main.MODID, "textures/clan/" + Beapi.getResourceName(iconName) + ".png");
-
-        return icon;
-    };
 
     public Main() {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        MinecraftForge.EVENT_BUS.register(new ModCapabilities.Registry());
 
         ModEntities.ENTITIES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModAbilities.register(modEventBus);
 
 
-        Api.AbilityCategory.create("TECHNIQUE", GET_CLAN_ICON);
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        MinecraftForge.EVENT_BUS.register(new ModCapabilities.Registry());
         MinecraftForge.EVENT_BUS.register(this);
     }
 
