@@ -6,6 +6,8 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.client.CRequestSyncWorldDataPacket;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -57,6 +59,8 @@ public class PlayerStatsScreen extends Screen {
     @Override
     public void init()
     {
+        PacketHandler.sendToServer(new CRequestSyncWorldDataPacket());
+
         guiLeft = (this.width - this.xSize) / 2;
         guiTop = (this.height - this.ySize) / 2;
 
@@ -71,7 +75,7 @@ public class PlayerStatsScreen extends Screen {
             Minecraft.getInstance().setScreen(new SelectHotbarAbilitiesScreen(this.player));
         });
         if (!hasAbilities)
-            abilitiesButton.active = false;
+           abilitiesButton.active = false;
         this.addButton(abilitiesButton);
 
         /*

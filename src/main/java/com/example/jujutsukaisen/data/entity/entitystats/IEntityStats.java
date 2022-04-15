@@ -40,4 +40,6 @@ public interface IEntityStats {
     void alterMaxExperience(int value);
     void setMaxExperience(int value);
 
+    double getDamageMultiplier();
+    void setDamageMultiplier(double multiplier);
 }

@@ -13,6 +13,7 @@ public class EntityStatsBase implements IEntityStats{
     private int experience;
     private int maxExperience;
     private int alterMaxExperience;
+    private double damageMultiplier = 1;
 
 
     @Override
@@ -162,5 +163,15 @@ public class EntityStatsBase implements IEntityStats{
     @Override
     public void setMaxExperience(int value) {
         this.maxExperience = value;
+    }
+
+    @Override
+    public double getDamageMultiplier() {
+        return this.damageMultiplier;
+    }
+
+    @Override
+    public void setDamageMultiplier(double multiplier) {
+        this.damageMultiplier = multiplier;
     }
 }

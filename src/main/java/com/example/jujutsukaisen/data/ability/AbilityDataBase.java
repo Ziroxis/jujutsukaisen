@@ -145,7 +145,7 @@ public class AbilityDataBase implements IAbilityData
 	public boolean setEquippedAbility(int slot, Ability abl)
 	{
 		Ability ogAbl = this.getEquippedAbility(abl);
-		if (ogAbl == null && slot <= 8)
+		if (ogAbl == null && slot <= 16)
 		{
 			this.equippedAbilities[slot] = abl;
 			return true;

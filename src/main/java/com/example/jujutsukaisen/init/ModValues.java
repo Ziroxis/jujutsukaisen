@@ -13,7 +13,7 @@ public class ModValues {
     public static final String grade_1 = "Grade 1";
     public static final String grade_2 = "Grade 2";
     public static final String grade_3 = "Grade 3";
-    public static final String grade_4 = "Grade 4 Sorcerer";
+    public static final String grade_4 = "Grade 4";
     public static final String special = "Special";
     public static final String rogue = "Rogue";
     public static final String locked = "None";

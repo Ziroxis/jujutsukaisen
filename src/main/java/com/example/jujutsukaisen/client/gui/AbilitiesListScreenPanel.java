@@ -43,6 +43,10 @@ public class AbilitiesListScreenPanel extends ScrollPanel
 
 			if (abilities[i] != null)
 			{
+				if (!isPassive)
+					this.activeAbilities.add(new Entry(abilities[i]));
+				else if (isPassive && !hideInGUI)
+					this.passiveAbilities.add(new Entry(abilities[i]));
 			}
 		}
 		

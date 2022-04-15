@@ -28,6 +28,7 @@ public class EntityStatsCapability {
                 props.putInt("level", instance.getLevel());
                 props.putInt("experience", instance.getExperience());
                 props.putInt("maxexperience", instance.getMaxExperience());
+                props.putDouble("damageMultiplier", instance.getDamageMultiplier());
 
                 return props;
             }
@@ -43,6 +44,8 @@ public class EntityStatsCapability {
                 instance.setLevel(props.getInt("level"));
                 instance.setExperience(props.getInt("experience"));
                 instance.setMaxExperience(props.getInt("maxexperience"));
+                instance.setDamageMultiplier(props.getDouble("damageMultiplier"));
+
             }
         }, () -> new EntityStatsBase());
 

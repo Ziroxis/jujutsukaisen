@@ -2,6 +2,7 @@ package com.example.jujutsukaisen;
 
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.AbilityArgument;
+import com.example.jujutsukaisen.api.ability.AbilityGroupArgument;
 import com.example.jujutsukaisen.api.ability.Api;
 import com.example.jujutsukaisen.client.ClientHandler;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -28,6 +29,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.function.Function;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Main.MODID)
@@ -58,9 +60,10 @@ public class Main
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        ArgumentTypes.register("ability", AbilityArgument.class, new ArgumentSerializer<>(AbilityArgument::ability));
-        MinecraftForge.EVENT_BUS.register(ModEventBusEvents.class);
         ModCapabilities.init();
+        ArgumentTypes.register("ability", AbilityArgument.class, new ArgumentSerializer<>(AbilityArgument::ability));
+        ArgumentTypes.register("group", AbilityGroupArgument.class, new ArgumentSerializer<>(AbilityGroupArgument::abilityGroup));
+        MinecraftForge.EVENT_BUS.register(ModEventBusEvents.class);
         ModNetwork.init();
     }
 
