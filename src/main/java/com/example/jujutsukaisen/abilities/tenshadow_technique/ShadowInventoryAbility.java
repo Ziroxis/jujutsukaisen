@@ -13,6 +13,7 @@ public class ShadowInventoryAbility extends Ability {
         super("Shadow Inventory", AbilityHelper.getTechniqueCategory());
         this.setDescription("Opens up your shadow inventory");
         this.setMaxCooldown(1);
+        this.setCursedEnergyCost(5);
         this.onUseEvent = this::onUseEvent;
     }
 
