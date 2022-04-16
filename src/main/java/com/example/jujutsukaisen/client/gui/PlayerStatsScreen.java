@@ -6,7 +6,10 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.data.quest.IQuestData;
+import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.client.CRequestSyncQuestDataPacket;
 import com.example.jujutsukaisen.networking.client.CRequestSyncWorldDataPacket;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -67,6 +70,8 @@ public class PlayerStatsScreen extends Screen {
         int posX = ((this.width - 256) / 2) - 110;
         int posY = (this.height - 256) / 2;
         IAbilityData abilityProps = AbilityDataCapability.get(this.player);
+        IQuestData questProps = QuestDataCapability.get(this.player);
+
 
         boolean hasAbilities = abilityProps.countUnlockedAbilities(Api.AbilityCategory.ALL) > 0;
         posX += 80;
@@ -77,6 +82,17 @@ public class PlayerStatsScreen extends Screen {
         if (!hasAbilities)
            abilitiesButton.active = false;
         this.addButton(abilitiesButton);
+
+        boolean hasQuests = questProps.countInProgressQuests() > 0;
+        posX += 120;
+        Button questsButton = new Button(posX, posY + 210, 70, 20, new TranslationTextComponent("gui.quests", "Quests"), b ->
+        {
+            PacketHandler.sendToServer(new CRequestSyncQuestDataPacket());
+            Minecraft.getInstance().setScreen(new QuestsTrackerScreen(this.player));
+        });
+        if (!hasQuests)
+            questsButton.active = false;
+        this.addButton(questsButton);
 
         /*
         Button Skills = new Button(guiLeft + 10, guiTop + 195, 20, 20, skills, b ->

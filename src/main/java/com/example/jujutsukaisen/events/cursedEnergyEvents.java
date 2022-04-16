@@ -20,7 +20,5 @@ public class cursedEnergyEvents {
 
         if (player.tickCount % 20 == 0)
             propsEntity.alterCursedEnergy(1);
-
-
     }
 }

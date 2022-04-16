@@ -48,7 +48,7 @@ public class Main
         ModEntities.ENTITIES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModAbilities.register(modEventBus);
-
+        ModQuests.QUESTS.register(modEventBus);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);

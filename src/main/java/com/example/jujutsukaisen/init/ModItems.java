@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.init;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.items.spawneggs.LizardEgg;
 import com.example.jujutsukaisen.items.spawneggs.RoppongiEgg;
+import com.example.jujutsukaisen.items.spawneggs.SenseiEgg;
 import com.example.jujutsukaisen.items.spawneggs.SmallPoxEgg;
 import com.example.jujutsukaisen.items.weapons.*;
 import net.minecraft.item.Item;
@@ -24,6 +25,7 @@ public class ModItems {
     public static final RegistryObject<Item> ROPPONGI_EGG = ITEMS.register("roppongi_egg", RoppongiEgg::new);
     public static final RegistryObject<Item> SMALLPOX_EGG = ITEMS.register("smallpox_egg", SmallPoxEgg::new);
     public static final RegistryObject<Item> LIZARD_EGG = ITEMS.register("lizard_egg", LizardEgg::new);
+    public static final RegistryObject<Item> SENSEI_EGG = ITEMS.register("sensei_egg", SenseiEgg::new);
 
     //WEAPONS
     public static final RegistryObject<Item> BLACK_BLADE = ITEMS.register("black_blade", () -> new BlackBlade(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 8, 0f));

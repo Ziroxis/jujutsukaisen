@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -37,6 +39,17 @@ import java.util.logging.Level;
 public class Beapi
 {
 
+    public static final int getIndexOfItemStack(Item item, IInventory inven)
+    {
+        for (int i = 0; i < inven.getContainerSize(); i++)
+        {
+            if (inven.getItem(i).getItem() == item)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 
 
     public static boolean isDebug()

@@ -5,6 +5,8 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.AbilityDataProvider;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsProvider;
+import com.example.jujutsukaisen.data.quest.QuestDataCapability;
+import com.example.jujutsukaisen.data.quest.QuestDataProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +22,7 @@ public class ModCapabilities {
     {
         EntityStatsCapability.register();
         AbilityDataCapability.register();
-
+        QuestDataCapability.register();
     }
 
     public static class Registry
@@ -31,6 +33,7 @@ public class ModCapabilities {
             if (event.getObject() instanceof PlayerEntity)
             {
                 event.addCapability(new ResourceLocation(Main.MODID, "ability_data"), new AbilityDataProvider());
+                event.addCapability(new ResourceLocation(Main.MODID, "quest_data"), new QuestDataProvider());
             }
         }
     }

@@ -57,10 +57,4 @@ public class LizardModel<T extends LizardEntity> extends EntityModel<T> {
 		Base_Body.render(matrixStack, buffer, packedLight, packedOverlay);
 		Leg_1.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
-
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.xRot = x;
-		modelRenderer.yRot = y;
-		modelRenderer.zRot = z;
-	}
 }
