@@ -14,6 +14,7 @@ public class DivineDogsAbility extends Ability {
         super("Divine Dogs", AbilityHelper.getTechniqueCategory());
         this.setDescription("Summons two divine dogs");
         this.setMaxCooldown(10);
+        this.setCursedEnergyCost(20);
         this.onUseEvent = this::onUseEvent;
     }
 

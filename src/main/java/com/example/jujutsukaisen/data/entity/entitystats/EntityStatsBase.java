@@ -12,6 +12,8 @@ public class EntityStatsBase implements IEntityStats{
     private int level;
     private int experience;
     private int maxExperience;
+    private int cursedEnergy;
+    private int maxCursedEnergy;
     private int alterMaxExperience;
     private double damageMultiplier = 1;
 
@@ -164,6 +166,39 @@ public class EntityStatsBase implements IEntityStats{
     public void setMaxExperience(int value) {
         this.maxExperience = value;
     }
+
+
+    @Override
+    public void alterCursedEnergy(int value) {
+        this.cursedEnergy += value;
+
+        if (this.cursedEnergy > this.maxCursedEnergy)
+            this.cursedEnergy = this.maxCursedEnergy;
+
+        if (this.cursedEnergy < 0)
+            this.cursedEnergy = 0;
+    }
+
+    @Override
+    public void setCursedEnergy(int value) {
+        this.cursedEnergy = value;
+    }
+
+    @Override
+    public void setMaxCursedEnergy(int value) {
+        this.maxCursedEnergy = value;
+    }
+
+    @Override
+    public int getMaxCursedEnergy() {
+        return this.maxCursedEnergy;
+    }
+
+    @Override
+    public int returnCursedEnergy() {
+        return this.cursedEnergy;
+    }
+
 
     @Override
     public double getDamageMultiplier() {

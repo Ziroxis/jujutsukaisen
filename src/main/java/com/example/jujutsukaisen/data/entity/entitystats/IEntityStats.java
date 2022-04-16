@@ -40,6 +40,13 @@ public interface IEntityStats {
     void alterMaxExperience(int value);
     void setMaxExperience(int value);
 
+    //Thins related with cursed energy
+    void alterCursedEnergy(int value);
+    void setCursedEnergy(int value);
+    void setMaxCursedEnergy(int value);
+    int getMaxCursedEnergy();
+    int returnCursedEnergy();
+
     double getDamageMultiplier();
     void setDamageMultiplier(double multiplier);
 }

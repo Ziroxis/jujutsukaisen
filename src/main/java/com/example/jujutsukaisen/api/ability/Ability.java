@@ -4,6 +4,8 @@ import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
@@ -26,6 +28,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     private String name = "";
     private String displayName;
     private String textureName = "";
+    private int cursedEnergyCost = 1;
     private ITextComponent tooltip;
     protected double cooldown;
     protected double maxCooldown;
@@ -83,6 +86,8 @@ public class Ability extends ForgeRegistryEntry<Ability> {
             IAbilityData props = AbilityDataCapability.get(player);
             this.checkAbilityPool(player, State.COOLDOWN);
 
+            IEntityStats propsEntity = EntityStatsCapability.get(player);
+            propsEntity.alterCursedEnergy(-cursedEnergyCost);
 
 
             this.startCooldown(player);
@@ -268,6 +273,16 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     public double getCooldown()
     {
         return this.cooldown;
+    }
+
+    public void setCursedEnergyCost(int cursedEnergy)
+    {
+        this.cursedEnergyCost = cursedEnergy;
+    }
+
+    public float getCursedEnergyCost()
+    {
+        return this.cursedEnergyCost;
     }
 
     public void setDescription(String desc)
@@ -456,7 +471,14 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     public boolean canUse(PlayerEntity player)
     {
         ExtendedWorldData worldData = ExtendedWorldData.get(player.level);
+        IEntityStats propsEntity = EntityStatsCapability.get(player);
 
+        if (propsEntity.returnCursedEnergy() < cursedEnergyCost)
+        {
+            player.sendMessage(new TranslationTextComponent("Not enough cursed energy!"), Util.NIL_UUID);
+
+            return false;
+        }
         if (worldData.isInsideRestrictedArea((int)player.position().x(), (int)player.position().y(), (int)player.position().z()))
         {
             boolean isWhitelsited = false;

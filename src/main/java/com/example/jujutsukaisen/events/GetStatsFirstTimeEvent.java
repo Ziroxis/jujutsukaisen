@@ -27,6 +27,8 @@ public class GetStatsFirstTimeEvent {
             props.setLevel(0);
             props.setExperience(0);
             props.setMaxExperience(50);
+            props.setCursedEnergy(50);
+            props.setMaxCursedEnergy(50);
 
             int rng = Beapi.RNG(5);
             switch (rng)
@@ -51,5 +53,7 @@ public class GetStatsFirstTimeEvent {
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);
         System.out.println(props.getClan());
         System.out.println(props.getCurseGrade());
+        System.out.println(props.getMaxCursedEnergy());
+        System.out.println(props.returnCursedEnergy());
     }
 }

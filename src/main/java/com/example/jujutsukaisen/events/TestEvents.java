@@ -40,16 +40,9 @@ public class TestEvents {
             PlayerEntity player = event.getPlayer();
             IEntityStats props = EntityStatsCapability.get(player);
 
-            System.out.println(props.getClan());
-            System.out.println(props.getCurseGrade());
+            System.out.println(props.returnCursedEnergy());
+            System.out.println(props.getMaxCursedEnergy());
         }
-        if (event.getMessage().contains("give"))
-        {
-            PlayerEntity player = event.getPlayer();
-            IEntityStats props = EntityStatsCapability.get(player);
 
-            props.setClan(ModValues.Zenin);
-            props.setCurseGrade(ModValues.locked);
-        }
     }
 }

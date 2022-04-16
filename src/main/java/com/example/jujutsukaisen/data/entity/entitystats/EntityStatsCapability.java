@@ -29,6 +29,8 @@ public class EntityStatsCapability {
                 props.putInt("experience", instance.getExperience());
                 props.putInt("maxexperience", instance.getMaxExperience());
                 props.putDouble("damageMultiplier", instance.getDamageMultiplier());
+                props.putInt("cursedEnergy", instance.returnCursedEnergy());
+                props.putInt("maxCursedEnergy", instance.getMaxCursedEnergy());
 
                 return props;
             }
@@ -45,6 +47,8 @@ public class EntityStatsCapability {
                 instance.setExperience(props.getInt("experience"));
                 instance.setMaxExperience(props.getInt("maxexperience"));
                 instance.setDamageMultiplier(props.getDouble("damageMultiplier"));
+                instance.setCursedEnergy(props.getInt("cursedEnergy"));
+                instance.setMaxCursedEnergy(props.getInt("maxCursedEnergy"));
 
             }
         }, () -> new EntityStatsBase());
