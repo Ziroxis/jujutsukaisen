@@ -1,5 +1,10 @@
 package com.example.jujutsukaisen.quest.unlock;
 
+import com.example.jujutsukaisen.abilities.basic.CursedEnergyPunchAbility;
+import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
+import com.example.jujutsukaisen.data.ability.IAbilityData;
+import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
 import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.ObtainItemObjective;
@@ -20,6 +25,9 @@ public class Unlock_02 extends Quest {
     public boolean giveReward(PlayerEntity player)
     {
         player.giveExperienceLevels(10);
+        IAbilityData props = AbilityDataCapability.get(player);
+        props.addUnlockedAbility(CursedEnergyPunchAbility.INSTANCE);
+        PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         return true;
     }
 }

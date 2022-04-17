@@ -2,12 +2,18 @@ package com.example.jujutsukaisen.entities;
 
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.client.renderer.IDynamicRenderer;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
+import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -16,6 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import net.minecraftforge.common.IExtensibleEnum;
+import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
 
@@ -23,14 +30,14 @@ import javax.annotation.Nullable;
 public abstract class CurseEntity extends CreatureEntity implements IDynamicRenderer {
     protected String[] textures;
     protected boolean needsEntityDataUpdate;
-    protected float statXPDrop = 1;
+    protected int xpDrop = 1;
 
     private static final DataParameter<String> TEXTURE = EntityDataManager.defineId(CurseEntity.class, DataSerializers.STRING);
     private static final DataParameter<Integer> ANIMATION = EntityDataManager.defineId(CurseEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> CURSE_GRADE = EntityDataManager.defineId(CurseEntity.class, DataSerializers.INT);
 
     private int yul;
-    protected int threat = 2, maxML = 100, minML = 0;
+    protected int threat = 2;
     private Goal currentGoal, previousGoal;
     //protected List<AiSpellEntry> SPELL_POOL = new ArrayList<AiSpellEntry>();
 
@@ -87,6 +94,8 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
         this.setTexture(nbt.getString("texture"));
     }
 
+
+
     @Override
     public String getDefaultTexture()
     {
@@ -134,7 +143,18 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
             NetworkLoader.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), new PacketMagicExpSync(playercap.returnMagicExp(), player.getId()));
 
         }
-*/
+        */
+        if (cause.getEntity() instanceof PlayerEntity)
+        {
+            PlayerEntity player = (PlayerEntity) cause.getEntity();
+            IEntityStats props = EntityStatsCapability.get(player);
+
+            props.alterExperience(this.getExperience());
+            ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, props.getExperience());
+            if (MinecraftForge.EVENT_BUS.post(eventExperience))
+                return;
+            PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);
+        }
     }
 
     @Override
@@ -192,6 +212,10 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
     }
 
 
+    public int getExperience()
+    {
+        return xpDrop;
+    }
 
     public int getCurseGrade()
     {
@@ -319,7 +343,4 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
 
 
 
-    public float getStatXPDrop() {
-        return statXPDrop;
-    }
 }

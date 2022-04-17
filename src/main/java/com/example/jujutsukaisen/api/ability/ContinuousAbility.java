@@ -1,6 +1,9 @@
 package com.example.jujutsukaisen.api.ability;
 
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
 import net.minecraft.entity.player.PlayerEntity;
@@ -103,7 +106,7 @@ public class ContinuousAbility extends Ability {
     {
         //if(player.level.isClientSide)
         //	return;
-
+        IEntityStats propsEntity = EntityStatsCapability.get(player);
         if(!this.canUse(player))
         {
             this.stopContinuity(player);
@@ -114,6 +117,9 @@ public class ContinuousAbility extends Ability {
 
         if(this.isContinuous())
         {
+            if (player.tickCount % 20 == 0)
+                propsEntity.alterCursedEnergy((int) -getCursedEnergyCost());
+            PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
             this.continueTime++;
             if((this.isClientSide() || !player.level.isClientSide) && !this.isStateForced())
                 this.duringContinuityEvent.duringContinuity(player, this.continueTime);

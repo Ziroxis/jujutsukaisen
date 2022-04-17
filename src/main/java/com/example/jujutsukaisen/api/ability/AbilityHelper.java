@@ -21,13 +21,31 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class AbilityHelper {
 
+    @Nullable
+    public static AbilityOverlay getCurrentOverlay(PlayerEntity player)
+    {
+        AbilityOverlay overlay = null;
+        Ability[] list = AbilityDataCapability.get(player).getEquippedAbilities();
+        for (Ability ability : list)
+        {
+            if (ability == null || (ability instanceof ContinuousAbility &&  !ability.isContinuous()))
+                continue;
 
+            if (ability instanceof IPunchOverlayAbility)
+                overlay = ((IPunchOverlayAbility) ability).getPunchOverlay(player);
+            else if (ability instanceof IBodyOverlayAbility)
+                overlay = ((IBodyOverlayAbility) ability).getBodyOverlay();
+        }
+
+        return overlay;
+    }
 
     public static void enableAbilities(PlayerEntity player, Predicate<Ability> check)
     {

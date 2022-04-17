@@ -20,6 +20,7 @@ public class Unlock_01 extends Quest {
     public boolean giveReward(PlayerEntity player)
     {
         player.giveExperienceLevels(5);
+
         return true;
     }
 }

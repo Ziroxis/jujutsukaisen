@@ -23,7 +23,7 @@ public class LizardEntity extends CurseEntity {
 
     public LizardEntity(EntityType<? extends LizardEntity> type, World world) {
         super(type, world);
-        this.statXPDrop = 50;
+        this.xpDrop = 50;
     }
 
     @Override

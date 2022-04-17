@@ -23,7 +23,7 @@ public class SmallPoxEntity extends CurseEntity {
     public SmallPoxEntity(EntityType<? extends SmallPoxEntity> type, World world)
     {
         super(type, world);
-        this.statXPDrop = 100;
+        this.xpDrop = 100;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.abilities.basic.CursedEnergyPunchAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.api.Beapi;
@@ -28,6 +29,7 @@ public class ModAbilities {
     private static final DeferredRegister<Ability> ABILITIES = DeferredRegister.create(ABILITIES_REGISTRY, Main.MODID);
 
     public static final Ability[] TENSHADOW_TECHNIQUE = new Ability[] {DivineDogsAbility.INSTANCE, ShadowInventoryAbility.INSTANCE};
+    public static final Ability[] CURSED_PUNCHES = new Ability[] {CursedEnergyPunchAbility.INSTANCE};
 
     private static Ability registerAbility(Ability ability)
     {
@@ -50,6 +52,7 @@ public class ModAbilities {
     public static void register(IEventBus eventBus)
     {
         registerAbilities(TENSHADOW_TECHNIQUE);
+        registerAbilities(CURSED_PUNCHES);
         ABILITIES.register(eventBus);
     }
 }

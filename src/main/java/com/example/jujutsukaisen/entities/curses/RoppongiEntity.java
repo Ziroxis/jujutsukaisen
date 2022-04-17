@@ -19,7 +19,7 @@ public class RoppongiEntity extends CurseEntity {
 
     public RoppongiEntity(EntityType<? extends RoppongiEntity> type, World world) {
         super(type, world);
-        this.statXPDrop = 50;
+        this.xpDrop = 50;
     }
 
     @Override

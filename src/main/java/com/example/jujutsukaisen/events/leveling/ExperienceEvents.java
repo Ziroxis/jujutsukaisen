@@ -14,30 +14,28 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ExperienceEvents {
 
-    //TODO test this code
-    //TODO make it so you get experience by killing cursed spirits
     @SubscribeEvent
     public static void onLevelUp(ExperienceUpEvent e)
     {
-        PlayerEntity p = e.getPlayer();
-        IEntityStats statsProps = EntityStatsCapability.get(p);
+        PlayerEntity player = e.getPlayer();
+        IEntityStats statsProps = EntityStatsCapability.get(player);
 
-        if (statsProps.getExperience() > statsProps.getMaxExperience())
+        if (statsProps.getExperience() >= statsProps.getMaxExperience())
         {
             statsProps.alterLevel(1);
-            LevelUpEvent eventLevelUp = new LevelUpEvent(p, statsProps.getLevel());
+            LevelUpEvent eventLevelUp = new LevelUpEvent(player, statsProps.getLevel());
             if (MinecraftForge.EVENT_BUS.post(eventLevelUp))
                 return;
             statsProps.alterMaxExperience(50);
-            MaxExperienceUpEvent eventMaxExperienceUp = new MaxExperienceUpEvent(p, statsProps.getMaxExperience());
+            MaxExperienceUpEvent eventMaxExperienceUp = new MaxExperienceUpEvent(player, statsProps.getMaxExperience());
             if (MinecraftForge.EVENT_BUS.post(eventMaxExperienceUp))
                 return;
             statsProps.setExperience(0);
-            ExperienceUpEvent eventExperienceUp = new ExperienceUpEvent(p, statsProps.getExperience());
+            ExperienceUpEvent eventExperienceUp = new ExperienceUpEvent(player, statsProps.getExperience());
             if (MinecraftForge.EVENT_BUS.post(eventExperienceUp))
                 return;
-            PacketHandler.sendTo(new SSyncEntityStatsPacket(p.getId(), statsProps), p);
-            p.sendMessage(new StringTextComponent("You leveled up to level " + statsProps.getLevel() + "!"), p.getUUID());
+            PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
+            //player.sendMessage(new StringTextComponent("You leveled up to level " + statsProps.getLevel() + "!"), player.getUUID());
         }
     }
 }
