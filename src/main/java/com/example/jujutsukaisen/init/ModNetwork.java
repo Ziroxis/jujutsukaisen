@@ -1,5 +1,7 @@
 package com.example.jujutsukaisen.init;
 
+import com.example.jujutsukaisen.networking.CursedEnergyMaxSync;
+import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.*;
 import com.example.jujutsukaisen.networking.client.ability.*;
@@ -40,5 +42,10 @@ public class ModNetwork {
         PacketHandler.registerPacket(SChangeCombatBarPacket.class, SChangeCombatBarPacket::encode, SChangeCombatBarPacket::decode, SChangeCombatBarPacket::handle);
         PacketHandler.registerPacket(SSyncWorldDataPacket.class, SSyncWorldDataPacket::encode, SSyncWorldDataPacket::decode, SSyncWorldDataPacket::handle);
         PacketHandler.registerPacket(SSyncQuestDataPacket.class, SSyncQuestDataPacket::encode, SSyncQuestDataPacket::decode, SSyncQuestDataPacket::handle);
+
+        //SYNC
+        PacketHandler.registerPacket(CursedEnergySync.class, CursedEnergySync::encode, CursedEnergySync::decode, CursedEnergySync::handle);
+        PacketHandler.registerPacket(CursedEnergyMaxSync.class, CursedEnergyMaxSync::encode, CursedEnergyMaxSync::decode, CursedEnergyMaxSync::handle);
+
     }
 }

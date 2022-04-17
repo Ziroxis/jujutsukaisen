@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.api.ability.AbilityArgument;
 import com.example.jujutsukaisen.api.ability.AbilityGroupArgument;
 import com.example.jujutsukaisen.api.ability.Api;
 import com.example.jujutsukaisen.client.ClientHandler;
+import com.example.jujutsukaisen.client.gui.CursedEnergyBar;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.events.ModEventBusEvents;
@@ -71,6 +72,8 @@ public class Main
     {
         ClientHandler.OnSetup();
         ModKeyBinds.init();
+        MinecraftForge.EVENT_BUS.register(new CursedEnergyBar());
+
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

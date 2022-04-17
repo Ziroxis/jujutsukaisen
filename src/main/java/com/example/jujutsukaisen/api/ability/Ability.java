@@ -7,6 +7,7 @@ import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
+import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
 import net.minecraft.entity.player.PlayerEntity;
@@ -88,7 +89,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
 
             IEntityStats propsEntity = EntityStatsCapability.get(player);
             propsEntity.alterCursedEnergy(-cursedEnergyCost);
-
+            PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
 
             this.startCooldown(player);
             props.setPreviouslyUsedAbility(this);
