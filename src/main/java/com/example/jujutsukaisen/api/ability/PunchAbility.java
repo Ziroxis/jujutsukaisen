@@ -24,7 +24,7 @@ public abstract class PunchAbility extends ContinuousAbility
 		float result = this.onHitEntityEvent.onHitEntity(player, target);
 
 
-		this.stopContinuity(player);
+		//this.stopContinuity(player);
 		return result;
 	}
 	

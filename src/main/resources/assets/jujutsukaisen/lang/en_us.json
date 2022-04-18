@@ -3,5 +3,13 @@
   "item.jujutsukaisen.cursed_hammer": "Cursed tool: Cursed Hammer",
   "item.jujutsukaisen.cursed_spear": "Cursed tool: Cursed Spear",
   "item.jujutsukaisen.demon_slaughterer": "Cursed tool: Demon Slaughterer",
-  "item.jujutsukaisen.nanami_blade": "Cursed tool: Nanami Blade"
+  "item.jujutsukaisen.nanami_blade": "Cursed tool: Nanami Blade",
+
+
+  "gui.quests": "quests",
+  "gui.abilities": "spells",
+
+  "ability.jujutsukaisen.cursed_punch": "Cursed punch",
+
+  "ability.jujutsukaisen.shadow_inventory": "Shadow inventory"
 }

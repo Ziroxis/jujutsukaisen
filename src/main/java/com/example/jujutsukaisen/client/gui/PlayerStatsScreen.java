@@ -74,8 +74,8 @@ public class PlayerStatsScreen extends Screen {
 
 
         boolean hasAbilities = abilityProps.countUnlockedAbilities(Api.AbilityCategory.ALL) > 0;
-        posX += 80;
-        Button abilitiesButton = new Button(posX, posY + 210, 70, 20, new TranslationTextComponent("gui.abilities", "Abilities"), b ->
+        posX += 120;
+        Button abilitiesButton = new Button(posX, posY + 190, 70, 20, new TranslationTextComponent("gui.abilities", "Abilities"), b ->
         {
             Minecraft.getInstance().setScreen(new SelectHotbarAbilitiesScreen(this.player));
         });
@@ -84,8 +84,8 @@ public class PlayerStatsScreen extends Screen {
         this.addButton(abilitiesButton);
 
         boolean hasQuests = questProps.countInProgressQuests() > 0;
-        posX += 120;
-        Button questsButton = new Button(posX, posY + 210, 70, 20, new TranslationTextComponent("gui.quests", "Quests"), b ->
+        posX += 160;
+        Button questsButton = new Button(posX, posY + 190, 70, 20, new TranslationTextComponent("gui.quests", "Quests"), b ->
         {
             PacketHandler.sendToServer(new CRequestSyncQuestDataPacket());
             Minecraft.getInstance().setScreen(new QuestsTrackerScreen(this.player));

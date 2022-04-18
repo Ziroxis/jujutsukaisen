@@ -24,20 +24,15 @@ public class Api {
         return icon;
     };
 
-
     private static final Function<PlayerEntity, ResourceLocation> GET_BASIC_ICON = (player) ->
     {
         IEntityStats props = EntityStatsCapability.get(player);
         String iconName = props.getClan();
         ResourceLocation icon = null;
-        icon = new ResourceLocation(Main.MODID, "textures/items/missing_texture.png");
+        icon = new ResourceLocation(Main.MODID, "textures/abilities/basic_ability.png");
 
         return icon;
     };
-
-
-
-
 
 
     public static enum AbilityCategory implements IExtensibleEnum

@@ -4,6 +4,8 @@ import com.example.jujutsukaisen.data.quest.IQuestData;
 import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.init.ModQuests;
 import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
+import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
@@ -72,8 +74,10 @@ public class SenseiEntity extends CreatureEntity {
                     {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                        player.sendMessage(new StringTextComponent("Good job! Lemme tell you what to do next."), player.getUUID());
+                        PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
+                        player.sendMessage(new StringTextComponent("Good job! Lemme teach you the technique."), player.getUUID());
+                        player.sendMessage(new StringTextComponent("You have a new technique"), player.getUUID());
+
                     }
                     else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
                     {
@@ -84,13 +88,13 @@ public class SenseiEntity extends CreatureEntity {
                 else if (quests[i] == null && !(questProps.hasFinishedQuest(ModQuests.UNLOCK_01)))
                 {
                     questProps.addInProgressQuest(ModQuests.UNLOCK_01.create());
-                    PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
+                    PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
                     player.sendMessage(new StringTextComponent("Go kill ANYTHING to prove you're worth mastering cursed energy"), player.getUUID());
                     System.out.println(quests[i]);
                     break;
                 }
 
-
+/*
                 if (quests[i] != null && quests[i].equals(ModQuests.UNLOCK_02) && questProps.hasFinishedQuest(ModQuests.UNLOCK_01))
                 {
                     player.sendMessage(new StringTextComponent("Now go out and do what I asked!"), player.getUUID());
@@ -116,6 +120,7 @@ public class SenseiEntity extends CreatureEntity {
                     System.out.println(quests[i]);
                     break;
                 }
+ */
                 System.out.println(quests[i]);
             }
         }

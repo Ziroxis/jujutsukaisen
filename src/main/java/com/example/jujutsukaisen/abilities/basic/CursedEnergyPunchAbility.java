@@ -18,7 +18,7 @@ public class CursedEnergyPunchAbility extends PunchAbility {
         super("Cursed punch", Api.AbilityCategory.BASIC);
         this.setDescription("The user envelops his next punch with a big amount of cursed energy");
         this.setMaxCooldown(5);
-        this.setCursedEnergyCost(1);
+        this.setCursedEnergyCost(2);
         this.onHitEntityEvent = this::onHitEntity;
 
     }
