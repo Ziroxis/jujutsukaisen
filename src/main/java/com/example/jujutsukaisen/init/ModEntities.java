@@ -35,7 +35,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<LizardEntity>> LIZARD = ENTITIES
             .register("lizard_entity",
                     () -> EntityType.Builder.of(LizardEntity::new, EntityClassification.CREATURE)
-                            .sized(1f, 2f)
+                            .sized(16f, 4f)
                             .fireImmune()
                             .setTrackingRange(15)
                             .build(new ResourceLocation(Main.MODID, "lizard_entity").toString()));
