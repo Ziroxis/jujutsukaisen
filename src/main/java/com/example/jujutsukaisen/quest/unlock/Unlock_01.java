@@ -1,6 +1,6 @@
 package com.example.jujutsukaisen.quest.unlock;
 
-import com.example.jujutsukaisen.abilities.basic.CursedEnergyPunchAbility;
+import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.networking.PacketHandler;
@@ -27,7 +27,7 @@ public class Unlock_01 extends Quest {
     {
         player.giveExperienceLevels(5);
         IAbilityData props = AbilityDataCapability.get(player);
-        props.addUnlockedAbility(CursedEnergyPunchAbility.INSTANCE);
+        props.addUnlockedAbility(CursedEnergyContinuousPunchAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         return true;
     }

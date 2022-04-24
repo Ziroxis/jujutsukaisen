@@ -3,8 +3,7 @@ package com.example.jujutsukaisen.client.gui;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.AbilityHelper;
-import com.example.jujutsukaisen.api.ability.Api;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.client.gui.buttons.NoTextureButton;
 import com.example.jujutsukaisen.client.gui.buttons.TexturedIconButton;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -105,9 +104,9 @@ public class SelectHotbarAbilitiesScreen extends Screen
 		
 		// Side menu buttons
 		int idx = 0;
-		for(Api.AbilityCategory category : Api.AbilityCategory.values())
+		for(AbilityCategories.AbilityCategory category : AbilityCategories.AbilityCategory.values())
 		{
-			if(category == Api.AbilityCategory.ALL)
+			if(category == AbilityCategories.AbilityCategory.ALL)
 				continue;
 			
 			Ability abl = this.abilityDataProps.getUnlockedAbilities(category).stream().findFirst().orElse(null);
@@ -165,7 +164,7 @@ public class SelectHotbarAbilitiesScreen extends Screen
 		
 	}
 
-	public void updateListScreen(Api.AbilityCategory category)
+	public void updateListScreen(AbilityCategories.AbilityCategory category)
 	{		
 		this.children.remove(this.abilitiesList);
 		

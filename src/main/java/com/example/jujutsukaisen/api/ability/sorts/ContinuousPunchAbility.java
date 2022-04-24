@@ -1,16 +1,17 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.io.Serializable;
 
-public abstract class PunchAbility extends ContinuousAbility
+public abstract class ContinuousPunchAbility extends ContinuousAbility
 {
 	// Setting the defaults so that no crash occurs and so they will be null safe.
 	protected IOnHitEntity onHitEntityEvent = (player, target) -> { return 0; };
 	
-	public PunchAbility(String name, Api.AbilityCategory category)
+	public ContinuousPunchAbility(String name, AbilityCategories.AbilityCategory category)
 	{
 		super(name, category);
 	}

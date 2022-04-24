@@ -1,7 +1,12 @@
 package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.abilities.basic.CursedEnergyPunchAbility;
+import com.example.jujutsukaisen.abilities.basic.BattoSwordAbility;
+import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameTeleportationAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -27,22 +32,19 @@ public class TestEvents {
 
     @SubscribeEvent
     public static void testEvents(ServerChatEvent event) {
-        if (event.getMessage().contains("test"))
-        {
-            IAbilityData props = AbilityDataCapability.get(event.getPlayer());
-            props.addUnlockedAbility(DivineDogsAbility.INSTANCE);
-            PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
-        }
-        if (event.getMessage().contains("another"))
+        if (event.getMessage().contains("inventory"))
         {
             IAbilityData props = AbilityDataCapability.get(event.getPlayer());
             props.addUnlockedAbility(ShadowInventoryAbility.INSTANCE);
             PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         }
-        if (event.getMessage().contains("punches"))
+        if (event.getMessage().contains("projection"))
         {
             IAbilityData props = AbilityDataCapability.get(event.getPlayer());
-            props.addUnlockedAbility(CursedEnergyPunchAbility.INSTANCE);
+            props.addUnlockedAbility(FrameBreakAbility.INSTANCE);
+            props.addUnlockedAbility(FrameCatchAbility.INSTANCE);
+            props.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
+            props.addUnlockedAbility(FrameTeleportationAbility.INSTANCE);
             PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         }
         if (event.getMessage().contains("stats"))
@@ -55,69 +57,6 @@ public class TestEvents {
             System.out.println(props.getExperience());
             System.out.println(props.getMaxExperience());
             System.out.println(props.getLevel());
-        }
-        if (event.getMessage().contains("quest"))
-        {
-            PlayerEntity player = event.getPlayer();
-            IQuestData questProps = QuestDataCapability.get(player);
-
-            Quest[] quests = questProps.getInProgressQuests();
-
-            for (int i = 0; i < quests.length; i++)
-            {
-                if (quests[i] != null && quests[i].equals(ModQuests.UNLOCK_01))
-                {
-                    player.sendMessage(new StringTextComponent("Now go out and do what I asked!"), player.getUUID());
-                    if (quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
-                    {
-                        questProps.addFinishedQuest(quests[i]);
-                        questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                        player.sendMessage(new StringTextComponent("Good job! Lemme tell you what to do next."), player.getUUID());
-                    }
-                    else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
-                    {
-                        System.out.println("Quest is not over yet");
-                    }
-                    break;
-                }
-                else if (quests[i] == null)
-                {
-                    questProps.addInProgressQuest(ModQuests.UNLOCK_01.create());
-                    PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                    player.sendMessage(new StringTextComponent("Go kill ANYTHING to prove you're worth mastering cursed energy"), player.getUUID());
-                    System.out.println(quests[i]);
-                    break;
-                }
-
-
-                if (quests[i] != null && quests[i].equals(ModQuests.UNLOCK_02) && questProps.hasFinishedQuest(ModQuests.UNLOCK_01))
-                {
-                    player.sendMessage(new StringTextComponent("Now go out and do what I asked!"), player.getUUID());
-                    if (quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
-                    {
-                        questProps.addFinishedQuest(quests[i]);
-                        questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                        player.sendMessage(new StringTextComponent("Good job! I'll teach you the technique..."), player.getUUID());
-                        player.sendMessage(new StringTextComponent("You have unlocked Cursed Punch"), player.getUUID());
-                    }
-                    else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
-                    {
-                        System.out.println("Quest is not over yet");
-                    }
-                    break;
-                }
-                else if (quests[i] == null && questProps.hasFinishedQuest(ModQuests.UNLOCK_01) && !(questProps.hasFinishedQuest(ModQuests.UNLOCK_02)))
-                {
-                    questProps.addInProgressQuest(ModQuests.UNLOCK_01.create());
-                    PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                    player.sendMessage(new StringTextComponent("Go collect me a bone to prove your kill."), player.getUUID());
-                    System.out.println(quests[i]);
-                    break;
-                }
-                System.out.println(quests[i]);
-            }
         }
     }
 }

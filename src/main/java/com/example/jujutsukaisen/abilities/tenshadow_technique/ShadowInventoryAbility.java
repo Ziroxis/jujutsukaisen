@@ -3,6 +3,11 @@ package com.example.jujutsukaisen.abilities.tenshadow_technique;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityHelper;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
+
+import javax.annotation.Nullable;
 
 public class ShadowInventoryAbility extends Ability {
 
@@ -19,7 +24,6 @@ public class ShadowInventoryAbility extends Ability {
 
     private boolean onUseEvent(PlayerEntity player)
     {
-        System.out.println("Check 2");
 
         return true;
     }

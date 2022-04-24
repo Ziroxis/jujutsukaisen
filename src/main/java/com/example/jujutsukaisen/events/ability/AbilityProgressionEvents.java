@@ -1,6 +1,10 @@
 package com.example.jujutsukaisen.events.ability;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameTeleportationAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -8,9 +12,11 @@ import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
+import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.ability.SSyncAbilityDataPacket;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -22,9 +28,16 @@ public class AbilityProgressionEvents
 	public static void onLevelGained(ExperienceUpEvent event)
 	{
 		IEntityStats props = EntityStatsCapability.get(event.getPlayer());
-		if (props.isZenin())
+		if (props.getTechnique().equals(ModValues.DIVINE_DOGS))
 		{
 			gainAbility(event.getPlayer(), 0, ShadowInventoryAbility.INSTANCE);
+		}
+		if (props.getTechnique().equals(ModValues.PROJECTION_SORCERY))
+		{
+			gainAbility(event.getPlayer(), 0, FrameSpeedAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 5, FrameBreakAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 15, FrameTeleportationAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 25, FrameCatchAbility.INSTANCE);
 		}
 	}
 
@@ -34,7 +47,10 @@ public class AbilityProgressionEvents
 		IAbilityData abilityProps = AbilityDataCapability.get(player);
 
 		if (props.getLevel() >= level && !abilityProps.hasUnlockedAbility(ability) )
+		{
+			player.sendMessage(new StringTextComponent("You unlocked a new move."), player.getUUID());
 			abilityProps.addUnlockedAbility(ability);
+		}
 		if ((props.getLevel() < level && abilityProps.hasUnlockedAbility(ability)))
 			abilityProps.removeUnlockedAbility(ability);
 		

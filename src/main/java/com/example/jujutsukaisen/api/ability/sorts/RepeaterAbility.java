@@ -1,5 +1,7 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.api.ability.interfaces.IParallelContinuousAbility;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
@@ -11,7 +13,7 @@ public abstract class RepeaterAbility extends ContinuousAbility implements IPara
     private int maxRepeaterCount;
     private int repeaterInterval;
 
-    public RepeaterAbility(String name, Api.AbilityCategory category)
+    public RepeaterAbility(String name, AbilityCategories.AbilityCategory category)
     {
         super(name, category);
     }

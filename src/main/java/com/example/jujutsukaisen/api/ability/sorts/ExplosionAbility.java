@@ -1,5 +1,6 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
+import com.example.jujutsukaisen.api.ability.AbilityHelper;
 import com.example.jujutsukaisen.particles.ParticleEffect;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

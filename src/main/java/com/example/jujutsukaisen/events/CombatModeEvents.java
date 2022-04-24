@@ -3,8 +3,8 @@ package com.example.jujutsukaisen.events;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.ChargeableAbility;
-import com.example.jujutsukaisen.api.ability.ContinuousAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ChargeableAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -15,7 +15,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,9 +30,6 @@ import org.lwjgl.opengl.GL11;
 
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = Main.MODID, value = Dist.CLIENT)
 public class CombatModeEvents

@@ -3,7 +3,7 @@ package com.example.jujutsukaisen.client.gui;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.PassiveAbility;
+import com.example.jujutsukaisen.api.ability.sorts.PassiveAbility;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.ability.CEquipAbilityPacket;
@@ -11,7 +11,9 @@ import com.example.jujutsukaisen.networking.client.ability.CTogglePassiveAbility
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.gui.ScrollPanel;
 
@@ -219,7 +221,7 @@ public class AbilitiesListScreenPanel extends ScrollPanel
 			int bgColor1 = Beapi.hexToRGB("#222222FF").getRGB();
 			int bgColor2 = Beapi.hexToRGB("#686868EE").getRGB();
 			this.fillGradient(matrixStack, (int) posX, (int) posY, (int) width, (int) height, bgColor1, bgColor2);
-			List<String> strings = Beapi.splitString(this.parent.getMinecraft().font, tooltip, (int) posX, 210);
+			List<IReorderingProcessor> strings = this.parent.getMinecraft().font.split(new StringTextComponent(tooltip), 210);
 			for (int b = 0; b < strings.size(); b++)
 			{
 				Beapi.drawStringWithBorder(this.parent.getMinecraft().font, matrixStack, strings.get(b), (int) posX + 5, 5 + (int) posY + 10 * b, fgColor);

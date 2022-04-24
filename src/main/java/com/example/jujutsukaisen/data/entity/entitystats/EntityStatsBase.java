@@ -199,6 +199,17 @@ public class EntityStatsBase implements IEntityStats{
         return this.cursedEnergy;
     }
 
+    @Override
+    public void setTechnique(String value)
+    {
+        this.technique = value;
+    }
+
+    @Override
+    public String getTechnique()
+    {
+        return this.technique;
+    }
 
     @Override
     public double getDamageMultiplier() {

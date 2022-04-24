@@ -1,4 +1,4 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.interfaces;
 
 import net.minecraft.entity.LivingEntity;
 

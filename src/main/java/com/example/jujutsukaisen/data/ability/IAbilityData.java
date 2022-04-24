@@ -1,7 +1,7 @@
 package com.example.jujutsukaisen.data.ability;
 
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.Api;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 
 
 import java.util.List;
@@ -15,11 +15,11 @@ public interface IAbilityData
 	boolean hasUnlockedAbility(Ability abl);
 	<T extends Ability> T getUnlockedAbility(T abl);
 	<T extends Ability> T getUnlockedAbility(int slot);
-	<T extends Ability> List<T> getUnlockedAbilities(Api.AbilityCategory category);
-	void clearUnlockedAbilities(Api.AbilityCategory category);
+	<T extends Ability> List<T> getUnlockedAbilities(AbilityCategories.AbilityCategory category);
+	void clearUnlockedAbilities(AbilityCategories.AbilityCategory category);
 	void clearUnlockedAbilities(Predicate<Ability> check);
-	void clearUnlockedAbilityFromList(Api.AbilityCategory category, List<Ability> list);
-	int countUnlockedAbilities(Api.AbilityCategory category);
+	void clearUnlockedAbilityFromList(AbilityCategories.AbilityCategory category, List<Ability> list);
+	int countUnlockedAbilities(AbilityCategories.AbilityCategory category);
 
 	boolean addEquippedAbility(Ability abl);
 	boolean setEquippedAbility(int slot, Ability abl);
@@ -30,10 +30,10 @@ public interface IAbilityData
 	<T extends Ability> T getEquippedAbility(int slot);
 	<T extends Ability> T[] getEquippedAbilities();
 	<T extends Ability> T[] getEquippedAbilities(Predicate<Ability> check);
-	<T extends Ability> T[] getEquippedAbilities(Api.AbilityCategory category);
-	void clearEquippedAbilities(Api.AbilityCategory category);
-	void clearEquippedAbilityFromList(Api.AbilityCategory category, List<Ability> list);
-	int countEquippedAbilities(Api.AbilityCategory category);
+	<T extends Ability> T[] getEquippedAbilities(AbilityCategories.AbilityCategory category);
+	void clearEquippedAbilities(AbilityCategories.AbilityCategory category);
+	void clearEquippedAbilityFromList(AbilityCategories.AbilityCategory category, List<Ability> list);
+	int countEquippedAbilities(AbilityCategories.AbilityCategory category);
 	
 	<T extends Ability> T getPreviouslyUsedAbility();
 	void setPreviouslyUsedAbility(Ability abl);

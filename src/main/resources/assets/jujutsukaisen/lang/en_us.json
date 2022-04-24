@@ -11,5 +11,10 @@
 
   "ability.jujutsukaisen.cursed_punch": "Cursed punch",
 
-  "ability.jujutsukaisen.shadow_inventory": "Shadow inventory"
+  "ability.jujutsukaisen.shadow_inventory": "Shadow inventory",
+
+  "ability.jujutsukaisen.frame_break": "Frame Break",
+  "ability.jujutsukaisen.frame_catch": "Frame Catch",
+  "ability.jujutsukaisen.frame_speed": "Frame Speed",
+  "ability.jujutsukaisen.frame_teleport": "Frame teleport"
 }

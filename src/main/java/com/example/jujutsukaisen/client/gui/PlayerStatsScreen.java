@@ -1,7 +1,6 @@
 package com.example.jujutsukaisen.client.gui;
 
-import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.api.ability.Api;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -25,6 +24,7 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -73,7 +73,7 @@ public class PlayerStatsScreen extends Screen {
         IQuestData questProps = QuestDataCapability.get(this.player);
 
 
-        boolean hasAbilities = abilityProps.countUnlockedAbilities(Api.AbilityCategory.ALL) > 0;
+        boolean hasAbilities = abilityProps.countUnlockedAbilities(AbilityCategories.AbilityCategory.ALL) > 0;
         posX += 120;
         Button abilitiesButton = new Button(posX, posY + 190, 70, 20, new TranslationTextComponent("gui.abilities", "Abilities"), b ->
         {
@@ -122,15 +122,17 @@ public class PlayerStatsScreen extends Screen {
         String name = player.getName().getString();
         String clan = props.getClan();
         String grade = props.getCurseGrade();
+        String technique = props.getTechnique();
 
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
         //TODO make it more clean without the colors looking messy
-        drawString(matrixStack, font, "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
-        drawString(matrixStack, font, "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
-        drawString(matrixStack, font, "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
-        drawString(matrixStack, font, "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
+        drawString(matrixStack, font, TextFormatting.BOLD + "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
+        drawString(matrixStack, font, TextFormatting.BLACK + "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
+        drawString(matrixStack, font, TextFormatting.BLACK + "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
+        drawString(matrixStack, font, TextFormatting.BLACK + "Technique: " + technique, guiLeft + 5, guiTop + 80, 16777215);
+        drawString(matrixStack, font, TextFormatting.BLACK + "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
 
     }
 

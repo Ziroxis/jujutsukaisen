@@ -384,7 +384,6 @@ public class AbilityProjectileEntity extends ThrowableEntity
 
 	public void setDamageSource(DamageSource s)
 	{
-		// TODO(Wynd) - This causes problems...why is this here...why does this exist...we already set the source in a generic fashion
 		this.source = s;
 	}
 

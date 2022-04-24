@@ -3,7 +3,7 @@ package com.example.jujutsukaisen.networking.client.ability;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.PassiveAbility;
+import com.example.jujutsukaisen.api.ability.sorts.PassiveAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import net.minecraft.entity.player.PlayerEntity;

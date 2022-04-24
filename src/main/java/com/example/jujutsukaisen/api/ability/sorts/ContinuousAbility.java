@@ -1,6 +1,9 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.api.ability.Ability;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.api.ability.AbilityUseEvent;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.networking.CursedEnergySync;
@@ -21,7 +24,7 @@ public class ContinuousAbility extends Ability {
     protected IOnEndContinuity onEndContinuityEvent = (player) -> { return true; };
     protected IDuringContinuity duringContinuityEvent = (player, continuousTime) -> {};
 
-    public ContinuousAbility(String name, Api.AbilityCategory category)
+    public ContinuousAbility(String name, AbilityCategories.AbilityCategory category)
     {
         super(name, category);
     }

@@ -1,5 +1,6 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 
@@ -7,7 +8,7 @@ public abstract class PotionPassiveAbility extends PassiveAbility
 {
 	protected ICheckPotionEvent checkPotionEvent = (player, effect) -> { return true; };
 	
-	public PotionPassiveAbility(String name, Api.AbilityCategory category)
+	public PotionPassiveAbility(String name, AbilityCategories.AbilityCategory category)
 	{
 		super(name, category);
 	}

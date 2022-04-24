@@ -2,6 +2,12 @@ package com.example.jujutsukaisen.api.ability;
 
 import com.example.jujutsukaisen.BlockProtectionRule;
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.api.ability.interfaces.IBodyOverlayAbility;
+import com.example.jujutsukaisen.api.ability.interfaces.IPunchOverlayAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ChargeableAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ExplosionAbility;
+import com.example.jujutsukaisen.api.ability.sorts.RepeaterAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
@@ -242,9 +248,9 @@ public class AbilityHelper {
                 };
     }
 
-    public static Api.AbilityCategory getTechniqueCategory()
+    public static AbilityCategories.AbilityCategory getTechniqueCategory()
     {
-        return Api.AbilityCategory.valueOf("TECHNIQUE");
+        return AbilityCategories.AbilityCategory.valueOf("TECHNIQUE");
     }
 
     public static ExplosionAbility newExplosion(Entity entity, World world, double posX, double posY, double posZ, float size)

@@ -35,18 +35,23 @@ public class GetStatsFirstTimeEvent {
             {
                 case 0:
                     props.setClan(ModValues.Kamo);
+                    props.setTechnique(ModValues.BLOOD_MANIPULATION);
                     break;
                 case 1:
                     props.setClan(ModValues.Gojo);
+                    props.setTechnique(ModValues.LIMITLESS);
                     break;
                 case 2:
                     props.setClan(ModValues.Inumaki);
+                    props.setTechnique(ModValues.CURSED_SPEECH);
                     break;
                 case 3:
                     props.setClan(ModValues.Zenin);
+                    props.setTechnique(ModValues.DIVINE_DOGS);
                     break;
                 case 4:
                     props.setClan(ModValues.Suguru);
+                    props.setTechnique(ModValues.MASTER_CURSED);
                     break;
             }
         }

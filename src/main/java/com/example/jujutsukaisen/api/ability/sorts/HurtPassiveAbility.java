@@ -1,5 +1,6 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 
@@ -12,7 +13,7 @@ public class HurtPassiveAbility extends PassiveAbility
 	
 	private float amount;
 	
-	public HurtPassiveAbility(String name, Api.AbilityCategory category)
+	public HurtPassiveAbility(String name, AbilityCategories.AbilityCategory category)
 	{
 		super(name, category);
 	}

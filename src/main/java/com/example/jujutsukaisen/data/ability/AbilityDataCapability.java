@@ -3,6 +3,9 @@ package com.example.jujutsukaisen.data.ability;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.*;
+import com.example.jujutsukaisen.api.ability.sorts.ChargeableAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
+import com.example.jujutsukaisen.api.ability.sorts.PassiveAbility;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -37,9 +40,9 @@ public class AbilityDataCapability
 				try
 				{
 					ListNBT unlockedAbilities = new ListNBT();
-					for (int i = 0; i < instance.getUnlockedAbilities(Api.AbilityCategory.ALL).size(); i++)
+					for (int i = 0; i < instance.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL).size(); i++)
 					{
-						Ability ability = instance.getUnlockedAbilities(Api.AbilityCategory.ALL).get(i);
+						Ability ability = instance.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL).get(i);
 						String name = Beapi.getResourceName(ability.getName());
 						CompoundNBT nbtAbility = new CompoundNBT();
 						nbtAbility.putString("name", name);
@@ -104,8 +107,8 @@ public class AbilityDataCapability
 
 				try
 				{
-					instance.clearEquippedAbilities(Api.AbilityCategory.ALL);
-					instance.clearUnlockedAbilities(Api.AbilityCategory.ALL);
+					instance.clearEquippedAbilities(AbilityCategories.AbilityCategory.ALL);
+					instance.clearUnlockedAbilities(AbilityCategories.AbilityCategory.ALL);
 
 					ListNBT unlockedAbilities = props.getList("unlocked_abilities", Constants.NBT.TAG_COMPOUND);
 					for (int i = 0; i < unlockedAbilities.size(); i++)
@@ -137,7 +140,7 @@ public class AbilityDataCapability
 					}
 
 					ListNBT equippedAbilities = props.getList("equipped_abilities", Constants.NBT.TAG_COMPOUND);
-					List<Ability> activeAbilitiesUnlocked = instance.getUnlockedAbilities(Api.AbilityCategory.ALL).parallelStream().filter(ability -> !(ability instanceof PassiveAbility)).collect(Collectors.toList());
+					List<Ability> activeAbilitiesUnlocked = instance.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL).parallelStream().filter(ability -> !(ability instanceof PassiveAbility)).collect(Collectors.toList());
 					for (int i = 0; i < equippedAbilities.size(); i++)
 					{
 						CompoundNBT nbtAbility = equippedAbilities.getCompound(i);

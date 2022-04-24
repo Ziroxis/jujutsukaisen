@@ -2,6 +2,10 @@ package com.example.jujutsukaisen.events.ability;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.ability.*;
+import com.example.jujutsukaisen.api.ability.interfaces.IChangeDamageSourceAbility;
+import com.example.jujutsukaisen.api.ability.interfaces.IFallDamageBlockingAbility;
+import com.example.jujutsukaisen.api.ability.interfaces.ISniperAbility;
+import com.example.jujutsukaisen.api.ability.sorts.*;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -62,7 +66,7 @@ public class AbilitiesEvents
 
 			player.level.getProfiler().push("abilityCooldown");
 
-			for (Ability ability : ablProps.getUnlockedAbilities(Api.AbilityCategory.ALL))
+			for (Ability ability : ablProps.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
 					continue;
@@ -83,7 +87,7 @@ public class AbilitiesEvents
 			player.level.getProfiler().pop();
 
 			player.level.getProfiler().push("abilityTick");
-			for (Ability ability : ablProps.getEquippedAbilities(Api.AbilityCategory.ALL))
+			for (Ability ability : ablProps.getEquippedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
 					continue;
@@ -120,7 +124,7 @@ public class AbilitiesEvents
 			PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 			IAbilityData ablProps = AbilityDataCapability.get(player);
 			
-			for (Ability ability : ablProps.getEquippedAbilities(Api.AbilityCategory.ALL))
+			for (Ability ability : ablProps.getEquippedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
 					continue;
@@ -160,7 +164,7 @@ public class AbilitiesEvents
 			LivingEntity entity = event.getEntityLiving();
 			IAbilityData ablProps = AbilityDataCapability.get(entity);
 			
-			for (Ability ability : ablProps.getUnlockedAbilities(Api.AbilityCategory.ALL))
+			for (Ability ability : ablProps.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
 					continue;
@@ -192,7 +196,7 @@ public class AbilitiesEvents
 			IAbilityData ablProps = AbilityDataCapability.get(entity);
 
 			
-			for (Ability ability : ablProps.getUnlockedAbilities(Api.AbilityCategory.ALL))
+			for (Ability ability : ablProps.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
 					continue;
@@ -246,7 +250,7 @@ public class AbilitiesEvents
 				PlayerEntity attacker = (PlayerEntity) event.getSource().getDirectEntity();
 				ablProps = AbilityDataCapability.get(attacker);
 				
-				Arrays.stream(ablProps.getEquippedAbilities(Api.AbilityCategory.ALL)).filter(Objects::nonNull).forEach(ability ->
+				Arrays.stream(ablProps.getEquippedAbilities(AbilityCategories.AbilityCategory.ALL)).filter(Objects::nonNull).forEach(ability ->
 				{
 					try
 					{
@@ -310,16 +314,31 @@ public class AbilitiesEvents
 
 
 			
-			for (Ability ability : props.getEquippedAbilities(Api.AbilityCategory.ALL))
+			for (Ability ability : props.getEquippedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
 					continue;
 
 				try
 				{
+					if (ability instanceof ContinuousPunchAbility && ability.isContinuous())
+					{
+
+						float damage = ((ContinuousPunchAbility) props.getEquippedAbility(ability)).hitEntity(player, target);
+
+						if (damage <= 0)
+						{
+							event.setCanceled(true);
+							return;
+						}
+
+						float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
+						float finalDamage = (damage + strength) * (float)statProps.getDamageMultiplier();
+						System.out.println("Final damage is +" + finalDamage);
+						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
+					}
 					if (ability instanceof PunchAbility && ability.isContinuous())
 					{
-						//boolean isAbilityImbuing = HakiHelper.hasImbuingActive(player) && ((PunchAbility)ability).isAffectedByImbuing();
 
 						float damage = ((PunchAbility) props.getEquippedAbility(ability)).hitEntity(player, target);
 
@@ -354,7 +373,7 @@ public class AbilitiesEvents
 
 		IAbilityData props = AbilityDataCapability.get(player);
 
-		for (Ability ability : props.getEquippedAbilities(Api.AbilityCategory.ALL))
+		for (Ability ability : props.getEquippedAbilities(AbilityCategories.AbilityCategory.ALL))
 		{
 			if (ability == null)
 				continue;
@@ -385,7 +404,7 @@ public class AbilitiesEvents
 
 		IAbilityData props = AbilityDataCapability.get(player);
 
-		for (Ability ability : props.getUnlockedAbilities(Api.AbilityCategory.ALL))
+		for (Ability ability : props.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL))
 		{
 			if (ability == null)
 				continue;

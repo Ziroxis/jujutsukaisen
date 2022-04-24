@@ -3,7 +3,7 @@ package com.example.jujutsukaisen.events.ability;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Bearendering;
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.IOutOfBodyAbility;
+import com.example.jujutsukaisen.api.ability.interfaces.IOutOfBodyAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import net.minecraft.client.Minecraft;

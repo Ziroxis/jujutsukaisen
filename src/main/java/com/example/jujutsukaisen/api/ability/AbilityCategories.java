@@ -11,7 +11,7 @@ import net.minecraftforge.common.IExtensibleEnum;
 import javax.annotation.Nullable;
 import java.util.function.Function;
 
-public class Api {
+public class AbilityCategories {
 
 
     private static final Function<PlayerEntity, ResourceLocation> GET_CLAN_ICON = (player) ->

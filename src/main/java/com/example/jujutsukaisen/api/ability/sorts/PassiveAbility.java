@@ -1,6 +1,8 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.api.ability.Ability;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.io.Serializable;
@@ -12,7 +14,7 @@ public class PassiveAbility extends Ability {
 
     private boolean isPaused = false;
 
-    public PassiveAbility(String name, Api.AbilityCategory category)
+    public PassiveAbility(String name, AbilityCategories.AbilityCategory category)
     {
         super(name, category);
         this.hideInGUI(true);

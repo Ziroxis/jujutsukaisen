@@ -2,6 +2,8 @@ package com.example.jujutsukaisen.api.ability;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.api.ability.sorts.ChargeableAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -35,7 +37,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     protected double maxCooldown;
     protected double disableTicks;
     protected double maxDisableTicks = 200;
-    private Api.AbilityCategory category = Api.AbilityCategory.ALL;
+    private AbilityCategories.AbilityCategory category = AbilityCategories.AbilityCategory.ALL;
     private AbilityUnlock unlock = AbilityUnlock.PROGRESSION;
     private State state = State.STANDBY;
     private State previousState = State.STANDBY;
@@ -52,7 +54,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     protected IDuringCooldown duringCooldownEvent = (player, cooldown) -> {};
     protected IOnEndCooldown onEndCooldownEvent = (player) -> {};
 
-    public Ability(String name, Api.AbilityCategory category)
+    public Ability(String name, AbilityCategories.AbilityCategory category)
     {
         this.name = name;
         this.category = category;
@@ -337,7 +339,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
         this.textureName = Beapi.getResourceName(texture);
     }
 
-    public Api.AbilityCategory getCategory()
+    public AbilityCategories.AbilityCategory getCategory()
     {
         return this.category;
     }

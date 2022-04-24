@@ -1,5 +1,6 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.interfaces;
 
+import com.example.jujutsukaisen.api.ability.Ability;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 

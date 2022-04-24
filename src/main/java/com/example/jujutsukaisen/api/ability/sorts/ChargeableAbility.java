@@ -1,15 +1,17 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.api.ability.Ability;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.api.ability.AbilityUseEvent;
 import com.example.jujutsukaisen.networking.PacketHandler;
-import com.example.jujutsukaisen.networking.server.ability.SAnimeScreamPacket;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.io.Serializable;
 
-public class ChargeableAbility extends Ability{
+public class ChargeableAbility extends Ability {
 
     private int chargeTime;
     private int maxChargeTime;
@@ -20,7 +22,7 @@ public class ChargeableAbility extends Ability{
     protected IOnEndCharging onEndChargingEvent = (player) -> { return true; };
     protected IDuringCharging duringChargingEvent = (player, chargeTime) -> {};
 
-    public ChargeableAbility(String name, Api.AbilityCategory category)
+    public ChargeableAbility(String name, AbilityCategories.AbilityCategory category)
     {
         super(name, category);
     }

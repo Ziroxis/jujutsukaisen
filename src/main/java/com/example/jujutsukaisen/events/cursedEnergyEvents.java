@@ -19,6 +19,6 @@ public class cursedEnergyEvents {
         IEntityStats propsEntity = EntityStatsCapability.get(player);
 
         if (player.tickCount % 20 == 0)
-            propsEntity.alterCursedEnergy(1);
+            propsEntity.alterCursedEnergy(1 + (propsEntity.getLevel() / 2));
     }
 }

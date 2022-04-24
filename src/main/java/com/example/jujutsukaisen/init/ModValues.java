@@ -18,8 +18,11 @@ public class ModValues {
     public static final String rogue = "Rogue";
     public static final String locked = "None";
 
-    public static final String Divine_Dogs = "Divine_Dogs";
-    public static final String Six_Eyes = "Six_Eyes";
-    public static final String Master_Curses = "Master_Curses";
-    public static final String Heavenly_Restriction = "Heavenly_Restriction";
+    public static final String DIVINE_DOGS = "Divine Dogs";
+    public static final String LIMITLESS = "LIMITLESS";
+    public static final String MASTER_CURSED = "Master of Curses";
+    public static final String PROJECTION_SORCERY = "Astral Projection";
+    public static final String CURSED_SPEECH = "Cursed Speech";
+    public static final String BLOOD_MANIPULATION = "Blood manipulation";
+    public static final String NONE = "None";
 }

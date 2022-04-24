@@ -1,8 +1,8 @@
 package com.example.jujutsukaisen.networking.client.ability;
 
 import com.example.jujutsukaisen.api.ability.Ability;
-import com.example.jujutsukaisen.api.ability.ChargeableAbility;
-import com.example.jujutsukaisen.api.ability.ContinuousAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ChargeableAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.networking.PacketHandler;

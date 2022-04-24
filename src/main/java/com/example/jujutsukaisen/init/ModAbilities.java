@@ -1,7 +1,12 @@
 package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.abilities.basic.CursedEnergyPunchAbility;
+import com.example.jujutsukaisen.abilities.basic.BattoSwordAbility;
+import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameTeleportationAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.api.Beapi;
@@ -28,8 +33,10 @@ public class ModAbilities {
     public static final IForgeRegistry<Ability> ABILITIES_REGISTRY = RegistryManager.ACTIVE.getRegistry(Ability.class);
     private static final DeferredRegister<Ability> ABILITIES = DeferredRegister.create(ABILITIES_REGISTRY, Main.MODID);
 
+    public static final Ability[] PROJECTION_SORCERY = new Ability[] {FrameSpeedAbility.INSTANCE, FrameBreakAbility.INSTANCE, FrameTeleportationAbility.INSTANCE, FrameCatchAbility.INSTANCE};
     public static final Ability[] TENSHADOW_TECHNIQUE = new Ability[] {DivineDogsAbility.INSTANCE, ShadowInventoryAbility.INSTANCE};
-    public static final Ability[] CURSED_PUNCHES = new Ability[] {CursedEnergyPunchAbility.INSTANCE};
+    public static final Ability[] CURSED_PUNCHES = new Ability[] {CursedEnergyContinuousPunchAbility.INSTANCE};
+    public static final Ability[] CURSED_SWORD = new Ability[] {BattoSwordAbility.INSTANCE};
 
     private static Ability registerAbility(Ability ability)
     {
@@ -51,8 +58,10 @@ public class ModAbilities {
 
     public static void register(IEventBus eventBus)
     {
+        registerAbilities(PROJECTION_SORCERY);
         registerAbilities(TENSHADOW_TECHNIQUE);
         registerAbilities(CURSED_PUNCHES);
+        registerAbilities(CURSED_SWORD);
         ABILITIES.register(eventBus);
     }
 }

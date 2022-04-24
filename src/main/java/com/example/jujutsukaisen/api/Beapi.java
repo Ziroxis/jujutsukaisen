@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,10 +36,94 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 
 public class Beapi
 {
+
+    public static <T extends Entity> List<T> getEntitiesNear(BlockPos pos, World world, double radius, Predicate<Entity> predicate, Class<? extends T>... classEntities)
+    {
+        if(predicate != null)
+            predicate = predicate.and(EntityPredicates.NO_SPECTATORS);
+        else
+            predicate = EntityPredicates.NO_SPECTATORS;
+
+        AxisAlignedBB aabb = new AxisAlignedBB(pos).expandTowards(radius, radius, radius);
+        List<T> list = new ArrayList<T>();
+        for (Class<? extends T> clzz : classEntities)
+        {
+            list.addAll(world.getEntitiesOfClass(clzz, aabb, predicate));
+        }
+        return list;
+    }
+
+
+    public static boolean isPosClearForPlayer(World world, BlockPos pos)
+    {
+        return (world.isEmptyBlock(pos) || world.getBlockState(pos).getCollisionShape(world, pos).isEmpty())
+                && (world.isEmptyBlock(pos.above()) || world.getBlockState(pos.above()).getCollisionShape(world, pos.above()).isEmpty());
+    }
+
+    public static BlockPos rayTraceBlockSafe(PlayerEntity player, float range)
+    {
+        World world = player.level;
+        Vector3d startVec = player.position().add(0.0, player.getEyeHeight(), 0.0);
+        Vector3d endVec = startVec.add(player.getLookAngle().scale(range));
+        BlockRayTraceResult result = world.clip(new RayTraceContext(startVec, endVec,  RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, player));
+        BlockPos dashPos = result.getDirection().equals(Direction.DOWN) ? result.getBlockPos().below(2) : result.getBlockPos().offset(result.getDirection().getNormal());
+
+        boolean posIsFree = Beapi.isPosClearForPlayer(world, dashPos);
+        boolean tryUp = true;
+
+        while (!posIsFree)
+        {
+            if(tryUp)
+            {
+                dashPos = dashPos.above();
+                BlockPos bpb = dashPos.below();
+                Vector3d v3d = new Vector3d(bpb.getX(), bpb.getY(), bpb.getZ());
+                posIsFree = Beapi.isPosClearForPlayer(world, dashPos) && world.clip(new RayTraceContext(startVec, v3d,
+                        RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, player)).getType().equals(RayTraceResult.Type.MISS);
+                if(world.getMaxBuildHeight() >= dashPos.getY())
+                    tryUp = false;
+            } else
+            {
+                dashPos = dashPos.below();
+                BlockPos bpa = dashPos.above();
+                Vector3d v3d = new Vector3d(bpa.getX(), bpa.getY(), bpa.getZ());
+                posIsFree = Beapi.isPosClearForPlayer(world, dashPos) && world.clip(new RayTraceContext(startVec, v3d,
+                        RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.ANY, player)).getType().equals(RayTraceResult.Type.MISS);
+                if(dashPos.getY() <= 0)
+                    break;
+            }
+        }
+
+        return (posIsFree) ? dashPos : null;
+    }
+
+    public static Vector3d propulsion(LivingEntity entity, double extraVelX, double extraVelZ)
+    {
+        return propulsion(entity, extraVelX, 0, extraVelZ);
+    }
+
+
+    public static <T extends Entity> List<T> getEntitiesNear(BlockPos pos, World world, double radius, Class<? extends T>... classEntities)
+    {
+        AxisAlignedBB aabb = new AxisAlignedBB(pos).expandTowards(radius, radius, radius);
+        List<T> list = new ArrayList<T>();
+        for (Class<? extends T> clzz : classEntities)
+        {
+            list.addAll(world.getEntitiesOfClass(clzz, aabb));
+        }
+        return list;
+    }
+
+
+    public static Vector3d propulsion(LivingEntity entity, double extraVelX, double extraVelY, double extraVelZ)
+    {
+        return entity.getLookAngle().multiply(extraVelX, extraVelY, extraVelZ);
+    }
 
     public static final int getIndexOfItemStack(Item item, IInventory inven)
     {

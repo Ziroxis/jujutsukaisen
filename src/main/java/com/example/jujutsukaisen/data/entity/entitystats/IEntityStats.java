@@ -47,6 +47,9 @@ public interface IEntityStats {
     int getMaxCursedEnergy();
     int returnCursedEnergy();
 
+    void setTechnique(String value);
+    String getTechnique();
+
     double getDamageMultiplier();
     void setDamageMultiplier(double multiplier);
 }

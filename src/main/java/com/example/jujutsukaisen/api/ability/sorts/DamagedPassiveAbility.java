@@ -1,5 +1,6 @@
-package com.example.jujutsukaisen.api.ability;
+package com.example.jujutsukaisen.api.ability.sorts;
 
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.DamageSource;
 
@@ -9,7 +10,7 @@ public class DamagedPassiveAbility extends PassiveAbility
 {
     protected IOnDamaged onDamagedEvent = (player, attacker) -> false;
 
-    public DamagedPassiveAbility(String name, Api.AbilityCategory category)
+    public DamagedPassiveAbility(String name, AbilityCategories.AbilityCategory category)
     {
         super(name, category);
     }
