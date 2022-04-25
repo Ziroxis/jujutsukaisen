@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.api;
 
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.init.ModRegistry;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -14,6 +15,8 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
@@ -28,6 +31,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.template.*;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -37,11 +43,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 
 public class Beapi
 {
+    public static <T extends Entity> EntityType.Builder createEntityType(EntityType.IFactory<T> factory)
+    {
+        return createEntityType(factory, EntityClassification.MISC);
+    }
+    public static <T extends Entity> EntityType.Builder createEntityType(EntityType.IFactory<T> factory, EntityClassification classification)
+    {
+        EntityType.Builder<T> builder = EntityType.Builder.<T>of(factory, classification);
 
+        builder.setTrackingRange(128).setShouldReceiveVelocityUpdates(true).setUpdateInterval(1).sized(0.6F, 1.8F);
+
+        return builder;
+    }
     public static <T extends Entity> List<T> getEntitiesNear(BlockPos pos, World world, double radius, Predicate<Entity> predicate, Class<? extends T>... classEntities)
     {
         if(predicate != null)
@@ -535,4 +553,15 @@ public class Beapi
     {
         drawAbilityIcon(iconName, x, y, 1, u, v);
     }
+
+    public static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(String localizedName, Supplier<EntityType<T>> supp)
+    {
+        String resourceName = Beapi.getResourceName(localizedName);
+        Beapi.getLangMap().put("entity." + Main.MODID + "." + resourceName, localizedName);
+
+        RegistryObject<EntityType<T>> reg = ModRegistry.ENTITY_TYPES.register(resourceName, supp);
+
+        return reg;
+    }
+
 }

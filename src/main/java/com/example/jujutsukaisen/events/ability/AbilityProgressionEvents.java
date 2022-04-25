@@ -1,6 +1,10 @@
 package com.example.jujutsukaisen.events.ability;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.abilities.blood_manipulation.BloodEdgeAbility;
+import com.example.jujutsukaisen.abilities.blood_manipulation.BloodMeteoriteAbility;
+import com.example.jujutsukaisen.abilities.blood_manipulation.FlowingRedScaleAbility;
+import com.example.jujutsukaisen.abilities.blood_manipulation.PiercingBloodAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
@@ -28,9 +32,13 @@ public class AbilityProgressionEvents
 	public static void onLevelGained(ExperienceUpEvent event)
 	{
 		IEntityStats props = EntityStatsCapability.get(event.getPlayer());
-		if (props.getTechnique().equals(ModValues.DIVINE_DOGS))
+		if (props.getTechnique().equals(ModValues.BLOOD_MANIPULATION))
 		{
-			gainAbility(event.getPlayer(), 0, ShadowInventoryAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 5, BloodEdgeAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 7, BloodMeteoriteAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 10, PiercingBloodAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 15, FlowingRedScaleAbility.INSTANCE);
+
 		}
 		if (props.getTechnique().equals(ModValues.PROJECTION_SORCERY))
 		{

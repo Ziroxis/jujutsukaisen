@@ -19,7 +19,6 @@ public interface IEntityStats {
     boolean isGojo();
     boolean isZenin();
     boolean isInumaki();
-    boolean isSuguru();
 
     boolean hasCurseGrade();
     void setCurseGrade(String value);

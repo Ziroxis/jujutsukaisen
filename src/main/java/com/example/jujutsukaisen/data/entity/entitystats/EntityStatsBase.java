@@ -94,17 +94,6 @@ public class EntityStatsBase implements IEntityStats{
     }
 
     @Override
-    public boolean isSuguru() {
-        if (Beapi.isNullOrEmpty(this.clan))
-            return false;
-
-        return this.clan.equalsIgnoreCase(ModValues.Suguru);
-    }
-
-
-
-
-    @Override
     public boolean hasCurseGrade() {
         if (Beapi.isNullOrEmpty(this.grade))
             return false;

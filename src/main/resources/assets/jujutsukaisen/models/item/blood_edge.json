@@ -1,0 +1,71 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "jujutsukaisen:items/blood_edge",
+		"particle": "jujutsukaisen:items/blood_edge"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 8],
+			"to": [10, 7, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 8], "texture": "#0"},
+				"east": {"uv": [4, 7, 5, 15], "texture": "#0"},
+				"south": {"uv": [2, 0, 4, 8], "texture": "#0"},
+				"west": {"uv": [5, 7, 6, 15], "texture": "#0"},
+				"up": {"uv": [10, 4, 8, 3], "texture": "#0"},
+				"down": {"uv": [10, 4, 8, 5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 8, 8],
+			"to": [10, 15, 9],
+			"faces": {
+				"north": {"uv": [4, 0, 6, 7], "texture": "#0"},
+				"east": {"uv": [6, 7, 7, 14], "texture": "#0"},
+				"south": {"uv": [6, 0, 8, 7], "texture": "#0"},
+				"west": {"uv": [7, 7, 8, 14], "texture": "#0"},
+				"up": {"uv": [10, 6, 8, 5], "texture": "#0"},
+				"down": {"uv": [10, 6, 8, 7], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 15, 8],
+			"to": [9, 16, 9],
+			"faces": {
+				"north": {"uv": [8, 7, 9, 8], "texture": "#0"},
+				"east": {"uv": [8, 8, 9, 9], "texture": "#0"},
+				"south": {"uv": [0, 9, 1, 10], "texture": "#0"},
+				"west": {"uv": [1, 9, 2, 10], "texture": "#0"},
+				"up": {"uv": [3, 10, 2, 9], "texture": "#0"},
+				"down": {"uv": [4, 9, 3, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 7, 8],
+			"to": [11, 8, 9],
+			"faces": {
+				"north": {"uv": [0, 8, 4, 9], "texture": "#0"},
+				"east": {"uv": [9, 7, 10, 8], "texture": "#0"},
+				"south": {"uv": [8, 0, 12, 1], "texture": "#0"},
+				"west": {"uv": [8, 9, 9, 10], "texture": "#0"},
+				"up": {"uv": [12, 2, 8, 1], "texture": "#0"},
+				"down": {"uv": [12, 2, 8, 3], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-2, -92, 0],
+			"translation": [0.25, 5.25, 0.75]
+		}
+	},
+	"groups": [
+		{
+			"name": "Blood_Edge",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

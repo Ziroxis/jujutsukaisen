@@ -541,18 +541,9 @@ public class AbilityProjectileEntity extends ThrowableEntity
 	public void setPhysical(boolean affectedByHardening)
 	{
 		this.entityData.set(IS_PHYSICAL, true);
-		this.entityData.set(IS_AFFECTED_BY_HARDENING, affectedByHardening);
 	}
 
-	public void setAffectedByImbuing()
-	{
-		this.entityData.set(IS_AFFECTED_BY_IMBUING, true);
-	}
 
-	public void setAffectedByHardening()
-	{
-		this.entityData.set(IS_AFFECTED_BY_HARDENING, true);
-	}
 
 	public void setHurtThrower()
 	{
@@ -564,21 +555,6 @@ public class AbilityProjectileEntity extends ThrowableEntity
 		return this.entityData.get(IS_PHYSICAL);
 	}
 
-	public boolean isAffectedByHaki()
-	{
-		return this.isAffectedByHardening() || this.isAffectedByImbuing();
-	}
-
-	public boolean isAffectedByHardening()
-	{
-		return this.entityData.get(IS_AFFECTED_BY_HARDENING);
-	}
-	
-	public boolean isAffectedByImbuing()
-	{
-		return this.entityData.get(IS_AFFECTED_BY_IMBUING);
-	}
-	
 	public void setPassThroughBlocks()
 	{
 		this.canPassThroughBlocks = true;

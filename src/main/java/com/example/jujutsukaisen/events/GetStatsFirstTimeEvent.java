@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -35,12 +36,13 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng = Beapi.RNG(5);
+            int rng = Beapi.RNG(4);
             switch (rng)
             {
                 case 0:
                     props.setClan(ModValues.Kamo);
                     props.setTechnique(ModValues.BLOOD_MANIPULATION);
+                    abilityProps.addUnlockedAbility(BloodShurikenAbility.INSTANCE);
                     break;
                 case 1:
                     props.setClan(ModValues.Gojo);
@@ -55,10 +57,7 @@ public class GetStatsFirstTimeEvent {
                     props.setTechnique(ModValues.PROJECTION_SORCERY);
                     abilityProps.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
                     break;
-                case 4:
-                    props.setClan(ModValues.Suguru);
-                    props.setTechnique(ModValues.MASTER_CURSED);
-                    break;
+
             }
         }
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);

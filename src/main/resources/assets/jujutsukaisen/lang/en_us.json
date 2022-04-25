@@ -4,6 +4,7 @@
   "item.jujutsukaisen.cursed_spear": "Cursed tool: Cursed Spear",
   "item.jujutsukaisen.demon_slaughterer": "Cursed tool: Demon Slaughterer",
   "item.jujutsukaisen.nanami_blade": "Cursed tool: Nanami Blade",
+  "item.jujutsukaisen.blood_edge": "Blood Edge",
 
 
   "gui.quests": "quests",
@@ -17,5 +18,11 @@
   "ability.jujutsukaisen.frame_catch": "Frame Catch",
   "ability.jujutsukaisen.frame_speed": "Frame Speed",
   "ability.jujutsukaisen.frame_teleportation": "Frame Teleportation",
-  "ability.jujutsukaisen.frame_movement": "Frame Movement"
+  "ability.jujutsukaisen.frame_movement": "Frame Movement",
+
+  "ability.jujutsukaisen.blood_shuriken": "Blood Shuriken",
+  "ability.jujutsukaisen.blood_meteorite": "Blood Meteorite",
+  "ability.jujutsukaisen.blood_edge": "Blood Edge",
+  "ability.jujutsukaisen.flowing_red_scale": "Flowing Red Scale",
+  "ability.jujutsukaisen.piercing_blood": "Piercing Blood"
 }

@@ -7,7 +7,6 @@ public class ModValues {
     public static final String Gojo = "Gojo";
     public static final String Zenin = "Zenin";
     public static final String Inumaki = "Inumaki";
-    public static final String Suguru = "Suguru";
 
     //Curse Grades
     public static final String grade_1 = "Grade 1";

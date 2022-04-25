@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.events;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.basic.BattoSwordAbility;
 import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
+import com.example.jujutsukaisen.abilities.blood_manipulation.*;
 import com.example.jujutsukaisen.abilities.projection_sorcery.*;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
@@ -29,10 +30,14 @@ public class TestEvents {
 
     @SubscribeEvent
     public static void testEvents(ServerChatEvent event) {
-        if (event.getMessage().contains("inventory"))
+        if (event.getMessage().contains("blood"))
         {
             IAbilityData props = AbilityDataCapability.get(event.getPlayer());
-            props.addUnlockedAbility(ShadowInventoryAbility.INSTANCE);
+            props.addUnlockedAbility(BloodShurikenAbility.INSTANCE);
+            props.addUnlockedAbility(BloodMeteoriteAbility.INSTANCE);
+            props.addUnlockedAbility(BloodEdgeAbility.INSTANCE);
+            props.addUnlockedAbility(FlowingRedScaleAbility.INSTANCE);
+            props.addUnlockedAbility(PiercingBloodAbility.INSTANCE);
             PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         }
         if (event.getMessage().contains("projection"))
