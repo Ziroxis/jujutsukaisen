@@ -13,7 +13,7 @@ public class FrameSpeedAbility extends ContinuousAbility {
 
     public static final FrameSpeedAbility INSTANCE = new FrameSpeedAbility();
 
-    private static final AttributeModifier FRAME_SPEED_SIMPLE = new AttributeModifier(UUID.fromString("e3ae074c-40a9-49ff-aa3b-7cc9b98ddc2d"), "Frame Speed simple", 5, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier FRAME_SPEED_SIMPLE = new AttributeModifier(UUID.fromString("e3ae074c-40a9-49ff-aa3b-7cc9b98ddc2d"), "Frame Speed simple", 3, AttributeModifier.Operation.ADDITION);
     public FrameSpeedAbility()
     {
         super("Frame Speed", AbilityCategories.AbilityCategory.TECHNIQUE);

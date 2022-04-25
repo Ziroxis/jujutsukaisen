@@ -1,12 +1,16 @@
 package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
+import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
+import com.example.jujutsukaisen.networking.server.ability.SSyncAbilityDataPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,6 +24,7 @@ public class GetStatsFirstTimeEvent {
     {
         PlayerEntity player = (PlayerEntity) event.getEntityLiving();
         IEntityStats props = EntityStatsCapability.get(player);
+        IAbilityData abilityProps = AbilityDataCapability.get(player);
 
         if (!props.hasClan())
         {
@@ -47,7 +52,8 @@ public class GetStatsFirstTimeEvent {
                     break;
                 case 3:
                     props.setClan(ModValues.Zenin);
-                    props.setTechnique(ModValues.DIVINE_DOGS);
+                    props.setTechnique(ModValues.PROJECTION_SORCERY);
+                    abilityProps.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
                     break;
                 case 4:
                     props.setClan(ModValues.Suguru);
@@ -56,9 +62,6 @@ public class GetStatsFirstTimeEvent {
             }
         }
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);
-        System.out.println(props.getClan());
-        System.out.println(props.getCurseGrade());
-        System.out.println(props.getMaxCursedEnergy());
-        System.out.println(props.returnCursedEnergy());
+        PacketHandler.sendTo(new SSyncAbilityDataPacket(player.getId(), abilityProps), player);
     }
 }

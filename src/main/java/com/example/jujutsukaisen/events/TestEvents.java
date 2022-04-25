@@ -3,10 +3,7 @@ package com.example.jujutsukaisen.events;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.basic.BattoSwordAbility;
 import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
-import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
-import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
-import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
-import com.example.jujutsukaisen.abilities.projection_sorcery.FrameTeleportationAbility;
+import com.example.jujutsukaisen.abilities.projection_sorcery.*;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -45,6 +42,7 @@ public class TestEvents {
             props.addUnlockedAbility(FrameCatchAbility.INSTANCE);
             props.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
             props.addUnlockedAbility(FrameTeleportationAbility.INSTANCE);
+            props.addUnlockedAbility(FrameMovementPassive.INSTANCE);
             PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         }
         if (event.getMessage().contains("stats"))
@@ -57,6 +55,14 @@ public class TestEvents {
             System.out.println(props.getExperience());
             System.out.println(props.getMaxExperience());
             System.out.println(props.getLevel());
+        }
+        if (event.getMessage().contains("level"))
+        {
+            PlayerEntity player = event.getPlayer();
+            IEntityStats props = EntityStatsCapability.get(player);
+
+            props.setLevel(50);
+            props.setExperience(props.getMaxExperience() - 1);
         }
     }
 }

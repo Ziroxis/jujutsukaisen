@@ -16,5 +16,6 @@
   "ability.jujutsukaisen.frame_break": "Frame Break",
   "ability.jujutsukaisen.frame_catch": "Frame Catch",
   "ability.jujutsukaisen.frame_speed": "Frame Speed",
-  "ability.jujutsukaisen.frame_teleport": "Frame teleport"
+  "ability.jujutsukaisen.frame_teleportation": "Frame Teleportation",
+  "ability.jujutsukaisen.frame_movement": "Frame Movement"
 }

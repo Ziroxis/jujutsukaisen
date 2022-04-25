@@ -34,7 +34,6 @@ public class AbilityProgressionEvents
 		}
 		if (props.getTechnique().equals(ModValues.PROJECTION_SORCERY))
 		{
-			gainAbility(event.getPlayer(), 0, FrameSpeedAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 5, FrameBreakAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 15, FrameTeleportationAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 25, FrameCatchAbility.INSTANCE);
