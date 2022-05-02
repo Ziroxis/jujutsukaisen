@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.abilities.projection_sorcery;
 
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.sorts.PunchAbility;
+import com.example.jujutsukaisen.init.ModEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
@@ -24,14 +25,14 @@ public class FrameBreakAbility extends PunchAbility {
 
     private void duringContinuityEvent(PlayerEntity player, int i)
     {
-        if (!player.hasEffect(Effects.MOVEMENT_SLOWDOWN))
-            player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 40, 10));
+        if (!player.hasEffect(ModEffects.MOVEMENT_BLOCKED.get()))
+            player.addEffect(new EffectInstance(ModEffects.MOVEMENT_BLOCKED.get(), 40, 10));
 
     }
 
     private float onHitEntityEvent(PlayerEntity player, LivingEntity target)
     {
-        player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
+        player.removeEffect(ModEffects.MOVEMENT_BLOCKED.get());
 
         return 20;
     }

@@ -37,7 +37,6 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
     private static final DataParameter<Integer> CURSE_GRADE = EntityDataManager.defineId(CurseEntity.class, DataSerializers.INT);
 
     private int yul;
-    protected int threat = 2;
     private Goal currentGoal, previousGoal;
     //protected List<AiSpellEntry> SPELL_POOL = new ArrayList<AiSpellEntry>();
 
@@ -49,7 +48,6 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
     public CurseEntity(EntityType type, World world, String[] textures)
     {
         super(type, world);
-        this.xpReward = this.threat;
         this.textures = textures;
         this.chooseTexture();
     }
@@ -75,7 +73,6 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
 
         nbt.putInt("curse_grade", this.getCurseGrade());
         nbt.putInt("yul", this.yul);
-        nbt.putInt("threat", this.threat);
         nbt.putInt("animation", this.getAnimation());
 
         nbt.putString("texture", this.getMobTexture());
@@ -88,7 +85,6 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
 
         this.setCurseGrade(nbt.getInt("curse_grade"));
         this.yul = nbt.getInt("yul");
-        this.threat = nbt.getInt("threat");
         this.setAnimation(nbt.getInt("animation"));
 
         this.setTexture(nbt.getString("texture"));
@@ -265,21 +261,6 @@ public abstract class CurseEntity extends CreatureEntity implements IDynamicRend
     public void setPreviousGoal(Goal goal)
     {
         this.previousGoal = goal;
-    }
-
-    public void addThreat(int threat)
-    {
-        this.threat += threat;
-    }
-
-    public int getThreat()
-    {
-        return this.threat;
-    }
-
-    public void setThreat(int threat)
-    {
-        this.threat = threat;
     }
 
     public void queueEntityDataUpdate()

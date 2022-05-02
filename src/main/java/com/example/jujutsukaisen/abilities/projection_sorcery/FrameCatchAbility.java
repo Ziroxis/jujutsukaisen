@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.abilities.projection_sorcery;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.init.ModEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
@@ -43,9 +44,7 @@ public class FrameCatchAbility extends Ability {
         for(LivingEntity target : this.entities)
         {
             target.teleportTo(player.getX(), player.getY(), player.getZ());
-            target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 5));
-            target.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 20, 5));
-            target.addEffect(new EffectInstance(Effects.BLINDNESS, 20, 5));
+            target.addEffect(new EffectInstance(ModEffects.MOVEMENT_BLOCKED.get(), 80, 10));
         }
 
         return true;

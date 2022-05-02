@@ -48,6 +48,32 @@ import java.util.logging.Level;
 
 public class Beapi
 {
+
+    public static void drawColourOnScreen(int colour, int alpha, double posX, double posY, double width, double height, double zLevel)
+    {
+        int r = (colour >> 16 & 0xff);
+        int g = (colour >> 8 & 0xff);
+        int b = (colour & 0xff);
+        drawColourOnScreen(r, g, b, alpha, posX, posY, width, height, zLevel);
+    }
+
+    public static void drawColourOnScreen(int red, int green, int blue, int alpha, double posX, double posY, double width, double height, double zLevel)
+    {
+        if (width <= 0 || height <= 0)
+            return;
+        RenderSystem.enableBlend();
+        RenderSystem.disableTexture();
+        BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.vertex(posX, posY + height, zLevel).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.vertex(posX + width, posY + height, zLevel).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.vertex(posX + width, posY, zLevel).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.vertex(posX, posY, zLevel).color(red, green, blue, alpha).endVertex();
+        Tessellator.getInstance().end();
+        RenderSystem.enableTexture();
+        RenderSystem.disableBlend();
+    }
+
     public static <T extends Entity> EntityType.Builder createEntityType(EntityType.IFactory<T> factory)
     {
         return createEntityType(factory, EntityClassification.MISC);

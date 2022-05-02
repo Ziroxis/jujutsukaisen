@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.abilities.blood_manipulation;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.sorts.ChargeableAbility;
 import com.example.jujutsukaisen.entities.projectiles.blood_manipulation.PiercingBloodProjectile;
+import com.example.jujutsukaisen.init.ModEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -41,7 +42,7 @@ public class PiercingBloodAbility extends ChargeableAbility {
             this.stopCharging(player);
         }
 
-        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 200, 10));
+        player.addEffect(new EffectInstance(ModEffects.MOVEMENT_BLOCKED.get(), 200, 10));
     }
 
     private boolean onEndChargingEvent(PlayerEntity player)
@@ -49,7 +50,7 @@ public class PiercingBloodAbility extends ChargeableAbility {
         if (this.cancelled)
             return true;
 
-        player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
+        player.removeEffect(ModEffects.MOVEMENT_BLOCKED.get());
 
         int charge = this.getMaxChargeTime() - this.getChargeTime();
 

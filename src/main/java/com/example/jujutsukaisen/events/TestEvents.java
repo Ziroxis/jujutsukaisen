@@ -69,5 +69,16 @@ public class TestEvents {
             props.setLevel(50);
             props.setExperience(props.getMaxExperience() - 1);
         }
+        if (event.getMessage().contains("speech"))
+        {
+            PlayerEntity player = event.getPlayer();
+            IEntityStats props = EntityStatsCapability.get(player);
+
+            System.out.println(props.returnCursedEnergy());
+            System.out.println(props.getMaxCursedEnergy());
+            System.out.println(props.getExperience());
+            System.out.println(props.getMaxExperience());
+            System.out.println(props.getLevel());
+        }
     }
 }
