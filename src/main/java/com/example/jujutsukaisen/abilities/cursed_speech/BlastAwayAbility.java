@@ -42,7 +42,7 @@ public class BlastAwayAbility extends Ability {
         double j = mop.getLocation().y - (mop instanceof EntityRayTraceResult ? 1 : 0);
         double k = mop.getLocation().z;
 
-        List<LivingEntity> targets = Beapi.getEntitiesNear(new BlockPos(i, j, k), player.level, 5, LivingEntity.class);
+        List<LivingEntity> targets = Beapi.getEntitiesNear(new BlockPos(i, j, k), player.level, 1, LivingEntity.class);
         targets.remove(player);
         this.entities.addAll(targets);
 
@@ -61,7 +61,8 @@ public class BlastAwayAbility extends Ability {
                 player.sendMessage(new StringTextComponent("BLAST AWAY!"), Util.NIL_UUID);
             ExplosionAbility explosionAbility = AbilityHelper.newExplosion(player, player.level, targetX, targetY, targetZ, 3);
             target.setDeltaMovement(speed.x, 0.2, speed.z);
-
+            explosionAbility.setStaticDamage(5);
+            explosionAbility.doExplosion();
         }
 
         return true;

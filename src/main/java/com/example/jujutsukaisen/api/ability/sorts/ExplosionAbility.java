@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen.api.ability.sorts;
 
 import com.example.jujutsukaisen.api.ability.AbilityHelper;
+import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.particles.ParticleEffect;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -39,6 +40,7 @@ public class ExplosionAbility extends Explosion {
     private float explosionSize;
     private ParticleEffect particles;
     private DamageSource damageSource;
+    private ModDamageSource modDamageSource;
 
     private final List<BlockPos> affectedBlockPositions = Lists.newArrayList();
     private final Map<PlayerEntity, Vector3d> playerKnockbackMap = Maps.newHashMap();
@@ -59,6 +61,8 @@ public class ExplosionAbility extends Explosion {
     private float staticBlockResistance = 0;
     private int heightDifference = 0;
     private int size = 52;
+    public ArrayList<Entity> damagedEntities = new ArrayList();
+
 
     public ExplosionAbility(Entity entity, World world, double posX, double posY, double posZ, float power)
     {
@@ -283,12 +287,15 @@ public class ExplosionAbility extends Explosion {
 
                             if (this.staticDamage > 0)
                             {
-                                entity.hurt(this.getDamageSource(), this.staticDamage);
+                                entity.hurt(modDamageSource, this.staticDamage);
+                                damagedEntities.add(entity);
+
                             }
                             else
                             {
                                 float damage = ((float) ((power * power + power) / 2.0D * 7.0D * f3 + 1.0D));
-                                entity.hurt(this.getDamageSource(), damage);
+                                entity.hurt(modDamageSource, damage);
+                                damagedEntities.add(entity);
                             }
 
                             double blastDamageReduction = power;

@@ -4,7 +4,6 @@ import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.init.ModEffects;
-import com.jogamp.common.util.ArrayHashSet;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
@@ -24,7 +23,7 @@ public class SleepAbility extends Ability {
 
     public SleepAbility()
     {
-        super("Sleep", AbilityCategories.AbilityCategory.ALL);
+        super("Sleep", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("The user screams sleep which makes the target not be able to move for a few seconds");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(30);

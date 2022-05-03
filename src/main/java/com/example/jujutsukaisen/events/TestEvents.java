@@ -4,6 +4,7 @@ import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.basic.BattoSwordAbility;
 import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
 import com.example.jujutsukaisen.abilities.blood_manipulation.*;
+import com.example.jujutsukaisen.abilities.cursed_speech.*;
 import com.example.jujutsukaisen.abilities.projection_sorcery.*;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
@@ -48,6 +49,17 @@ public class TestEvents {
             props.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
             props.addUnlockedAbility(FrameTeleportationAbility.INSTANCE);
             props.addUnlockedAbility(FrameMovementPassive.INSTANCE);
+            PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
+        }
+        if (event.getMessage().contains("speech"))
+        {
+            IAbilityData props = AbilityDataCapability.get(event.getPlayer());
+            props.addUnlockedAbility(BlastAwayAbility.INSTANCE);
+            props.addUnlockedAbility(ExplodeAbility.INSTANCE);
+            props.addUnlockedAbility(FallDownUnderAbility.INSTANCE);
+            props.addUnlockedAbility(GetTwistedAbility.INSTANCE);
+            props.addUnlockedAbility(SleepAbility.INSTANCE);
+            props.addUnlockedAbility(StopAbility.INSTANCE);
             PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         }
         if (event.getMessage().contains("stats"))
