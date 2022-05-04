@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbility;
+import com.example.jujutsukaisen.abilities.cursed_speech.StopAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -51,6 +52,7 @@ public class GetStatsFirstTimeEvent {
                 case 2:
                     props.setClan(ModValues.Inumaki);
                     props.setTechnique(ModValues.CURSED_SPEECH);
+                    abilityProps.addUnlockedAbility(StopAbility.INSTANCE);
                     break;
                 case 3:
                     props.setClan(ModValues.Zenin);

@@ -7,7 +7,7 @@ modId="jujutsukaisen"
 version="${file.jarVersion}"
 displayName="JJK mod"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/block-clover"
-logoFile="logo.png"
+logoFile="jujutsukaisen_logo.png"
 credits="Credit goes to your mom, supporting me physically during this process"
 authors="Beosti and Conzilla"
 

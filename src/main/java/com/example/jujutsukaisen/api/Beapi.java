@@ -19,9 +19,13 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
+import net.minecraft.network.play.server.SSpawnParticlePacket;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -48,7 +52,25 @@ import java.util.logging.Level;
 
 public class Beapi
 {
+    public static double randomDouble()
+    {
+        return new Random().nextDouble() * 2 - 1;
+    }
 
+    public static void spawnParticles(IParticleData data, ServerWorld world, double posX, double posY, double posZ)
+    {
+        IPacket<?> ipacket = new SSpawnParticlePacket(data, true, (float) posX, (float) posY, (float) posZ, 0, 0, 0, 0, 1);
+
+        for (int j = 0; j < world.players().size(); ++j)
+        {
+            ServerPlayerEntity player = world.players().get(j);
+            BlockPos blockpos = new BlockPos(player.getX(), player.getY(), player.getZ());
+            if (blockpos.closerThan(new Vector3d(posX, posY, posZ), 512))
+            {
+                player.connection.send(ipacket);
+            }
+        }
+    }
     public static void drawColourOnScreen(int colour, int alpha, double posX, double posY, double width, double height, double zLevel)
     {
         int r = (colour >> 16 & 0xff);

@@ -9,7 +9,12 @@ import java.util.function.Supplier;
 
 public enum AbilityCommandGroup implements IExtensibleEnum
 {
-	TECHNIQUE(() -> ModAbilities.TENSHADOW_TECHNIQUE);
+	CURSED_SPEECH(() -> ModAbilities.CURSED_SPEECH),
+	BLOOD_MANIPULATION(() -> ModAbilities.BLOOD_MANIPULATION),
+	PROJECTION_SORCERY(() -> ModAbilities.PROJECTION_SORCERY),
+	TENSHADOW_TECHNIQUE(() -> ModAbilities.TENSHADOW_TECHNIQUE),
+	CURSED_PUNCHES(() -> ModAbilities.CURSED_PUNCHES),
+	CURSED_SWORDS(() -> ModAbilities.CURSED_SWORD);
 
 	
 	private Supplier<Ability[]> abilities;

@@ -5,7 +5,9 @@ import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.AbilityHelper;
 import com.example.jujutsukaisen.api.ability.sorts.ExplosionAbility;
+import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.init.ModEffects;
+import com.example.jujutsukaisen.particles.CommonExplosionParticleEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
@@ -55,13 +57,16 @@ public class BlastAwayAbility extends Ability {
             double playerX = player.getX();
             double playerY = player.getY();
             double playerZ = player.getZ();
-            double distance = Math.sqrt((targetX * playerX)+(targetY * playerY)+(targetZ * playerZ));
+            double distance = Math.sqrt(Math.pow(targetX - playerX, 2) + Math.pow(targetZ - playerZ, 2));
             Vector3d speed = Beapi.propulsion(target, -5, -5);
             if (distance <= 32)
                 player.sendMessage(new StringTextComponent("BLAST AWAY!"), Util.NIL_UUID);
             ExplosionAbility explosionAbility = AbilityHelper.newExplosion(player, player.level, targetX, targetY, targetZ, 3);
             target.setDeltaMovement(speed.x, 0.2, speed.z);
             explosionAbility.setStaticDamage(5);
+            explosionAbility.setExplosionSound(true);
+            explosionAbility.setSmokeParticles(new CommonExplosionParticleEffect(5));
+            explosionAbility.setDamageSource(ModDamageSource.causeAbilityDamage(player, this));
             explosionAbility.doExplosion();
         }
 

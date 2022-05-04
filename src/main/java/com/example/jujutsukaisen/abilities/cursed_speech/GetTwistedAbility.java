@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.abilities.cursed_speech;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.init.ModEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,10 +22,11 @@ public class GetTwistedAbility extends Ability {
 
     public static final GetTwistedAbility INSTANCE = new GetTwistedAbility();
     private List<LivingEntity> entities = new ArrayList<LivingEntity>();
+    ModDamageSource damageSource;
 
     public GetTwistedAbility()
     {
-        super("Sleep", AbilityCategories.AbilityCategory.TECHNIQUE);
+        super("Get twisted", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("The user screams get twisted which makes the target get twisted");
         this.setMaxCooldown(15);
         this.setCursedEnergyCost(20);
@@ -56,6 +58,7 @@ public class GetTwistedAbility extends Ability {
             if (distance <= 32)
                 player.sendMessage(new StringTextComponent("GET TWISTED!"), Util.NIL_UUID);
             target.addEffect(new EffectInstance(Effects.CONFUSION, 80, 10));
+            target.hurt(ModDamageSource.causeAbilityDamage(player, this), 10);
         }
 
         return true;

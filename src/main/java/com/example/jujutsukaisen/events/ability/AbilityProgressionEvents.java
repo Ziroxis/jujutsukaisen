@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.abilities.blood_manipulation.BloodEdgeAbility;
 import com.example.jujutsukaisen.abilities.blood_manipulation.BloodMeteoriteAbility;
 import com.example.jujutsukaisen.abilities.blood_manipulation.FlowingRedScaleAbility;
 import com.example.jujutsukaisen.abilities.blood_manipulation.PiercingBloodAbility;
+import com.example.jujutsukaisen.abilities.cursed_speech.*;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
@@ -45,6 +46,15 @@ public class AbilityProgressionEvents
 			gainAbility(event.getPlayer(), 5, FrameBreakAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 15, FrameTeleportationAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 25, FrameCatchAbility.INSTANCE);
+		}
+		if (props.getTechnique().equals(ModValues.CURSED_SPEECH))
+		{
+			gainAbility(event.getPlayer(), 5, SleepAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 10, GetTwistedAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 15, FallDownUnderAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 25, BlastAwayAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 30, ExplodeAbility.INSTANCE);
+
 		}
 	}
 

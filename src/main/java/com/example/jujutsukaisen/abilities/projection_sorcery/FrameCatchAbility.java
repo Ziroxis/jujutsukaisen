@@ -31,7 +31,7 @@ public class FrameCatchAbility extends Ability {
 
     private boolean onUseEvent(PlayerEntity player)
     {
-        RayTraceResult mop = Beapi.rayTraceBlocksAndEntities(player, 320);
+        RayTraceResult mop = Beapi.rayTraceBlocksAndEntities(player, 32);
 
         double i = mop.getLocation().x;
         double j = mop.getLocation().y - (mop instanceof EntityRayTraceResult ? 1 : 0);

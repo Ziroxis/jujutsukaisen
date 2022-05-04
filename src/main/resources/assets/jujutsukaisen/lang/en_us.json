@@ -24,5 +24,12 @@
   "ability.jujutsukaisen.blood_meteorite": "Blood Meteorite",
   "ability.jujutsukaisen.blood_edge": "Blood Edge",
   "ability.jujutsukaisen.flowing_red_scale": "Flowing Red Scale",
-  "ability.jujutsukaisen.piercing_blood": "Piercing Blood"
+  "ability.jujutsukaisen.piercing_blood": "Piercing Blood",
+
+  "ability.jujutsukaisen.blast_away": "Blast away",
+  "ability.jujutsukaisen.explode": "Explode",
+  "ability.jujutsukaisen.fall_down": "Fall down under",
+  "ability.jujutsukaisen.sleep": "Sleep",
+  "ability.jujutsukaisen.stay": "Stay",
+  "ability.jujutsukaisen.get_twisted": "Get twisted"
 }

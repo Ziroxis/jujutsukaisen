@@ -287,14 +287,14 @@ public class ExplosionAbility extends Explosion {
 
                             if (this.staticDamage > 0)
                             {
-                                entity.hurt(modDamageSource, this.staticDamage);
+                                entity.hurt(this.getDamageSource(), this.staticDamage);
                                 damagedEntities.add(entity);
 
                             }
                             else
                             {
                                 float damage = ((float) ((power * power + power) / 2.0D * 7.0D * f3 + 1.0D));
-                                entity.hurt(modDamageSource, damage);
+                                entity.hurt(this.getDamageSource(), damage);
                                 damagedEntities.add(entity);
                             }
 
