@@ -6,6 +6,7 @@ import com.example.jujutsukaisen.client.ClientHandler;
 import com.example.jujutsukaisen.client.gui.CursedEnergyBar;
 import com.example.jujutsukaisen.events.ModEventBusEvents;
 import com.example.jujutsukaisen.init.*;
+import com.example.jujutsukaisen.world.structure.configured.ConfiguredStructures;
 import net.minecraft.block.Block;
 import net.minecraft.command.arguments.ArgumentSerializer;
 import net.minecraft.command.arguments.ArgumentTypes;
@@ -45,6 +46,8 @@ public class Main
         ModAbilities.register(modEventBus);
         ModQuests.QUESTS.register(modEventBus);
         ModRegistry.ENTITY_TYPES.register(modEventBus);
+        ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
+
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
@@ -60,6 +63,14 @@ public class Main
         ArgumentTypes.register("ability", AbilityArgument.class, new ArgumentSerializer<>(AbilityArgument::ability));
         ArgumentTypes.register("group", AbilityGroupArgument.class, new ArgumentSerializer<>(AbilityGroupArgument::abilityGroup));
         MinecraftForge.EVENT_BUS.register(ModEventBusEvents.class);
+
+        event.enqueueWork(() ->
+        {
+            ModStructures.setupStructures();
+            ConfiguredStructures.registerConfiguredStructures();
+        });
+
+
         ModNetwork.init();
     }
 

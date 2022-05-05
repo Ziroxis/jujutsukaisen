@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.world.gen.ModEntityGeneration;
+import com.example.jujutsukaisen.world.gen.ModStructureGeneration;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,5 +14,6 @@ public class ModWorldEvents {
     public static void biomeLoadingEvent(final BiomeLoadingEvent event)
     {
         ModEntityGeneration.onEntitySpawn(event);
+        ModStructureGeneration.generateStructures(event);
     }
 }

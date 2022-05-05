@@ -63,9 +63,7 @@ public class AbilityProjectileEntity extends ThrowableEntity
 	private int targetResetTime = 20;
 	private static final DataParameter<Integer> OWNER = EntityDataManager.defineId(AbilityProjectileEntity.class, DataSerializers.INT);
 	private static final DataParameter<Boolean> IS_PHYSICAL = EntityDataManager.defineId(AbilityProjectileEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IS_AFFECTED_BY_HARDENING = EntityDataManager.defineId(AbilityProjectileEntity.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IS_AFFECTED_BY_IMBUING = EntityDataManager.defineId(AbilityProjectileEntity.class, DataSerializers.BOOLEAN);
-	
+
 	// Setting the defaults so that no crash occurs and so they will be null safe.
 	public IOnEntityImpact onEntityImpactEvent = (hitEntity) ->
 	{
@@ -410,8 +408,6 @@ public class AbilityProjectileEntity extends ThrowableEntity
 		compound.putFloat("gravity", this.gravity);
 		compound.putDouble("collisionSize", this.collisionSize);
 		compound.putBoolean("isPhysical", this.entityData.get(IS_PHYSICAL));
-		compound.putBoolean("usesBusoHaki", this.entityData.get(IS_AFFECTED_BY_HARDENING));
-		compound.putBoolean("affectedByImbuing", this.entityData.get(IS_AFFECTED_BY_IMBUING));
 		compound.putBoolean("canPassThroughBlocks", this.canPassThroughBlocks);
 		compound.putBoolean("canPassThroughEntities", this.canPassThroughEntities);
 		compound.putBoolean("canGetStuckInGround", this.canGetStuckInGround);
@@ -433,8 +429,6 @@ public class AbilityProjectileEntity extends ThrowableEntity
 		this.gravity = compound.getFloat("gravity");
 		this.collisionSize = compound.getDouble("collisionSize");
 		this.entityData.set(IS_PHYSICAL, compound.getBoolean("isPhysical"));
-		this.entityData.set(IS_AFFECTED_BY_HARDENING, compound.getBoolean("usesBusoHaki"));
-		this.entityData.set(IS_AFFECTED_BY_IMBUING, compound.getBoolean("affectedByImbuing"));
 		this.canPassThroughBlocks = compound.getBoolean("canPassThroughBlocks");
 		this.canPassThroughEntities = compound.getBoolean("canPassThroughEntities");
 		this.canGetStuckInGround = compound.getBoolean("canGetStuckInGround");
@@ -466,8 +460,6 @@ public class AbilityProjectileEntity extends ThrowableEntity
 	{
 		this.entityData.define(OWNER, -1);
 		this.entityData.define(IS_PHYSICAL, false);
-		this.entityData.define(IS_AFFECTED_BY_HARDENING, false);
-		this.entityData.define(IS_AFFECTED_BY_IMBUING, false);
 	}
 
 	@Override
