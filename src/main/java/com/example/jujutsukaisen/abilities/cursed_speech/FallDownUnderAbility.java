@@ -51,7 +51,7 @@ public class FallDownUnderAbility extends Ability {
             double playerX = player.getX();
             double playerY = player.getY();
             double playerZ = player.getZ();
-            double distance = Math.sqrt((targetX * playerX)+(targetY * playerY)+(targetZ * playerZ));
+            double distance = Math.sqrt(Math.pow(targetX - playerX, 2) + Math.pow(targetZ - playerZ, 2));
             if (distance <= 32)
                 player.sendMessage(new StringTextComponent("FALL DOWN UNDER!"), Util.NIL_UUID);
             target.teleportTo(targetX, targetY - 3, playerZ);
