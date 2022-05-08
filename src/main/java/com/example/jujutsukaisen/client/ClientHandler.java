@@ -1,8 +1,6 @@
 package com.example.jujutsukaisen.client;
 
-import com.example.jujutsukaisen.client.renderer.entities.curses.LizardRenderer;
-import com.example.jujutsukaisen.client.renderer.entities.curses.RoppongiRenderer;
-import com.example.jujutsukaisen.client.renderer.entities.curses.SmallPoxRenderer;
+import com.example.jujutsukaisen.client.renderer.entities.curses.*;
 import com.example.jujutsukaisen.client.renderer.entities.npc.SenseiRenderer;
 import com.example.jujutsukaisen.init.ModEntities;
 import net.minecraft.client.Minecraft;
@@ -28,6 +26,8 @@ public class ClientHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SMALL_POX.get(), new SmallPoxRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.LIZARD.get(), new LizardRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SENSEI.get(), new SenseiRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRASS_HOPPER.get(), new GrassHopperRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.POSSESED_PUPPET.get(), new PossesedPuppetRenderer.Factory());
 
         Map<String, PlayerRenderer> playerSkinMap = Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap();
         ClientHandler.addPlayerLayers(playerSkinMap.get("default"));

@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.events;
 
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.entities.curses.GrassHopperEntity;
 import com.example.jujutsukaisen.entities.curses.LizardEntity;
 import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
 import com.example.jujutsukaisen.entities.curses.SmallPoxEntity;
@@ -21,6 +22,9 @@ public class ModEventBusEvents {
         event.put(ModEntities.SMALL_POX.get(), SmallPoxEntity.setCustomAttributes().build());
         event.put(ModEntities.LIZARD.get(), LizardEntity.setCustomAttributes().build());
         event.put(ModEntities.SENSEI.get(), SenseiEntity.setCustomAttributes().build());
+        event.put(ModEntities.GRASS_HOPPER.get(), GrassHopperEntity.setCustomAttributes().build());
+        event.put(ModEntities.POSSESED_PUPPET.get(), GrassHopperEntity.setCustomAttributes().build());
+
     }
 
 /*

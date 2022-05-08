@@ -1,9 +1,7 @@
 package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.entities.curses.LizardEntity;
-import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
-import com.example.jujutsukaisen.entities.curses.SmallPoxEntity;
+import com.example.jujutsukaisen.entities.curses.*;
 import com.example.jujutsukaisen.entities.npc.SenseiEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -45,6 +43,18 @@ public class ModEntities {
                             .sized(1f, 2f)
                             .setTrackingRange(5)
                             .build(new ResourceLocation(Main.MODID, "sensei_entity").toString()));
+    public static final RegistryObject<EntityType<GrassHopperEntity>> GRASS_HOPPER = ENTITIES
+            .register("grasshopper_entity",
+                    () -> EntityType.Builder.of(GrassHopperEntity::new, EntityClassification.CREATURE)
+                            .sized(2f, 2f)
+                            .setTrackingRange(2)
+                            .build(new ResourceLocation(Main.MODID, "grasshopper_entity").toString()));
+    public static final RegistryObject<EntityType<PossesedPuppetEntity>> POSSESED_PUPPET = ENTITIES
+            .register("possesedpuppet_entity",
+                    () -> EntityType.Builder.of(PossesedPuppetEntity::new, EntityClassification.CREATURE)
+                            .sized(2f, 2f)
+                            .setTrackingRange(2)
+                            .build(new ResourceLocation(Main.MODID, "possesedpuppet_entity").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);

@@ -39,6 +39,4 @@ public class LizardRenderer extends MobRenderer<LizardEntity, LizardModel<Lizard
             return new LizardRenderer(manager);
         }
     }
-
-
 }
