@@ -17,6 +17,7 @@ public class ModValues {
     public static final String rogue = "Rogue";
     public static final String locked = "None";
 
+    //TECHNIQUES
     public static final String DIVINE_DOGS = "Divine Dogs";
     public static final String LIMITLESS = "LIMITLESS";
     public static final String MASTER_CURSED = "Master of Curses";
@@ -24,4 +25,8 @@ public class ModValues {
     public static final String CURSED_SPEECH = "Cursed Speech";
     public static final String BLOOD_MANIPULATION = "Blood manipulation";
     public static final String NONE = "None";
+
+    //CURSE RELATED
+    public static final String WATER = "Water";
+    public static final String HUMAN = "Human";
 }

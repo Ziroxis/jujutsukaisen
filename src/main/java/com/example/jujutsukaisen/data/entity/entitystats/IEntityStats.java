@@ -6,6 +6,11 @@ public interface IEntityStats {
     boolean isInCombatMode();
     void setCombatMode(boolean value);
 
+    //CURSED SPIRIT
+    boolean isCurse();
+    void setCurse(String value);
+    String getCurse();
+
     //Things related with the cursed energy unlock
     boolean hasCursedEnergy();
     boolean hasCursedEnergyUnlocked();

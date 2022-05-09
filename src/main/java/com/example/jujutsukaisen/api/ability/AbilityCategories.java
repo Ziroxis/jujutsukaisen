@@ -34,11 +34,23 @@ public class AbilityCategories {
         return icon;
     };
 
+    private static final Function<PlayerEntity, ResourceLocation> GET_CURSED_ICON = (player) ->
+    {
+        IEntityStats props = EntityStatsCapability.get(player);
+        String iconName = props.getCurse();
+        ResourceLocation icon = null;
+        icon = new ResourceLocation(Main.MODID, "textures/cursed/" + Beapi.getResourceName(iconName) + ".png");
+
+        return icon;
+    };
+
+
 
     public static enum AbilityCategory implements IExtensibleEnum
     {
         ALL,
         TECHNIQUE(GET_CLAN_ICON),
+        CURSED(GET_CURSED_ICON),
         BASIC(GET_BASIC_ICON);
 
         private Function<PlayerEntity, ResourceLocation> iconFunction;

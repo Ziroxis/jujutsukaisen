@@ -123,6 +123,7 @@ public class PlayerStatsScreen extends Screen {
         String clan = props.getClan();
         String grade = props.getCurseGrade();
         String technique = props.getTechnique();
+        String spirit = props.getCurse();
 
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
@@ -132,7 +133,7 @@ public class PlayerStatsScreen extends Screen {
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Technique: " + technique, guiLeft + 5, guiTop + 80, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
-
+        drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Curse: " + spirit, guiLeft + 5, guiTop + 105, 16777215);
     }
 
     public static void renderEntityInInventory(int p_228187_0_, int p_228187_1_, int p_228187_2_, float p_228187_3_, float p_228187_4_, LivingEntity p_228187_5_) {

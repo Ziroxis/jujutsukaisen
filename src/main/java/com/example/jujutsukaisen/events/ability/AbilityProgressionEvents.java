@@ -6,6 +6,7 @@ import com.example.jujutsukaisen.abilities.blood_manipulation.BloodMeteoriteAbil
 import com.example.jujutsukaisen.abilities.blood_manipulation.FlowingRedScaleAbility;
 import com.example.jujutsukaisen.abilities.blood_manipulation.PiercingBloodAbility;
 import com.example.jujutsukaisen.abilities.cursed_speech.*;
+import com.example.jujutsukaisen.abilities.disaster_tides.*;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
@@ -54,7 +55,14 @@ public class AbilityProgressionEvents
 			gainAbility(event.getPlayer(), 15, FallDownUnderAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 25, BlastAwayAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 30, ExplodeAbility.INSTANCE);
-
+		}
+		if (props.getCurse().equals(ModValues.WATER))
+		{
+			gainAbility(event.getPlayer(), 5, WaterChargeAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 10, CursedFishAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 15, WaterShieldAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 25, CursedSharkAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 30, DeathSwarmAbility.INSTANCE);
 		}
 	}
 

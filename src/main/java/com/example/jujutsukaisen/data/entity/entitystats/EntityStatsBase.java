@@ -9,6 +9,7 @@ public class EntityStatsBase implements IEntityStats{
     private String clan = "";
     private String technique = "";
     private String grade = "";
+    private String curse = "";
     private int level;
     private int experience;
     private int maxExperience;
@@ -26,6 +27,21 @@ public class EntityStatsBase implements IEntityStats{
     @Override
     public void setCombatMode(boolean value) {
         this.inCombatMode = value;
+    }
+
+    @Override
+    public boolean isCurse() {
+        return !this.curse.equals(ModValues.HUMAN);
+    }
+
+    @Override
+    public void setCurse(String value) {
+        this.curse = value;
+    }
+
+    @Override
+    public String getCurse() {
+        return this.curse;
     }
 
     @Override

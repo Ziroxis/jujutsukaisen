@@ -15,7 +15,7 @@ public class BloodMeteoriteProjectile extends AbilityProjectileEntity {
     public BloodMeteoriteProjectile(World world, LivingEntity player)
     {
         super(BloodProjectiles.BLOOD_METEORITE.get(), world, player);
-        this.setDamage(2);
+        this.setDamage(7);
         this.setMaxLife(32);
         this.setPhysical(false);
     }

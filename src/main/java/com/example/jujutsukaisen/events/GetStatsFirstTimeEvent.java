@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbili
 import com.example.jujutsukaisen.abilities.cursed_speech.StopAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.client.gui.CursedSpiritAcceptanceScreen;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -13,6 +14,7 @@ import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.ability.SSyncAbilityDataPacket;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,27 +39,35 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng = Beapi.RNG(4);
+            int rng = Beapi.RNG(5);
             switch (rng)
             {
                 case 0:
                     props.setClan(ModValues.Kamo);
                     props.setTechnique(ModValues.BLOOD_MANIPULATION);
                     abilityProps.addUnlockedAbility(BloodShurikenAbility.INSTANCE);
+                    props.setCurse(ModValues.HUMAN);
                     break;
                 case 1:
                     props.setClan(ModValues.Gojo);
                     props.setTechnique(ModValues.LIMITLESS);
+                    props.setCurse(ModValues.HUMAN);
+
                     break;
                 case 2:
                     props.setClan(ModValues.Inumaki);
                     props.setTechnique(ModValues.CURSED_SPEECH);
                     abilityProps.addUnlockedAbility(StopAbility.INSTANCE);
+                    props.setCurse(ModValues.HUMAN);
                     break;
                 case 3:
                     props.setClan(ModValues.Zenin);
                     props.setTechnique(ModValues.PROJECTION_SORCERY);
                     abilityProps.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
+                    props.setCurse(ModValues.HUMAN);
+                    break;
+                case 4:
+                    Minecraft.getInstance().setScreen(new CursedSpiritAcceptanceScreen());
                     break;
 
             }
