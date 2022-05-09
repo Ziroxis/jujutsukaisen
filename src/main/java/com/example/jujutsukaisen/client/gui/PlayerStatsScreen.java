@@ -127,12 +127,11 @@ public class PlayerStatsScreen extends Screen {
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
-        //TODO make it more clean without the colors looking messy
-        drawString(matrixStack, font, TextFormatting.BOLD + "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
-        drawString(matrixStack, font, TextFormatting.BLACK + "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
-        drawString(matrixStack, font, TextFormatting.BLACK + "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
-        drawString(matrixStack, font, TextFormatting.BLACK + "Technique: " + technique, guiLeft + 5, guiTop + 80, 16777215);
-        drawString(matrixStack, font, TextFormatting.BLACK + "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
+        drawString(matrixStack, font, TextFormatting.GRAY + "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
+        drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
+        drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);
+        drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Technique: " + technique, guiLeft + 5, guiTop + 80, 16777215);
+        drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Grade: " + grade, guiLeft + 5, guiTop + 95, 16777215);
 
     }
 

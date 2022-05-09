@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class DyingEvents {
 
-    //TODO the dying event does not happen
     @SubscribeEvent
     public static void onClonePlayer(PlayerEvent.Clone event)
     {

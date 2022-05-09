@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 public class PossesedPuppetModel<T extends PossesedPuppetEntity> extends EntityModel<T> {
 	private final ModelRenderer waist;
@@ -28,7 +29,7 @@ public class PossesedPuppetModel<T extends PossesedPuppetEntity> extends EntityM
 
 		waist = new ModelRenderer(this);
 		waist.setPos(0.0F, 12.0F, 0.0F);
-		
+
 
 		Body = new ModelRenderer(this);
 		Body.setPos(0.0F, -12.0F, 0.0F);
@@ -55,7 +56,7 @@ public class PossesedPuppetModel<T extends PossesedPuppetEntity> extends EntityM
 		leftItem = new ModelRenderer(this);
 		leftItem.setPos(1.0F, 7.0F, 1.0F);
 		LeftArm.addChild(leftItem);
-		
+
 
 		RightLeg = new ModelRenderer(this);
 		RightLeg.setPos(-2.0F, 12.0F, 0.0F);
@@ -68,20 +69,22 @@ public class PossesedPuppetModel<T extends PossesedPuppetEntity> extends EntityM
 
 
 	@Override
-	public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+	public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.head.xRot = headPitch * ((float)Math.PI / 180F);
+		this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
+		this.RightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 2.0F * limbSwingAmount * 0.5F;
+		this.LeftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
+		this.RightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		this.LeftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 
 	}
 	@Override
 	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		waist.render(matrixStack, buffer, packedLight, packedOverlay);
-		Body.render(matrixStack, buffer, packedLight, packedOverlay);
 		head.render(matrixStack, buffer, packedLight, packedOverlay);
-		hat.render(matrixStack, buffer, packedLight, packedOverlay);
 		RightArm.render(matrixStack, buffer, packedLight, packedOverlay);
 		LeftArm.render(matrixStack, buffer, packedLight, packedOverlay);
-		leftItem.render(matrixStack, buffer, packedLight, packedOverlay);
 		RightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
 		LeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-		//TODO add animations
 	}
 }

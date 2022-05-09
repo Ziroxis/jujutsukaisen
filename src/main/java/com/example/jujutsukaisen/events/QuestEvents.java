@@ -19,7 +19,6 @@ public class QuestEvents
     @SubscribeEvent
     public static void onEntityDies(LivingDeathEvent e)
     {
-        //TODO fix from here
         if (!(e.getSource().getEntity() instanceof PlayerEntity) || e.getSource().getEntity().level.isClientSide())
             return;
 

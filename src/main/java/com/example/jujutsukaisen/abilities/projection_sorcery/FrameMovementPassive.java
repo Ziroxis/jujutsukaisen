@@ -24,13 +24,13 @@ public class FrameMovementPassive extends PassiveAbility {
         this.duringPassiveEvent = this::duringPassiveEvent;
     }
 
-    //TODO make it more fluid and negate fall damage
    private void duringPassiveEvent(PlayerEntity player)
    {
        if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_SPACE) && !player.isOnGround() && player.getDeltaMovement().y < 0.07 && !hasJumped)
        {
            Vector3d speed = Beapi.propulsion(player, 0.1, 0.1);
            player.setDeltaMovement(speed.x, 0.5, speed.z);
+           player.fallDistance = 0;
            hasJumped = true;
        }
        if (player.isOnGround())
