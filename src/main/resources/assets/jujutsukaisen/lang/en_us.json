@@ -31,5 +31,12 @@
   "ability.jujutsukaisen.fall_down": "Fall down under",
   "ability.jujutsukaisen.sleep": "Sleep",
   "ability.jujutsukaisen.stay": "Stay",
-  "ability.jujutsukaisen.get_twisted": "Get twisted"
+  "ability.jujutsukaisen.get_twisted": "Get twisted",
+
+  "ability.jujutsukaisen.cursed_fish": "Cursed fish",
+  "ability.jujutsukaisen.cursed_shark": "Cursed shark",
+  "ability.jujutsukaisen.death_swarm": "Death swarm",
+  "ability.jujutsukaisen.water_charge": "Water charge",
+  "ability.jujutsukaisen.water_flow": "Water flow",
+  "ability.jujutsukaisen.water_shield": "Water shield"
 }

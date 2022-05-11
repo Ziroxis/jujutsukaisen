@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.events;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbility;
 import com.example.jujutsukaisen.abilities.cursed_speech.StopAbility;
+import com.example.jujutsukaisen.abilities.disaster_tides.WaterFlowAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.client.gui.CursedSpiritAcceptanceScreen;
@@ -39,7 +40,7 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng = Beapi.RNG(5);
+            int rng = Beapi.RNG(4);
             switch (rng)
             {
                 case 0:
@@ -67,9 +68,11 @@ public class GetStatsFirstTimeEvent {
                     props.setCurse(ModValues.HUMAN);
                     break;
                 case 4:
-                    Minecraft.getInstance().setScreen(new CursedSpiritAcceptanceScreen());
+                    props.setClan(ModValues.NONE);
+                    props.setTechnique(ModValues.DISASTER_TIDES);
+                    abilityProps.addUnlockedAbility(WaterFlowAbility.INSTANCE);
+                    props.setCurse(ModValues.WATER);
                     break;
-
             }
         }
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);

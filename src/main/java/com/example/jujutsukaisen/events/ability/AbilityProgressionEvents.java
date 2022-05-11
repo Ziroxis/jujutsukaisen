@@ -56,7 +56,7 @@ public class AbilityProgressionEvents
 			gainAbility(event.getPlayer(), 25, BlastAwayAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 30, ExplodeAbility.INSTANCE);
 		}
-		if (props.getCurse().equals(ModValues.WATER))
+		if (props.getCurse().equals(ModValues.DISASTER_TIDES))
 		{
 			gainAbility(event.getPlayer(), 5, WaterChargeAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 10, CursedFishAbility.INSTANCE);

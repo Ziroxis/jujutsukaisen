@@ -24,6 +24,8 @@ public class ModValues {
     public static final String PROJECTION_SORCERY = "Astral Projection";
     public static final String CURSED_SPEECH = "Cursed Speech";
     public static final String BLOOD_MANIPULATION = "Blood manipulation";
+    public static final String DISASTER_TIDES = "Disaster tides";
+
     public static final String NONE = "None";
 
     //CURSE RELATED
