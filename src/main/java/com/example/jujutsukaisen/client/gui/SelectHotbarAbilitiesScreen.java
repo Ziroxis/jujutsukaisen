@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.client.gui.GuiUtils;
 
 
 import java.util.List;
@@ -61,7 +62,6 @@ public class SelectHotbarAbilitiesScreen extends Screen
 		Beapi.drawStringWithBorder(this.minecraft.font, matrixStack, this.abilityDataProps.getCombatBarSet() + "", posX / 2 - 110, posY - 24, Beapi.hexToRGB("#FFFFFF").getRGB());
 		
 		this.minecraft.getTextureManager().bind(ModResources.WIDGETS);
-
 		RenderSystem.enableBlend();
 		
 		for (int i = 0; i < 8; i++)
@@ -123,8 +123,8 @@ public class SelectHotbarAbilitiesScreen extends Screen
 				ResourceLocation icon = category.getIcon(this.player);
 				if(icon == null)
 					icon = new ResourceLocation(Main.MODID, "textures/abilities/" + Beapi.getResourceName(iconName) + ".png");
-				TexturedIconButton button = new TexturedIconButton(ModResources.BLANK2_SIMPLE, posX2 - 145, posY3, 30, 30, new StringTextComponent(""), (btn) -> this.updateListScreen(category));
-				button = button.setTextureInfo(posX2 - 145, posY3, 30, 40).setIconInfo(icon, posX2 - 142, posY3 + 2, 1.45);
+				TexturedIconButton button = new TexturedIconButton(ModResources.TAB, posX2 - 145, posY3, 30, 30, new StringTextComponent(""), (btn) -> this.updateListScreen(category));
+				button = button.setTextureInfo(posX2 - 146, posY3 - 3, 32, 32).setIconInfo(icon, posX2 - 142, posY3 + 2, 1.45);
 				this.addButton(button);
 				idx++;
 			}

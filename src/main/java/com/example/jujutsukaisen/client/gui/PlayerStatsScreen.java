@@ -7,6 +7,7 @@ import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.quest.IQuestData;
 import com.example.jujutsukaisen.data.quest.QuestDataCapability;
+import com.example.jujutsukaisen.init.ModResources;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CRequestSyncQuestDataPacket;
 import com.example.jujutsukaisen.networking.client.CRequestSyncWorldDataPacket;
@@ -41,7 +42,7 @@ public class PlayerStatsScreen extends Screen {
     //Initialisation of everything needed in the class//
 
     //256, 256
-    private final ResourceLocation playerstats = new ResourceLocation("jujutsukaisen:textures/gui/backgrounds/playerstats.png");
+    private final ResourceLocation playerstats = ModResources.STATS;
 
     private final int xSize = 256;
     private final int ySize = 256;
