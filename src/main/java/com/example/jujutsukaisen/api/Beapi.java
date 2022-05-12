@@ -36,22 +36,52 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.template.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public class Beapi
 {
+    public static <T extends Entity> List<T> getEntitiesAround(BlockPos pos, World world, double diameter)
+    {
+        return (List<T>) getEntitiesAround(pos, world, diameter, LivingEntity.class);
+    }
+
+    public static <T extends Entity> List<T> getEntitiesAround(BlockPos pos, World world, double diameter, Class<? extends T>... classEntities)
+    {
+        return getEntitiesAround(pos, world, diameter, null, classEntities);
+    }
+
+    public static <T extends Entity> List<T> getEntitiesAround(BlockPos pos, World world, double diameter, Predicate<Entity> predicate, Class<? extends T>... classEntities)
+    {
+        if(predicate != null)
+            predicate = predicate.and(EntityPredicates.NO_SPECTATORS);
+        else
+            predicate = EntityPredicates.NO_SPECTATORS;
+
+        AxisAlignedBB aabb = new AxisAlignedBB(pos.getX() - (diameter / 2d), pos.getY() - (diameter / 2d), pos.getZ() - (diameter / 2d), pos.getX() + (diameter / 2d), pos.getY() + (diameter / 2d), pos.getZ() + (diameter / 2d));
+        List<T> list = new ArrayList<T>();
+        for (Class<? extends T> clzz : classEntities)
+        {
+            //list.addAll(world.getEntitiesOfClass(clzz, aabb, predicate));
+            list.addAll(world
+                    .getEntitiesOfClass(clzz, aabb, predicate) .stream().sorted(new Object() {
+                        Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
+                            return Comparator.comparing((Function<Entity, Double>) (_entcnd -> _entcnd.distanceToSqr(_x, _y, _z)));
+                        }
+                    }.compareDistOf(pos.getX(), pos.getY(), pos.getZ())).collect(Collectors.toList()));
+        }
+
+        return list;
+    }
+
     public static double randomDouble()
     {
         return new Random().nextDouble() * 2 - 1;

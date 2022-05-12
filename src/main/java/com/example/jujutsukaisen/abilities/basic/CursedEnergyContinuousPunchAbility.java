@@ -9,6 +9,9 @@ import com.example.jujutsukaisen.networking.PacketHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
+/**
+ * Continuously imbue your first with cursed energy
+ */
 public class CursedEnergyContinuousPunchAbility extends ContinuousPunchAbility {
 
     public static final CursedEnergyContinuousPunchAbility INSTANCE = new CursedEnergyContinuousPunchAbility();

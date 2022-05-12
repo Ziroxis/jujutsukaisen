@@ -6,6 +6,9 @@ import net.minecraft.entity.player.PlayerEntity;
 
 import java.io.Serializable;
 
+/**
+ * Specific class made for continuous enhanced punches with effect
+ */
 public abstract class ContinuousPunchAbility extends ContinuousAbility
 {
 	// Setting the defaults so that no crash occurs and so they will be null safe.

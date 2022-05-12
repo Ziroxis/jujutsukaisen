@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.events;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbility;
 import com.example.jujutsukaisen.abilities.cursed_speech.StopAbility;
+import com.example.jujutsukaisen.abilities.disaster_flames.FlameTouchAbility;
 import com.example.jujutsukaisen.abilities.disaster_tides.WaterFlowAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
@@ -40,7 +41,7 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng = Beapi.RNG(4);
+            int rng = Beapi.RNG(6);
             switch (rng)
             {
                 case 0:
@@ -53,7 +54,6 @@ public class GetStatsFirstTimeEvent {
                     props.setClan(ModValues.Gojo);
                     props.setTechnique(ModValues.LIMITLESS);
                     props.setCurse(ModValues.HUMAN);
-
                     break;
                 case 2:
                     props.setClan(ModValues.Inumaki);
@@ -73,6 +73,13 @@ public class GetStatsFirstTimeEvent {
                     abilityProps.addUnlockedAbility(WaterFlowAbility.INSTANCE);
                     props.setCurse(ModValues.WATER);
                     break;
+                case 5:
+                    props.setClan(ModValues.NONE);
+                    props.setTechnique(ModValues.DISASTER_FLAMES);
+                    abilityProps.addUnlockedAbility(FlameTouchAbility.INSTANCE);
+                    props.setCurse(ModValues.FIRE);
+                    break;
+
             }
         }
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);

@@ -14,6 +14,9 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.io.Serializable;
 
+/**
+ * Class made for abilities that are active (for a time)
+ */
 public class ContinuousAbility extends Ability {
 
     private int threshold = 0;

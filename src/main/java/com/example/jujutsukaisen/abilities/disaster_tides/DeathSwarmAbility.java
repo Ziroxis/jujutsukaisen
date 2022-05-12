@@ -12,7 +12,7 @@ import net.minecraft.network.play.server.SAnimateHandPacket;
 import net.minecraft.world.server.ServerWorld;
 
 public class DeathSwarmAbility extends RepeaterAbility {
-    public static final Ability INSTANCE = new DeathSwarmAbility();
+    public static final DeathSwarmAbility INSTANCE = new DeathSwarmAbility();
 
     public DeathSwarmAbility()
     {

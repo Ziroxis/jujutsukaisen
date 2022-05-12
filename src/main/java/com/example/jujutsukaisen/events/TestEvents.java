@@ -31,37 +31,6 @@ public class TestEvents {
 
     @SubscribeEvent
     public static void testEvents(ServerChatEvent event) {
-        if (event.getMessage().contains("blood"))
-        {
-            IAbilityData props = AbilityDataCapability.get(event.getPlayer());
-            props.addUnlockedAbility(BloodShurikenAbility.INSTANCE);
-            props.addUnlockedAbility(BloodMeteoriteAbility.INSTANCE);
-            props.addUnlockedAbility(BloodEdgeAbility.INSTANCE);
-            props.addUnlockedAbility(FlowingRedScaleAbility.INSTANCE);
-            props.addUnlockedAbility(PiercingBloodAbility.INSTANCE);
-            PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
-        }
-        if (event.getMessage().contains("projection"))
-        {
-            IAbilityData props = AbilityDataCapability.get(event.getPlayer());
-            props.addUnlockedAbility(FrameBreakAbility.INSTANCE);
-            props.addUnlockedAbility(FrameCatchAbility.INSTANCE);
-            props.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
-            props.addUnlockedAbility(FrameTeleportationAbility.INSTANCE);
-            props.addUnlockedAbility(FrameMovementPassive.INSTANCE);
-            PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
-        }
-        if (event.getMessage().contains("speech"))
-        {
-            IAbilityData props = AbilityDataCapability.get(event.getPlayer());
-            props.addUnlockedAbility(BlastAwayAbility.INSTANCE);
-            props.addUnlockedAbility(ExplodeAbility.INSTANCE);
-            props.addUnlockedAbility(FallDownUnderAbility.INSTANCE);
-            props.addUnlockedAbility(GetTwistedAbility.INSTANCE);
-            props.addUnlockedAbility(SleepAbility.INSTANCE);
-            props.addUnlockedAbility(StopAbility.INSTANCE);
-            PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
-        }
         if (event.getMessage().contains("stats"))
         {
             PlayerEntity player = event.getPlayer();
@@ -80,17 +49,6 @@ public class TestEvents {
 
             props.setLevel(50);
             props.setExperience(props.getMaxExperience() - 1);
-        }
-        if (event.getMessage().contains("speech"))
-        {
-            PlayerEntity player = event.getPlayer();
-            IEntityStats props = EntityStatsCapability.get(player);
-
-            System.out.println(props.returnCursedEnergy());
-            System.out.println(props.getMaxCursedEnergy());
-            System.out.println(props.getExperience());
-            System.out.println(props.getMaxExperience());
-            System.out.println(props.getLevel());
         }
     }
 }

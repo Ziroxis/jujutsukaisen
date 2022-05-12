@@ -32,6 +32,4 @@ public class BloodMeteoriteModel extends EntityModel {
 	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		Blood_Meteorite.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
-
-
 }

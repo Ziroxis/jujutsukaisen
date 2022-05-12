@@ -6,6 +6,10 @@ import com.example.jujutsukaisen.abilities.blood_manipulation.BloodMeteoriteAbil
 import com.example.jujutsukaisen.abilities.blood_manipulation.FlowingRedScaleAbility;
 import com.example.jujutsukaisen.abilities.blood_manipulation.PiercingBloodAbility;
 import com.example.jujutsukaisen.abilities.cursed_speech.*;
+import com.example.jujutsukaisen.abilities.disaster_flames.EmberInsectsAbility;
+import com.example.jujutsukaisen.abilities.disaster_flames.FlameArrowAbility;
+import com.example.jujutsukaisen.abilities.disaster_flames.FlameBallAbility;
+import com.example.jujutsukaisen.abilities.disaster_flames.PurpleFlamesAbility;
 import com.example.jujutsukaisen.abilities.disaster_tides.*;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
@@ -56,13 +60,20 @@ public class AbilityProgressionEvents
 			gainAbility(event.getPlayer(), 25, BlastAwayAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 30, ExplodeAbility.INSTANCE);
 		}
-		if (props.getCurse().equals(ModValues.DISASTER_TIDES))
+		if (props.getTechnique().equals(ModValues.DISASTER_TIDES))
 		{
 			gainAbility(event.getPlayer(), 5, WaterChargeAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 10, CursedFishAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 15, WaterShieldAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 25, CursedSharkAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 30, DeathSwarmAbility.INSTANCE);
+		}
+		if (props.getTechnique().equals(ModValues.DISASTER_FLAMES))
+		{
+			gainAbility(event.getPlayer(), 5, EmberInsectsAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 10, FlameBallAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 15, PurpleFlamesAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 20, FlameArrowAbility.INSTANCE);
 		}
 	}
 

@@ -13,6 +13,9 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
 
+/**
+ * Simple ability that throws the user forward dealing damage to players
+ */
 public class BattoSwordAbility extends Ability implements IMultiTargetAbility {
 
     public static final BattoSwordAbility INSTANCE = new BattoSwordAbility();

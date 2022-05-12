@@ -26,6 +26,9 @@ import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * Base class for all abilities, with most of the information every ability needs.
+ */
 public class Ability extends ForgeRegistryEntry<Ability> {
 
     private String name = "";
@@ -64,7 +67,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
      * Event Starters
      */
 
-    public void use(PlayerEntity player)
+    public void use(PlayerEntity player) //Is called when player uses any ability
     {
         if (player.level.isClientSide)
             return;

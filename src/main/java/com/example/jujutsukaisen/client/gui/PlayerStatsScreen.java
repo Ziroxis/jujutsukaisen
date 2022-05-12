@@ -32,6 +32,9 @@ import net.minecraftforge.fml.client.gui.GuiUtils;
 
 import java.awt.*;
 
+/**
+ * GUI for the stat screen the player sees
+ */
 @OnlyIn(Dist.CLIENT)
 public class PlayerStatsScreen extends Screen {
 
@@ -59,6 +62,7 @@ public class PlayerStatsScreen extends Screen {
 
 
 
+    //Everything pre made for in the gui
     @Override
     public void init()
     {
@@ -103,22 +107,30 @@ public class PlayerStatsScreen extends Screen {
          */
     }
 
+    //What actually renders for the gui
     @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
         this.renderBackground(matrixStack);
-        backgroundRendering(matrixStack);
-        //renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player);
+        backgroundRendering(matrixStack); //Points to another method where everything actually happens
+        //renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player); -> bugs out for now
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
+    /**
+     * You get the player 1.
+     * Get all important stats from players 2.
+     * Then draw them unto the gui 3.
+     * @param matrixStack
+     */
     public void backgroundRendering(MatrixStack matrixStack)
     {
-
+        //1.
         PlayerEntity player = this.getMinecraft().player;
         IEntityStats props = EntityStatsCapability.get(player);
 
 
+        //2.
         String name = player.getName().getString();
         String clan = props.getClan();
         String grade = props.getCurseGrade();
@@ -128,6 +140,7 @@ public class PlayerStatsScreen extends Screen {
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
+        //3.
         drawString(matrixStack, font, TextFormatting.GRAY + "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Name: " + name, guiLeft + 5, guiTop + 50, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Clan: " + clan, guiLeft + 5, guiTop + 65, 16777215);

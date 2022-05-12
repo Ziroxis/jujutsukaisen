@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 public enum AbilityCommandGroup implements IExtensibleEnum
 {
+	DISASTER_FLAMES(() -> ModAbilities.DISASTER_FLAMES),
 	DISASTER_TIDES(() -> ModAbilities.DISASTER_TIDES),
 	CURSED_SPEECH(() -> ModAbilities.CURSED_SPEECH),
 	BLOOD_MANIPULATION(() -> ModAbilities.BLOOD_MANIPULATION),
