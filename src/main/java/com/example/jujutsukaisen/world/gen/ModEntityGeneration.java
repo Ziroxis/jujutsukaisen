@@ -20,7 +20,6 @@ public class ModEntityGeneration {
         event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.ROPPONGI.get(), 400, 3, 4)).build();
         event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.LIZARD.get(), 300, 2, 4)).build();
         event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.SMALL_POX.get(), 200, 1, 4)).build();
-        event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.SENSEI.get(), 100, 1, 1)).build();
         event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.GRASS_HOPPER.get(), 100, 1, 1)).build();
         event.getSpawns().addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(ModEntities.POSSESED_PUPPET.get(), 100, 1, 1)).build();
     }

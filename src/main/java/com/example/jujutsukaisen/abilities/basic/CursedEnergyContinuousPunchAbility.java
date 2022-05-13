@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 /**
  * Continuously imbue your first with cursed energy
  */
+//TODO Fix the non-knocback bug
 public class CursedEnergyContinuousPunchAbility extends ContinuousPunchAbility {
 
     public static final CursedEnergyContinuousPunchAbility INSTANCE = new CursedEnergyContinuousPunchAbility();
@@ -29,6 +30,7 @@ public class CursedEnergyContinuousPunchAbility extends ContinuousPunchAbility {
     private float onHitEntity(PlayerEntity player, LivingEntity target)
     {
         IEntityStats propsEntity = EntityStatsCapability.get(player);
+        //target.knockback...
         propsEntity.alterCursedEnergy(-10);
         PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
 

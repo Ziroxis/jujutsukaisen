@@ -1,7 +1,8 @@
 package com.example.jujutsukaisen.client;
 
 import com.example.jujutsukaisen.client.renderer.entities.curses.*;
-import com.example.jujutsukaisen.client.renderer.entities.npc.SenseiRenderer;
+import com.example.jujutsukaisen.client.renderer.entities.npc.PunchSenseiRenderer;
+import com.example.jujutsukaisen.client.renderer.entities.npc.SwordSenseiRenderer;
 import com.example.jujutsukaisen.init.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -25,7 +26,8 @@ public class ClientHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ROPPONGI.get(), new RoppongiRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SMALL_POX.get(), new SmallPoxRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.LIZARD.get(), new LizardRenderer.Factory());
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SENSEI.get(), new SenseiRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.PUNCH_SENSEI.get(), new PunchSenseiRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SWORD_SENSEI.get(), new SwordSenseiRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRASS_HOPPER.get(), new GrassHopperRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.POSSESED_PUPPET.get(), new PossesedPuppetRenderer.Factory());
 

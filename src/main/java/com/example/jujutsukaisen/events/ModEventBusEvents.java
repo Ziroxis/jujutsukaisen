@@ -6,7 +6,8 @@ import com.example.jujutsukaisen.entities.curses.GrassHopperEntity;
 import com.example.jujutsukaisen.entities.curses.LizardEntity;
 import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
 import com.example.jujutsukaisen.entities.curses.SmallPoxEntity;
-import com.example.jujutsukaisen.entities.npc.SenseiEntity;
+import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
+import com.example.jujutsukaisen.entities.npc.SwordSenseiEntity;
 import com.example.jujutsukaisen.init.ModEntities;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +22,8 @@ public class ModEventBusEvents {
         event.put(ModEntities.ROPPONGI.get(), RoppongiEntity.setCustomAttributes().build());
         event.put(ModEntities.SMALL_POX.get(), SmallPoxEntity.setCustomAttributes().build());
         event.put(ModEntities.LIZARD.get(), LizardEntity.setCustomAttributes().build());
-        event.put(ModEntities.SENSEI.get(), SenseiEntity.setCustomAttributes().build());
+        event.put(ModEntities.PUNCH_SENSEI.get(), PunchSenseiEntity.setCustomAttributes().build());
+        event.put(ModEntities.SWORD_SENSEI.get(), SwordSenseiEntity.setCustomAttributes().build());
         event.put(ModEntities.GRASS_HOPPER.get(), GrassHopperEntity.setCustomAttributes().build());
         event.put(ModEntities.POSSESED_PUPPET.get(), GrassHopperEntity.setCustomAttributes().build());
 

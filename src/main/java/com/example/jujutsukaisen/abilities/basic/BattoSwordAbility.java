@@ -7,8 +7,12 @@ import com.example.jujutsukaisen.api.ability.interfaces.IMultiTargetAbility;
 import com.example.jujutsukaisen.init.ModDamageSource;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.SwordItem;
 import net.minecraft.network.play.server.SAnimateHandPacket;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
@@ -32,6 +36,13 @@ public class BattoSwordAbility extends Ability implements IMultiTargetAbility {
 
     private boolean onUseEvent(PlayerEntity player)
     {
+        if (!(player.getMainHandItem().getItem() instanceof SwordItem))
+        {
+            player.sendMessage(new StringTextComponent("Need to hold a sword!"), Util.NIL_UUID);
+            return false;
+        }
+
+
         this.clearTargets();
 
         Vector3d speed = Beapi.propulsion(player, 3, 3);

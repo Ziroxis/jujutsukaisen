@@ -6,6 +6,7 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.entities.CurseEntity;
 import com.example.jujutsukaisen.init.ModItems;
+import com.example.jujutsukaisen.items.CursedWeapon;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -35,12 +36,7 @@ public class CursedSpiritInvincibility {
 
 
             ItemStack item = attacker.getMainHandItem();
-            if (!item.getItem().equals(ModItems.CURSED_HAMMER.get())
-                    && !item.getItem().equals(ModItems.BLACK_BLADE.get())
-                    && !item.getItem().equals(ModItems.CURSED_SPEAR.get())
-                    && !item.getItem().equals(ModItems.DEMON_SLAUGHTERER.get())
-                    && !item.getItem().equals(ModItems.NANAMI_BLADE.get())
-                    && !(source instanceof AbilityDamageSource))
+            if (!(item.getItem() instanceof CursedWeapon) && !(source instanceof AbilityDamageSource))
                 event.setCanceled(true);
         }
     }

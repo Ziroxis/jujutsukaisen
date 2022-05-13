@@ -2,7 +2,8 @@ package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.entities.curses.*;
-import com.example.jujutsukaisen.entities.npc.SenseiEntity;
+import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
+import com.example.jujutsukaisen.entities.npc.SwordSenseiEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -37,12 +38,18 @@ public class ModEntities {
                             .fireImmune()
                             .setTrackingRange(15)
                             .build(new ResourceLocation(Main.MODID, "lizard_entity").toString()));
-    public static final RegistryObject<EntityType<SenseiEntity>> SENSEI = ENTITIES
-            .register("sensei_entity",
-                    () -> EntityType.Builder.of(SenseiEntity::new, EntityClassification.CREATURE)
+    public static final RegistryObject<EntityType<PunchSenseiEntity>> PUNCH_SENSEI = ENTITIES
+            .register("punchsensei_entity",
+                    () -> EntityType.Builder.of(PunchSenseiEntity::new, EntityClassification.CREATURE)
                             .sized(1f, 2f)
                             .setTrackingRange(5)
-                            .build(new ResourceLocation(Main.MODID, "sensei_entity").toString()));
+                            .build(new ResourceLocation(Main.MODID, "punchsensei_entity").toString()));
+    public static final RegistryObject<EntityType<SwordSenseiEntity>> SWORD_SENSEI = ENTITIES
+            .register("swordsensei_entity",
+                    () -> EntityType.Builder.of(SwordSenseiEntity::new, EntityClassification.CREATURE)
+                            .sized(1f, 2f)
+                            .setTrackingRange(5)
+                            .build(new ResourceLocation(Main.MODID, "swordsensei_entity").toString()));
     public static final RegistryObject<EntityType<GrassHopperEntity>> GRASS_HOPPER = ENTITIES
             .register("grasshopper_entity",
                     () -> EntityType.Builder.of(GrassHopperEntity::new, EntityClassification.CREATURE)

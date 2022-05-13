@@ -5,7 +5,6 @@ import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.init.ModQuests;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
-import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
@@ -24,9 +23,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class SenseiEntity extends CreatureEntity {
+public class PunchSenseiEntity extends CreatureEntity {
 
-    public SenseiEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public PunchSenseiEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -67,7 +66,7 @@ public class SenseiEntity extends CreatureEntity {
 
             for (int i = 0; i < quests.length; i++)
             {
-                if (quests[i] != null && quests[i].equals(ModQuests.UNLOCK_01) && !(questProps.hasFinishedQuest(ModQuests.UNLOCK_01)))
+                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_01) && !(questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01)))
                 {
                     player.sendMessage(new StringTextComponent("Almost done?"), player.getUUID());
                     if (quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
@@ -75,27 +74,26 @@ public class SenseiEntity extends CreatureEntity {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
                         PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
-                        player.sendMessage(new StringTextComponent("Good job! Lemme teach you the technique."), player.getUUID());
-                        player.sendMessage(new StringTextComponent("You have a new technique"), player.getUUID());
-
+                        player.sendMessage(new StringTextComponent("Good job! But that's not enough to prove me your worth..."), player.getUUID());
                     }
+
                     else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
                     {
                         System.out.println("Quest is not over yet");
                     }
                     break;
                 }
-                else if (quests[i] == null && !(questProps.hasFinishedQuest(ModQuests.UNLOCK_01)))
+                else if (quests[i] == null && !(questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01)))
                 {
-                    questProps.addInProgressQuest(ModQuests.UNLOCK_01.create());
+                    questProps.addInProgressQuest(ModQuests.CURSED_PUNCHES_01.create());
                     PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
-                    player.sendMessage(new StringTextComponent("Go kill ANYTHING to prove you're worth mastering cursed energy"), player.getUUID());
+                    player.sendMessage(new StringTextComponent("Go kill ANYTHING to prove you're worth mastering the art of punching curses!"), player.getUUID());
                     System.out.println(quests[i]);
                     break;
                 }
 
-/*
-                if (quests[i] != null && quests[i].equals(ModQuests.UNLOCK_02) && questProps.hasFinishedQuest(ModQuests.UNLOCK_01))
+
+                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_02) && !(questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02)))
                 {
                     player.sendMessage(new StringTextComponent("Now go out and do what I asked!"), player.getUUID());
                     if (quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
@@ -103,7 +101,7 @@ public class SenseiEntity extends CreatureEntity {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
                         PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                        player.sendMessage(new StringTextComponent("Good job! I'll teach you the technique..."), player.getUUID());
+                        player.sendMessage(new StringTextComponent("Good job! Here ya go, simple cursed punch lemme teach you that real quick"), player.getUUID());
                         player.sendMessage(new StringTextComponent("You have unlocked Cursed Punch"), player.getUUID());
                     }
                     else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
@@ -112,15 +110,16 @@ public class SenseiEntity extends CreatureEntity {
                     }
                     break;
                 }
-                else if (quests[i] == null && questProps.hasFinishedQuest(ModQuests.UNLOCK_01) && !(questProps.hasFinishedQuest(ModQuests.UNLOCK_02)))
+                //TODO check if quest 2 is in progress or not
+                else if (quests[i] == null && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01)
+                        && !(questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02)))
                 {
-                    questProps.addInProgressQuest(ModQuests.UNLOCK_02.create());
+                    questProps.addInProgressQuest(ModQuests.CURSED_PUNCHES_02.create());
                     PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                     player.sendMessage(new StringTextComponent("Go collect me a bone to prove your kill."), player.getUUID());
                     System.out.println(quests[i]);
                     break;
                 }
- */
                 System.out.println(quests[i]);
             }
         }

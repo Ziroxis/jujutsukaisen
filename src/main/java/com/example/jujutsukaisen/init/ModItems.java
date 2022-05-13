@@ -22,9 +22,10 @@ public class ModItems {
     public static final RegistryObject<Item> ROPPONGI_EGG = ITEMS.register("roppongi_egg", RoppongiEgg::new);
     public static final RegistryObject<Item> SMALLPOX_EGG = ITEMS.register("smallpox_egg", SmallPoxEgg::new);
     public static final RegistryObject<Item> LIZARD_EGG = ITEMS.register("lizard_egg", LizardEgg::new);
-    public static final RegistryObject<Item> SENSEI_EGG = ITEMS.register("sensei_egg", SenseiEgg::new);
+    public static final RegistryObject<Item> PUNCH_SENSEI_EGG = ITEMS.register("punch_sensei_egg", PunchSenseiEgg::new);
     public static final RegistryObject<Item> GRASS_EGG = ITEMS.register("grass_egg", GrassHopperEgg::new);
     public static final RegistryObject<Item> PUPPET_EGG = ITEMS.register("puppet_egg", PossesedPuppetEgg::new);
+    public static final RegistryObject<Item> SWORD_SENSEI_EGG = ITEMS.register("sword_sensei_egg", SwordSenseiEgg::new);
 
 
 

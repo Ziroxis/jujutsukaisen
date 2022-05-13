@@ -5,9 +5,8 @@ import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.QuestRegistry;
-import com.example.jujutsukaisen.quest.unlock.Unlock_01;
-import com.example.jujutsukaisen.quest.unlock.Unlock_02;
-import it.unimi.dsi.fastutil.Hash;
+import com.example.jujutsukaisen.quest.cursed_punches.CursedPunches_01;
+import com.example.jujutsukaisen.quest.cursed_punches.CursedPunches_02;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 
@@ -24,9 +23,9 @@ public class ModQuests {
     }
     public static final DeferredRegister<Quest> QUESTS = DeferredRegister.create(QuestRegistry.QUESTS, Main.MODID);
 
-    public static final Quest UNLOCK_01 = new Unlock_01();
-    public static final Quest UNLOCK_02 = new Unlock_02();
-    public static final Quest[] UNLOCK_TRIAL = new Quest[] {UNLOCK_01, UNLOCK_02};
+    public static final Quest CURSED_PUNCHES_01 = new CursedPunches_01();
+    public static final Quest CURSED_PUNCHES_02 = new CursedPunches_02();
+    public static final Quest[] UNLOCK_TRIAL = new Quest[] {CURSED_PUNCHES_01, CURSED_PUNCHES_02};
 
     static
     {

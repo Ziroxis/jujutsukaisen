@@ -40,6 +40,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     protected double maxCooldown;
     protected double disableTicks;
     protected double maxDisableTicks = 200;
+    protected  Ability.ICheck check;
     private AbilityCategories.AbilityCategory category = AbilityCategories.AbilityCategory.ALL;
     private AbilityUnlock unlock = AbilityUnlock.PROGRESSION;
     private State state = State.STANDBY;
@@ -71,6 +72,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     {
         if (player.level.isClientSide)
             return;
+
 
         player.level.getProfiler().push(() ->
         {
@@ -512,6 +514,11 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     /*
      * Interfaces
      */
+
+    public interface ICheck {
+        boolean check(PlayerEntity player);
+    }
+
 
     public interface IOnUse extends Serializable
     {
