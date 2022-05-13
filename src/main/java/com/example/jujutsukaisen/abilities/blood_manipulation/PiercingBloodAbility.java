@@ -50,17 +50,17 @@ public class PiercingBloodAbility extends ChargeableAbility {
         if (this.cancelled)
             return true;
 
-        player.removeEffect(ModEffects.MOVEMENT_BLOCKED.get());
 
         int charge = this.getMaxChargeTime() - this.getChargeTime();
 
-        if (charge < 20 * 15)
+        if (charge < 20 * 10)
             return false;
 
         PiercingBloodProjectile projectile = new PiercingBloodProjectile(player.level, player);
         projectile.setDamage(charge / 10f);
-        projectile.shootFromRotation(player, player.xRot, player.yRot, 0, 3, 0.1f);
+        projectile.shootFromRotation(player, player.xRot, player.yRot, 0, 1, 0.1f);
         player.level.addFreshEntity(projectile);
+        player.removeEffect(ModEffects.MOVEMENT_BLOCKED.get());
 
         int cooldown = (int) Math.round(charge / 20.0) + 5;
         this.setMaxCooldown(cooldown);

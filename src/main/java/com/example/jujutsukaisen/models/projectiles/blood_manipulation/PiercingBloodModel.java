@@ -18,12 +18,11 @@ public class PiercingBloodModel extends EntityModel {
 		texHeight = 32;
 
 		Piercing_Blood = new ModelRenderer(this);
-		Piercing_Blood.setPos(1.5F, 19.0F, 0.5F);
+		Piercing_Blood.setPos(-0.5F, 19.0F, 0.5F);
 		Piercing_Blood.texOffs(0, 0).addBox(-12.4535F, -2.1299F, -0.5F, 17.0F, 2.0F, 1.0F, 0.0F, false);
 		Piercing_Blood.texOffs(0, 3).addBox(-0.4535F, -3.1299F, -0.5F, 4.0F, 1.0F, 1.0F, 0.0F, false);
 		Piercing_Blood.texOffs(0, 7).addBox(0.5465F, -2.1299F, -1.5F, 3.0F, 2.0F, 1.0F, 0.0F, false);
-		Piercing_Blood.texOffs(0, 5).addBox(0.5465F, -2.1299F, 0.5F, 3.0F, 2.0F, 1.0F, 0.0F, false);
-	}
+		Piercing_Blood.texOffs(0, 5).addBox(0.5465F, -2.1299F, 0.5F, 3.0F, 2.0F, 1.0F, 0.0F, false);	}
 
 	@Override
 	public void setupAnim(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
