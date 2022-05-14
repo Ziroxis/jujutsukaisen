@@ -1,6 +1,5 @@
 package com.example.jujutsukaisen.quest.cursed_punches;
 
-import com.example.jujutsukaisen.abilities.basic.CursedEnergyContinuousPunchAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -20,7 +19,7 @@ public class CursedPunches_01 extends Quest {
 
     public CursedPunches_01()
     {
-        super("cursedpunches_01", "Proving your worth by blood");
+        super("cursedpunches_01", "Proving your worth by a punch");
         this.setDescription("Prove your worth by killing an entity");
         this.addObjectives(this.objective);
         this.onCompleteEvent = this::giveReward;

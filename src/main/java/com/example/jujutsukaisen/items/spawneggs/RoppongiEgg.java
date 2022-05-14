@@ -18,7 +18,7 @@ public class RoppongiEgg extends Item {
 
     public RoppongiEgg()
     {
-        super(new Properties().tab(ItemGroup.TAB_MISC).stacksTo(1));
+        super(new Properties().stacksTo(1));
     }
 
     @Override

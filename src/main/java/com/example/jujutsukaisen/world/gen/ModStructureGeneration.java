@@ -18,7 +18,13 @@ public class ModStructureGeneration {
         RegistryKey key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
         Set types = BiomeDictionary.getTypes(key);
 
-        if (types.contains(BiomeDictionary.Type.PLAINS) && !types.contains(BiomeDictionary.Type.NETHER) && !types.contains(BiomeDictionary.Type.END))
+        if (types.contains(BiomeDictionary.Type.PLAINS)
+                && !types.contains(BiomeDictionary.Type.NETHER)
+                && !types.contains(BiomeDictionary.Type.END)
+                && !types.contains(BiomeDictionary.Type.WET)
+                && !types.contains(BiomeDictionary.Type.RIVER)
+                && !types.contains(BiomeDictionary.Type.HOT)
+                && !types.contains(BiomeDictionary.Type.OCEAN))
         {
             event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURED_DOJO);
         }

@@ -1,6 +1,6 @@
-package com.example.jujutsukaisen.quest.cursed_punches;
+package com.example.jujutsukaisen.quest.cursed_sword;
 
-import com.example.jujutsukaisen.abilities.basic.punch.CursedEnergyContinuousPunchAbility;
+import com.example.jujutsukaisen.abilities.basic.sword.CursedEnergyContinuousSwordAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -14,14 +14,13 @@ import com.example.jujutsukaisen.quest.objectives.ObtainItemObjective;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 
-public class CursedPunches_02 extends Quest {
+public class CursedSword_02 extends Quest {
 
     private Objective objective = new ObtainItemObjective("Prove your kill", 1, Items.BONE);
 
-    public CursedPunches_02()
+    public CursedSword_02()
     {
-        super("cursedpunches_02", "Proving your worth by bone and punch");
-        this.setDescription("Collect one bone");
+        super("cursedsword_02", "Proving your worth by bone and sword");
         this.addObjective(this.objective);
         this.onCompleteEvent = this::giveReward;
     }
@@ -31,7 +30,7 @@ public class CursedPunches_02 extends Quest {
         player.giveExperienceLevels(10);
         IAbilityData props = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
-        props.addUnlockedAbility(CursedEnergyContinuousPunchAbility.INSTANCE);
+        props.addUnlockedAbility(CursedEnergyContinuousSwordAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
 

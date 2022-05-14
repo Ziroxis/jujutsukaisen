@@ -1,6 +1,5 @@
-package com.example.jujutsukaisen.quest.cursed_punches;
+package com.example.jujutsukaisen.quest.cursed_sword;
 
-import com.example.jujutsukaisen.abilities.basic.punch.CursedEnergyContinuousPunchAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -10,31 +9,29 @@ import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
 import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.quest.Quest;
-import com.example.jujutsukaisen.quest.objectives.ObtainItemObjective;
+import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
+import com.example.jujutsukaisen.quest.objectives.SharedKillChecks;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
 
-public class CursedPunches_02 extends Quest {
+public class CursedSword_01 extends Quest {
 
-    private Objective objective = new ObtainItemObjective("Prove your kill", 1, Items.BONE);
+    private Objective objective = new KillEntityObjective("Kill any entity once", 1, SharedKillChecks.EXISTS);
 
-    public CursedPunches_02()
+    public CursedSword_01()
     {
-        super("cursedpunches_02", "Proving your worth by bone and punch");
-        this.setDescription("Collect one bone");
-        this.addObjective(this.objective);
+        super("cursedsword_01", "Proving your worth by a slash");
+        this.setDescription("Prove your worth by killing an entity");
+        this.addObjectives(this.objective);
         this.onCompleteEvent = this::giveReward;
     }
 
     public boolean giveReward(PlayerEntity player)
     {
-        player.giveExperienceLevels(10);
-        IAbilityData props = AbilityDataCapability.get(player);
+        player.giveExperienceLevels(50);
+        IAbilityData propsAbility = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
-        props.addUnlockedAbility(CursedEnergyContinuousPunchAbility.INSTANCE);
-        PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
+        PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
-
         return true;
     }
 }

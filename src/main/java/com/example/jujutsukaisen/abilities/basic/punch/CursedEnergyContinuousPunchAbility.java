@@ -1,4 +1,4 @@
-package com.example.jujutsukaisen.abilities.basic;
+package com.example.jujutsukaisen.abilities.basic.punch;
 
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.sorts.ContinuousPunchAbility;
@@ -12,7 +12,6 @@ import net.minecraft.entity.player.PlayerEntity;
 /**
  * Continuously imbue your first with cursed energy
  */
-//TODO Fix the non-knocback bug
 public class CursedEnergyContinuousPunchAbility extends ContinuousPunchAbility {
 
     public static final CursedEnergyContinuousPunchAbility INSTANCE = new CursedEnergyContinuousPunchAbility();
@@ -30,7 +29,7 @@ public class CursedEnergyContinuousPunchAbility extends ContinuousPunchAbility {
     private float onHitEntity(PlayerEntity player, LivingEntity target)
     {
         IEntityStats propsEntity = EntityStatsCapability.get(player);
-        //target.knockback...
+        target.knockback(1, 2, 2);
         propsEntity.alterCursedEnergy(-10);
         PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
 

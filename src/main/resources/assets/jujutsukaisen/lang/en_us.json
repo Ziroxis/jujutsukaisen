@@ -1,11 +1,20 @@
 {
-  "item.jujutsukaisen.black_blade": "Cursed tool: Black blade",
-  "item.jujutsukaisen.cursed_hammer": "Cursed tool: Cursed Hammer",
-  "item.jujutsukaisen.cursed_spear": "Cursed tool: Cursed Spear",
-  "item.jujutsukaisen.demon_slaughterer": "Cursed tool: Demon Slaughterer",
-  "item.jujutsukaisen.nanami_blade": "Cursed tool: Nanami Blade",
-  "item.jujutsukaisen.blood_edge": "Blood Edge",
+  "Keys.jujutsukaisen.combat": "Comabt keys",
+  "Keys.jujutsukaisen.combat_1": "Combat key 1",
+  "Keys.jujutsukaisen.combat_2": "Combat key 2",
+  "Keys.jujutsukaisen.combat_3": "Combat key 3",
+  "Keys.jujutsukaisen.combat_4": "Combat key 4",
+  "Keys.jujutsukaisen.combat_5": "Combat key 5",
+  "Keys.jujutsukaisen.combat_6": "Combat key 6",
+  "Keys.jujutsukaisen.combat_7": "Combat key 7",
+  "Keys.jujutsukaisen.combat_8": "Combat key 8",
 
+  "Keys.jujutsukaisen.gui": "Gui keys",
+  "Keys.jujutsukaisen.info_card": "Info card",
+
+  "Keys.jujutsukaisen.combat_mode": "Combat mode",
+  "Keys.jujutsukaisen.next_bar": "Next bar",
+  "Keys.jujutsukaisen.previous_bar": "Previous bar",
 
   "gui.quests": "quests",
   "gui.abilities": "spells",
@@ -13,8 +22,17 @@
   "ability.jujutsukaisen.cursed_punch": "Cursed punch",
 
   "ability.jujutsukaisen.batto_sword": "Batto sword",
+  "ability.jujutsukaisen.cursed_sword": "Cursed sword",
+  "ability.jujutsukaisen.evening_moon": "Evening Moon",
 
   "ability.jujutsukaisen.shadow_inventory": "Shadow inventory",
+
+  "item.jujutsukaisen.black_blade": "Cursed tool: Black blade",
+  "item.jujutsukaisen.cursed_hammer": "Cursed tool: Cursed Hammer",
+  "item.jujutsukaisen.cursed_spear": "Cursed tool: Cursed Spear",
+  "item.jujutsukaisen.demon_slaughterer": "Cursed tool: Demon Slaughterer",
+  "item.jujutsukaisen.nanami_blade": "Cursed tool: Nanami Blade",
+  "item.jujutsukaisen.blood_edge": "Blood Edge",
 
   "ability.jujutsukaisen.frame_break": "Frame Break",
   "ability.jujutsukaisen.frame_catch": "Frame Catch",

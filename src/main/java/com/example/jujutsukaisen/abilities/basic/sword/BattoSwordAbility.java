@@ -1,4 +1,4 @@
-package com.example.jujutsukaisen.abilities.basic;
+package com.example.jujutsukaisen.abilities.basic.sword;
 
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
@@ -11,7 +11,6 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.network.play.server.SAnimateHandPacket;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 

@@ -66,6 +66,11 @@ public class PunchSenseiEntity extends CreatureEntity {
 
             for (int i = 0; i < quests.length; i++)
             {
+                if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) || questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_01))
+                {
+                    player.sendMessage(new StringTextComponent("You already went for the path of slashing curses... I'm sorry but I can't teach you my noble art."), player.getUUID());
+                    return ActionResultType.PASS;
+                }
                 if (quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_01) && !(questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01)))
                 {
                     player.sendMessage(new StringTextComponent("Almost done?"), player.getUUID());

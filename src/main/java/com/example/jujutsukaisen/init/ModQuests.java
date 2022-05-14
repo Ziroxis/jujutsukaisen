@@ -7,6 +7,8 @@ import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.QuestRegistry;
 import com.example.jujutsukaisen.quest.cursed_punches.CursedPunches_01;
 import com.example.jujutsukaisen.quest.cursed_punches.CursedPunches_02;
+import com.example.jujutsukaisen.quest.cursed_sword.CursedSword_01;
+import com.example.jujutsukaisen.quest.cursed_sword.CursedSword_02;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 
@@ -23,13 +25,29 @@ public class ModQuests {
     }
     public static final DeferredRegister<Quest> QUESTS = DeferredRegister.create(QuestRegistry.QUESTS, Main.MODID);
 
+    public static final Quest CURSED_SWORD_01 = new CursedSword_01();
+    public static final Quest CURSED_SWORD_02 = new CursedSword_02();
+    public static final Quest[] UNLOCK_SWORD = new Quest[] {CURSED_SWORD_01, CURSED_SWORD_02};
+
     public static final Quest CURSED_PUNCHES_01 = new CursedPunches_01();
     public static final Quest CURSED_PUNCHES_02 = new CursedPunches_02();
-    public static final Quest[] UNLOCK_TRIAL = new Quest[] {CURSED_PUNCHES_01, CURSED_PUNCHES_02};
+    public static final Quest[] UNLOCK_PUNCHES = new Quest[] {CURSED_PUNCHES_01, CURSED_PUNCHES_02};
 
     static
     {
-        for (Quest quest : UNLOCK_TRIAL)
+        for (Quest quest : UNLOCK_PUNCHES)
+        {
+            String resourceName = Beapi.getResourceName(quest.getId());
+            langMap.put("quest." + Main.MODID + "." + resourceName, quest.getTitle());
+
+            for(Objective obj : quest.getObjectives())
+            {
+                langMap.put("quest.objective." + Main.MODID + "." + obj.getId(), obj.getTitle());
+            }
+
+            QUESTS.register(resourceName, () -> quest);
+        }
+        for (Quest quest : UNLOCK_SWORD)
         {
             String resourceName = Beapi.getResourceName(quest.getId());
             langMap.put("quest." + Main.MODID + "." + resourceName, quest.getTitle());

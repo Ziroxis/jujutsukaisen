@@ -41,7 +41,7 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng = Beapi.RNG(6);
+            int rng = Beapi.RNG(5);
             switch (rng)
             {
                 case 0:
@@ -51,29 +51,24 @@ public class GetStatsFirstTimeEvent {
                     props.setCurse(ModValues.HUMAN);
                     break;
                 case 1:
-                    props.setClan(ModValues.Gojo);
-                    props.setTechnique(ModValues.LIMITLESS);
-                    props.setCurse(ModValues.HUMAN);
-                    break;
-                case 2:
                     props.setClan(ModValues.Inumaki);
                     props.setTechnique(ModValues.CURSED_SPEECH);
                     abilityProps.addUnlockedAbility(StopAbility.INSTANCE);
                     props.setCurse(ModValues.HUMAN);
                     break;
-                case 3:
+                case 2:
                     props.setClan(ModValues.Zenin);
                     props.setTechnique(ModValues.PROJECTION_SORCERY);
                     abilityProps.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
                     props.setCurse(ModValues.HUMAN);
                     break;
-                case 4:
+                case 3:
                     props.setClan(ModValues.NONE);
                     props.setTechnique(ModValues.DISASTER_TIDES);
                     abilityProps.addUnlockedAbility(WaterFlowAbility.INSTANCE);
                     props.setCurse(ModValues.WATER);
                     break;
-                case 5:
+                case 4:
                     props.setClan(ModValues.NONE);
                     props.setTechnique(ModValues.DISASTER_FLAMES);
                     abilityProps.addUnlockedAbility(FlameTouchAbility.INSTANCE);
