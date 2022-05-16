@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.entities.curses.*;
+import com.example.jujutsukaisen.entities.npc.MaidQuesterEntity;
 import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
 import com.example.jujutsukaisen.entities.npc.SwordSenseiEntity;
 import net.minecraft.entity.EntityClassification;
@@ -50,6 +51,13 @@ public class ModEntities {
                             .sized(1f, 2f)
                             .setTrackingRange(5)
                             .build(new ResourceLocation(Main.MODID, "swordsensei_entity").toString()));
+
+    public static final RegistryObject<EntityType<MaidQuesterEntity>> MAID_QUESTER = ENTITIES
+            .register("maidquester_entity",
+                    () -> EntityType.Builder.of(MaidQuesterEntity::new, EntityClassification.CREATURE)
+                            .sized(1f, 2f)
+                            .setTrackingRange(5)
+                            .build(new ResourceLocation(Main.MODID, "maidquester_entity").toString()));
     public static final RegistryObject<EntityType<GrassHopperEntity>> GRASS_HOPPER = ENTITIES
             .register("grasshopper_entity",
                     () -> EntityType.Builder.of(GrassHopperEntity::new, EntityClassification.CREATURE)

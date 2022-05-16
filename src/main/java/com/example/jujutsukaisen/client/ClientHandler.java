@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen.client;
 
 import com.example.jujutsukaisen.client.renderer.entities.curses.*;
+import com.example.jujutsukaisen.client.renderer.entities.npc.MaidQuestRenderer;
 import com.example.jujutsukaisen.client.renderer.entities.npc.PunchSenseiRenderer;
 import com.example.jujutsukaisen.client.renderer.entities.npc.SwordSenseiRenderer;
 import com.example.jujutsukaisen.init.ModEntities;
@@ -28,6 +29,7 @@ public class ClientHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.LIZARD.get(), new LizardRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.PUNCH_SENSEI.get(), new PunchSenseiRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SWORD_SENSEI.get(), new SwordSenseiRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.MAID_QUESTER.get(), new MaidQuestRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.GRASS_HOPPER.get(), new GrassHopperRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.POSSESED_PUPPET.get(), new PossesedPuppetRenderer.Factory());
 

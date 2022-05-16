@@ -60,7 +60,7 @@ public class SwordSenseiEntity extends CreatureEntity {
 
         IQuestData questProps = QuestDataCapability.get(player);
 
-        if (player.level.isClientSide)
+        if (!player.level.isClientSide)
         {
             Quest[] quests = questProps.getInProgressQuests();
 

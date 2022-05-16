@@ -26,6 +26,7 @@ public class ModItems {
     public static final RegistryObject<Item> GRASS_EGG = ITEMS.register("grass_egg", GrassHopperEgg::new);
     public static final RegistryObject<Item> PUPPET_EGG = ITEMS.register("puppet_egg", PossesedPuppetEgg::new);
     public static final RegistryObject<Item> SWORD_SENSEI_EGG = ITEMS.register("sword_sensei_egg", SwordSenseiEgg::new);
+    public static final RegistryObject<Item> MAIDQUESTER_EGG = ITEMS.register("maidquester_egg", MaidQuesterEgg::new);
 
 
 

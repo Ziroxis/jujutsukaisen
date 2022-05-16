@@ -1,7 +1,7 @@
 package com.example.jujutsukaisen.client.renderer.entities.npc;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.entities.npc.SwordSenseiEntity;
+import com.example.jujutsukaisen.entities.npc.MaidQuesterEntity;
 import com.example.jujutsukaisen.models.npcs.HumanoidModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -13,26 +13,26 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 @OnlyIn(Dist.CLIENT)
 @SuppressWarnings("unchecked")
-public class SwordSenseiRenderer extends MobRenderer<SwordSenseiEntity, HumanoidModel<SwordSenseiEntity>> {
+public class MaidQuestRenderer extends MobRenderer<MaidQuesterEntity, HumanoidModel<MaidQuesterEntity>> {
 
     protected static final ResourceLocation TEXTURE =
             new ResourceLocation(Main.MODID, "textures/entities/npc/maidquester.png");
 
-    public SwordSenseiRenderer(EntityRendererManager renderManager)
+    public MaidQuestRenderer(EntityRendererManager renderManager)
     {
         super(renderManager, new HumanoidModel<>(), 0.1F);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SwordSenseiEntity p_110775_1_) {
+    public ResourceLocation getTextureLocation(MaidQuesterEntity p_110775_1_) {
         return TEXTURE;
     }
 
-    public static class Factory implements IRenderFactory<SwordSenseiEntity> {
+    public static class Factory implements IRenderFactory<MaidQuesterEntity> {
 
         @Override
-        public EntityRenderer<? super SwordSenseiEntity> createRenderFor(EntityRendererManager manager) {
-            return new SwordSenseiRenderer(manager);
+        public EntityRenderer<? super MaidQuesterEntity> createRenderFor(EntityRendererManager manager) {
+            return new MaidQuestRenderer(manager);
         }
     }
 }
