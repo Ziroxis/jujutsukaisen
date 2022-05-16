@@ -113,14 +113,12 @@ public class QuestsTrackerScreen extends Screen
 				String questInProgressDescription = questInProgress.getDescription();
 				drawString(matrixStack, font, "Quest in progress: ", guiLeft + 85 + (i * 5), guiTop + 30, 16777215);
 				drawString(matrixStack, font, questInProgressString, guiLeft + 85 + (i * 5), guiTop + 40, 16777215);
-				drawString(matrixStack, font, "Description: ", guiLeft + 85, guiTop + 50 + (i * 10), 16777215);
-				drawString(matrixStack, font, questInProgressDescription, guiLeft + 85, guiTop + 60 + (i * 10), 16777215);
 				List<Objective> objectives = questInProgress.getObjectives();
 				for (int a = 0; a < objectives.size(); a++)
 				{
 					Objective objective = objectives.get(a);
 					String objectiveString = objective.getTitle();
-					drawString(matrixStack, font, "Goal: " + objectiveString, guiLeft + 85, guiTop + 70 + (i * 20) + (a * 5), 16777215);
+					drawString(matrixStack, font, "Goal: " + objectiveString, guiLeft + 85, guiTop + 50 + (i * 20) + (a * 5), 16777215);
 				}
 			}
 

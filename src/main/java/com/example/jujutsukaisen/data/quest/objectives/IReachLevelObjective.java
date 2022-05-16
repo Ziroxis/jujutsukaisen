@@ -2,7 +2,7 @@ package com.example.jujutsukaisen.data.quest.objectives;
 
 import net.minecraft.entity.player.PlayerEntity;
 
-public interface IReachDorikiObjective
+public interface IReachLevelObjective
 {
-	boolean checkDoriki(PlayerEntity player);
+	boolean checkLevel(PlayerEntity player);
 }

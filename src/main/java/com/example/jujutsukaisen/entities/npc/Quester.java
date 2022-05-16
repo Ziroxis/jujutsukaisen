@@ -17,6 +17,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
+//TODO make it so they say something after the quest
 public abstract class Quester extends CreatureEntity {
     String before;
     String during;
@@ -42,7 +43,6 @@ public abstract class Quester extends CreatureEntity {
     }
 
 
-    //TODO check if this shit works
     @Override
     protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         System.out.println("Check 1");
