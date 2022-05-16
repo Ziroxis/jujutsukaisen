@@ -38,6 +38,7 @@ public class EmberInsectProjectile extends AbilityProjectileEntity {
         explosion.setDamageOwner(false);
         explosion.setDestroyBlocks(true);
         explosion.setFireAfterExplosion(true);
+        explosion.setDamageSource(ModDamageSource.causeAbilityDamage(this.getThrower(), EmberInsectsAbility.INSTANCE));
         explosion.setSmokeParticles(new CommonExplosionParticleEffect(3));
         explosion.setDamageEntities(true);
         explosion.doExplosion();

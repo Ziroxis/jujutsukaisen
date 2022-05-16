@@ -1,9 +1,12 @@
 package com.example.jujutsukaisen.abilities.basic.sword;
 
+import com.example.jujutsukaisen.abilities.disaster_flames.EmberInsectsAbility;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.sorts.ContinuousPunchAbility;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.CursedSpiritInvincibility;
+import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import net.minecraft.entity.LivingEntity;

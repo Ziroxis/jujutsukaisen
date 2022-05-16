@@ -42,7 +42,10 @@ public abstract class Quester extends CreatureEntity {
                 .add(Attributes.MOVEMENT_SPEED, 2);
     }
 
-
+    @Override
+    public boolean removeWhenFarAway(double d) {
+        return false;
+    }
     @Override
     protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         System.out.println("Check 1");

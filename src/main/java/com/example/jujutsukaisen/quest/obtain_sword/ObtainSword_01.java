@@ -9,17 +9,19 @@ import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
-import com.example.jujutsukaisen.quest.objectives.ObtainItemObjective;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 public class ObtainSword_01 extends Quest {
-    private Objective killObjective = new KillEntityObjective("Kill 5 roppongis", 5, ModEntities.ROPPONGI.get());
+    private static final KillEntityObjective.ICheckKill TARGET_CHECK = (player, target, source) ->
+    {
+        return target.getType() == ModEntities.ROPPONGI.get();
+    };
+    private Objective killObjective = new KillEntityObjective("Kill 5 roppongis", 5, TARGET_CHECK);
 
     public ObtainSword_01()
     {
-        super("obtainsword_01", "Show you're a true swordsman cursed spirits killer!");
+        super("obtainsword_01", "Get rid of some curses");
         this.addObjective(this.killObjective);
         this.onCompleteEvent = this::giveReward;
     }

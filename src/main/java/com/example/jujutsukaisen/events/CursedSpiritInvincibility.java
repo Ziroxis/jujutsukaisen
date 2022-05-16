@@ -39,6 +39,7 @@ public class CursedSpiritInvincibility {
                 return;
 
 
+            //TODO make it work with cursedswordimbuing
             ItemStack item = attacker.getMainHandItem();
             Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(item);
             if (!(item.getItem() instanceof CursedWeapon) && !(source instanceof AbilityDamageSource)

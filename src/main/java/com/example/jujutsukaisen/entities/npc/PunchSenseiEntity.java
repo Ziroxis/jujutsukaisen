@@ -23,7 +23,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class PunchSenseiEntity extends CreatureEntity {
+public class PunchSenseiEntity extends Quester {
 
     public PunchSenseiEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);

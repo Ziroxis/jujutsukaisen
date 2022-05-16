@@ -9,6 +9,7 @@ import java.io.Serializable;
 /**
  * Specific class made for continuous enhanced punches with effect
  */
+//TODO make it so this class always does modability damage
 public abstract class ContinuousPunchAbility extends ContinuousAbility
 {
 	// Setting the defaults so that no crash occurs and so they will be null safe.
