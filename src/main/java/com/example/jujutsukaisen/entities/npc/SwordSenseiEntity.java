@@ -78,7 +78,7 @@ public class SwordSenseiEntity extends Quester {
                     {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
+                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
                         player.sendMessage(new StringTextComponent("Good job! But that's not enough to prove me your worth..."), player.getUUID());
                     }
 

@@ -59,10 +59,12 @@
   "ability.jujutsukaisen.water_charge": "Water charge",
   "ability.jujutsukaisen.water_flow": "Water flow",
   "ability.jujutsukaisen.water_shield": "Water shield",
+  "ability.jujutsukaisen.ocean_protection": "Ocean protection",
 
   "ability.jujutsukaisen.flame_touch": "Flame touch",
   "ability.jujutsukaisen.purple_flames": "Purple flames",
   "ability.jujutsukaisen.ember_insects": "Ember Insects",
   "ability.jujutsukaisen.flame_arrow": "Flame arrow",
-  "ability.jujutsukaisen.flame_ball": "Flame ball"
+  "ability.jujutsukaisen.flame_ball": "Flame ball",
+  "ability.jujutsukaiseN.flame_protection": "Flame protection"
 }

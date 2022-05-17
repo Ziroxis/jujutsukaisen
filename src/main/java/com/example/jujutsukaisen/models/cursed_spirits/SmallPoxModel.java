@@ -6,7 +6,10 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SmallPoxModel<T extends SmallPoxEntity> extends EntityModel<T> {
 	private final ModelRenderer SmallPox_Main;
 	private final ModelRenderer SmallPox_Base;

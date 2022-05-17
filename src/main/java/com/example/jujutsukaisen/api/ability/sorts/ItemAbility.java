@@ -2,6 +2,8 @@ package com.example.jujutsukaisen.api.ability.sorts;
 
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.interfaces.IParallelContinuousAbility;
+import com.example.jujutsukaisen.init.ModAbilities;
+import com.example.jujutsukaisen.init.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
@@ -14,6 +16,8 @@ public abstract class ItemAbility extends ContinuousAbility implements IParallel
 		super(name, category);
 		
 		this.onStartContinuityEvent = this::onStartContinuityEvent;
+		this.duringContinuityEvent = this::duringContinuityEvent;
+		this.onEndContinuityEvent = this::onEndContinuityEvent;
 	}
 
 	/*
@@ -35,7 +39,22 @@ public abstract class ItemAbility extends ContinuousAbility implements IParallel
 			return false;
 		}
 	}
-	
+
+	private void duringContinuityEvent(PlayerEntity player, int timer)
+	{
+
+	}
+
+	private boolean onEndContinuityEvent(PlayerEntity player)
+	{
+		for (int i = 0; i < 35; i++)
+		{
+			if (player.inventory.getItem(i).getItem().equals(ModItems.BLOOD_EDGE.get()))
+				player.inventory.getItem(i).shrink(1);
+		}
+
+		return true;
+	}
 	/*
 	 * 	Methods
 	 */

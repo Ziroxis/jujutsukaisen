@@ -37,8 +37,8 @@ public class ModAbilities {
     public static final IForgeRegistry<Ability> ABILITIES_REGISTRY = RegistryManager.ACTIVE.getRegistry(Ability.class);
     private static final DeferredRegister<Ability> ABILITIES = DeferredRegister.create(ABILITIES_REGISTRY, Main.MODID);
 
-    public static final Ability[] DISASTER_FLAMES = new Ability[] {EmberInsectsAbility.INSTANCE, FlameArrowAbility.INSTANCE, FlameBallAbility.INSTANCE, FlameTouchAbility.INSTANCE, PurpleFlamesAbility.INSTANCE};
-    public static final Ability[] DISASTER_TIDES = new Ability[] {CursedFishAbility.INSTANCE, CursedSharkAbility.INSTANCE, DeathSwarmAbility.INSTANCE, WaterChargeAbility.INSTANCE, WaterFlowAbility.INSTANCE, WaterShieldAbility.INSTANCE};
+    public static final Ability[] DISASTER_FLAMES = new Ability[] {EmberInsectsAbility.INSTANCE, FlameArrowAbility.INSTANCE, FlameBallAbility.INSTANCE, FlameTouchAbility.INSTANCE, PurpleFlamesAbility.INSTANCE, DisasterFlamesPassive.INSTANCE};
+    public static final Ability[] DISASTER_TIDES = new Ability[] {CursedFishAbility.INSTANCE, CursedSharkAbility.INSTANCE, DeathSwarmAbility.INSTANCE, WaterChargeAbility.INSTANCE, WaterFlowAbility.INSTANCE, WaterShieldAbility.INSTANCE, DisasterTidesPassive.INSTANCE};
     public static final Ability[] CURSED_SPEECH = new Ability[] {StopAbility.INSTANCE, SleepAbility.INSTANCE, GetTwistedAbility.INSTANCE, FallDownUnderAbility.INSTANCE, ExplodeAbility.INSTANCE, BlastAwayAbility.INSTANCE};
     public static final Ability[] BLOOD_MANIPULATION = new Ability[] {BloodShurikenAbility.INSTANCE, PiercingBloodAbility.INSTANCE, BloodMeteoriteAbility.INSTANCE, BloodEdgeAbility.INSTANCE, FlowingRedScaleAbility.INSTANCE};
     public static final Ability[] PROJECTION_SORCERY = new Ability[] {FrameSpeedAbility.INSTANCE, FrameBreakAbility.INSTANCE, FrameTeleportationAbility.INSTANCE, FrameCatchAbility.INSTANCE, FrameMovementPassive.INSTANCE};

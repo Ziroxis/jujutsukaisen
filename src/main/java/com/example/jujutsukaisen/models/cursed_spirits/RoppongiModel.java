@@ -8,7 +8,10 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class RoppongiModel<T extends RoppongiEntity> extends EntityModel<T> {
 	private final ModelRenderer Roppongi_main;
 	private final ModelRenderer Roppongi_base;

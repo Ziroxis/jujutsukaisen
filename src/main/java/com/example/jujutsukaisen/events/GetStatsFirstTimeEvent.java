@@ -3,7 +3,9 @@ package com.example.jujutsukaisen.events;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbility;
 import com.example.jujutsukaisen.abilities.cursed_speech.StopAbility;
+import com.example.jujutsukaisen.abilities.disaster_flames.DisasterFlamesPassive;
 import com.example.jujutsukaisen.abilities.disaster_flames.FlameTouchAbility;
+import com.example.jujutsukaisen.abilities.disaster_tides.DisasterTidesPassive;
 import com.example.jujutsukaisen.abilities.disaster_tides.WaterFlowAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
@@ -66,12 +68,14 @@ public class GetStatsFirstTimeEvent {
                     props.setClan(ModValues.NONE);
                     props.setTechnique(ModValues.DISASTER_TIDES);
                     abilityProps.addUnlockedAbility(WaterFlowAbility.INSTANCE);
+                    abilityProps.addUnlockedAbility(DisasterTidesPassive.INSTANCE);
                     props.setCurse(ModValues.WATER);
                     break;
                 case 4:
                     props.setClan(ModValues.NONE);
                     props.setTechnique(ModValues.DISASTER_FLAMES);
                     abilityProps.addUnlockedAbility(FlameTouchAbility.INSTANCE);
+                    abilityProps.addUnlockedAbility(DisasterFlamesPassive.INSTANCE);
                     props.setCurse(ModValues.FIRE);
                     break;
 

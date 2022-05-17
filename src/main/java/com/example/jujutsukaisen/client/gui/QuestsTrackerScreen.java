@@ -104,6 +104,7 @@ public class QuestsTrackerScreen extends Screen
 		minecraft.getTextureManager().bind(background);
 		GuiUtils.drawTexturedModalRect(matrixStack, guiLeft + 80, guiTop + 20, 0, 0, xSize, ySize, 0);
 
+		//TODO add a little V icon when it's done
 		for (int i = 0; i < quests.length; i++)
 		{
 			if (quests[i] != null)
@@ -111,14 +112,14 @@ public class QuestsTrackerScreen extends Screen
 				Quest questInProgress = questProps.getInProgressQuests()[i];
 				String questInProgressString = questInProgress.getTitle();
 				String questInProgressDescription = questInProgress.getDescription();
-				drawString(matrixStack, font, "Quest in progress: ", guiLeft + 85 + (i * 5), guiTop + 30, 16777215);
-				drawString(matrixStack, font, questInProgressString, guiLeft + 85 + (i * 5), guiTop + 40, 16777215);
+				drawString(matrixStack, font, "Quest in progress: ", guiLeft + 85 , guiTop + 30 + (i * 40), 16777215);
+				drawString(matrixStack, font, questInProgressString, guiLeft + 85, guiTop + 40+ (i * 40), 16777215);
 				List<Objective> objectives = questInProgress.getObjectives();
 				for (int a = 0; a < objectives.size(); a++)
 				{
 					Objective objective = objectives.get(a);
 					String objectiveString = objective.getTitle();
-					drawString(matrixStack, font, "Goal: " + objectiveString, guiLeft + 85, guiTop + 50 + (i * 20) + (a * 5), 16777215);
+					drawString(matrixStack, font, "Goal: " + objectiveString, guiLeft + 85, guiTop + 50 + (i * 40) + (a * 5), 16777215);
 				}
 			}
 
