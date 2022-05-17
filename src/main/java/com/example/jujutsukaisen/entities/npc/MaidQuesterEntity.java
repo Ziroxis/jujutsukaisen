@@ -8,6 +8,7 @@ import com.example.jujutsukaisen.init.ModQuests;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
+import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
@@ -51,7 +52,7 @@ public class MaidQuesterEntity extends Quester {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
                         statsProps.alterLevel(1);
-                        PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
+                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
                         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
                         player.sendMessage(new StringTextComponent("HUGE THANKS!!!! HERE IS A REWARD!"), player.getUUID());
                         player.sendMessage(new StringTextComponent("I'll see you around!!!"), player.getUUID());
@@ -69,8 +70,14 @@ public class MaidQuesterEntity extends Quester {
             else
             {
                 player.sendMessage(new StringTextComponent("Thank you! Could you please get rid of those small annoying spirits?"), player.getUUID());
-                questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01);
-                PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
+                for (int i = 0; i < quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01);
+                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                    }
+                }
                 acceptance = false;
                 return ActionResultType.PASS;
             }
