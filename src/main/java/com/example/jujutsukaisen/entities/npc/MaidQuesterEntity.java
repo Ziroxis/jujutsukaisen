@@ -76,6 +76,7 @@ public class MaidQuesterEntity extends Quester {
                     {
                         questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01);
                         PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        break;
                     }
                 }
                 acceptance = false;

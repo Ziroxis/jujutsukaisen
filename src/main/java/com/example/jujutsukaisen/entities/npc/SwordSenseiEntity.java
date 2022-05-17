@@ -60,6 +60,7 @@ public class SwordSenseiEntity extends Quester {
 
         IQuestData questProps = QuestDataCapability.get(player);
 
+        //TODO redo more clean
         if (!player.level.isClientSide)
         {
             Quest[] quests = questProps.getInProgressQuests();
