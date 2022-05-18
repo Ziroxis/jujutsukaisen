@@ -1,9 +1,9 @@
 package com.example.jujutsukaisen.networking;
 
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
-import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsProvider;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -37,7 +37,7 @@ public class CursedEnergyMaxSync {
                 playercap.setMaxCursedEnergy((int) msg.maxCursedEnergy);
             }
             else {
-                ServerPlayerEntity player= ctx.get().getSender();
+                PlayerEntity player= ctx.get().getSender();
                 IEntityStats playercap = player.getCapability(EntityStatsCapability.INSTANCE).orElseThrow(() -> new RuntimeException("CAPABILITY_PLAYER NOT FOUND!"));
                 playercap.setMaxCursedEnergy((int) msg.maxCursedEnergy);
             }

@@ -2,6 +2,8 @@ package com.example.jujutsukaisen.quest;
 
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.data.quest.IQuestData;
+import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.client.CGiveItemStackPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -64,8 +66,9 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 		
 		return this.getId().equalsIgnoreCase(((Quest) quest).getId());
 	}
-	public void addQuestItem(PlayerEntity player, Item item, int amount)
+	public boolean addQuestItem(PlayerEntity player, Item item, int amount)
 	{
+		ItemStack stack = new ItemStack(item);
 		System.out.println("Check 1");
 		for (int i = 0; i < 35; i++)
 		{
@@ -80,12 +83,15 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 		if (free)
 		{
 			System.out.println("Check 4");
-			player.inventory.add(new ItemStack(item));
+			PacketHandler.sendToServer(new CGiveItemStackPacket(stack));
+			player.inventory.add(stack);
+			return true;
 		}
 		else
 		{
 			System.out.println("Check 5");
 			player.sendMessage(new TranslationTextComponent("You need free space in your inventory!"), Util.NIL_UUID);
+			return false;
 		}
 	}
 

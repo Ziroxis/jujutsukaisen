@@ -29,7 +29,8 @@ public class ObtainSword_01 extends Quest {
     public boolean giveReward(PlayerEntity player)
     {
         IEntityStats propsStats = EntityStatsCapability.get(player);
-        this.addQuestItem(player, ModItems.DEMON_SLAUGHTERER.get(), 1);
+        if (!this.addQuestItem(player, ModItems.DEMON_SLAUGHTERER.get(), 1))
+            return false;
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
 
         return true;
