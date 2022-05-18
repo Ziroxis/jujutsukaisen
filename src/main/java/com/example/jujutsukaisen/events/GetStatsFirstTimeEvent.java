@@ -30,6 +30,8 @@ public class GetStatsFirstTimeEvent {
     @SubscribeEvent
     public static void JoinWorldEvent(PlayerEvent.PlayerLoggedInEvent event)
     {
+        if (!(event.getEntity() instanceof PlayerEntity))
+            return;
         PlayerEntity player = (PlayerEntity) event.getEntityLiving();
         IEntityStats props = EntityStatsCapability.get(player);
         IAbilityData abilityProps = AbilityDataCapability.get(player);

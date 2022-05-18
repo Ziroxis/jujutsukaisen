@@ -23,6 +23,7 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 {
 	private String title;
 	private String description;
+	private boolean free;
 	
 	private List<Objective> objectives = new ArrayList<Objective>();
 	private List<Quest> requirements = new ArrayList<Quest>();
@@ -63,6 +64,32 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 		
 		return this.getId().equalsIgnoreCase(((Quest) quest).getId());
 	}
+	public void addQuestItem(PlayerEntity player, Item item, int amount)
+	{
+		System.out.println("Check 1");
+		for (int i = 0; i < 35; i++)
+		{
+			System.out.println("Check 2");
+			if (player.inventory.getItem(i).isEmpty())
+			{
+				System.out.println("Check 3");
+				free = true;
+				break;
+			}
+		}
+		if (free)
+		{
+			System.out.println("Check 4");
+			player.inventory.add(new ItemStack(item));
+		}
+		else
+		{
+			System.out.println("Check 5");
+			player.sendMessage(new TranslationTextComponent("You need free space in your inventory!"), Util.NIL_UUID);
+		}
+	}
+
+
 
 	public boolean removeQuestItem(PlayerEntity player, Item item, int amount)
 	{

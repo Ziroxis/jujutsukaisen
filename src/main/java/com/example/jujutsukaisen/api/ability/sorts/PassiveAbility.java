@@ -11,6 +11,8 @@ public class PassiveAbility extends Ability {
 
     // Setting the defaults so that no crash occurs and so they will be null safe.
     protected IDuringPassive duringPassiveEvent = (player) -> { };
+    protected IOffDuringPassive offDuringPassive = (player) -> { };
+
 
     private boolean isPaused = false;
 
@@ -36,8 +38,10 @@ public class PassiveAbility extends Ability {
     public void tick(PlayerEntity player)
     {
         if(this.isPaused)
+        {
+            this.offDuringPassive.duringOffPassive(player);
             return;
-
+        }
         player.level.getProfiler().push(Beapi.getResourceName(this.getName()));
         this.duringPassiveEvent.duringPassive(player);
 
@@ -49,5 +53,9 @@ public class PassiveAbility extends Ability {
     public interface IDuringPassive extends Serializable
     {
         void duringPassive(PlayerEntity player);
+    }
+    public interface IOffDuringPassive extends Serializable
+    {
+        void duringOffPassive(PlayerEntity player);
     }
 }

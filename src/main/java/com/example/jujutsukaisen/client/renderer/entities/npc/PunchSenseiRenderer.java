@@ -1,8 +1,11 @@
 package com.example.jujutsukaisen.client.renderer.entities.npc;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.entities.curses.LizardEntity;
 import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
 import com.example.jujutsukaisen.models.npcs.HumanoidModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,16 +17,16 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 @OnlyIn(Dist.CLIENT)
 public class PunchSenseiRenderer extends MobRenderer<PunchSenseiEntity, HumanoidModel<PunchSenseiEntity>> {
 
-    protected static final ResourceLocation TEXTURE =
+    private static final ResourceLocation TEXTURE =
             new ResourceLocation(Main.MODID, "textures/entities/npc/punchsensei.png");
 
     public PunchSenseiRenderer(EntityRendererManager renderManager)
     {
-        super(renderManager, new HumanoidModel<>(), 0.1F);
+        super(renderManager, new HumanoidModel(), 0.1F);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(PunchSenseiEntity p_110775_1_) {
+    public ResourceLocation getTextureLocation(PunchSenseiEntity entity) {
         return TEXTURE;
     }
 

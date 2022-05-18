@@ -11,26 +11,4 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class TestEvents {
 
-    @SubscribeEvent
-    public static void testEvents(ServerChatEvent event) {
-        if (event.getMessage().contains("stats"))
-        {
-            PlayerEntity player = event.getPlayer();
-            IEntityStats props = EntityStatsCapability.get(player);
-
-            System.out.println(props.returnCursedEnergy());
-            System.out.println(props.getMaxCursedEnergy());
-            System.out.println(props.getExperience());
-            System.out.println(props.getMaxExperience());
-            System.out.println(props.getLevel());
-        }
-        if (event.getMessage().contains("level"))
-        {
-            PlayerEntity player = event.getPlayer();
-            IEntityStats props = EntityStatsCapability.get(player);
-
-            props.setLevel(50);
-            props.setExperience(props.getMaxExperience() - 1);
-        }
-    }
 }

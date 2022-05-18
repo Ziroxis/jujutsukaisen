@@ -22,6 +22,7 @@ public class DisasterTidesPassive extends PassiveAbility {
         this.setDescription("Makes you able to swim faster and breathe under water");
         this.hideInGUI(false);
         this.duringPassiveEvent = this::duringPassiveEvent;
+        this.offDuringPassive = this::offPassiveEvent;
     }
 
     private void duringPassiveEvent(PlayerEntity player)
@@ -33,5 +34,11 @@ public class DisasterTidesPassive extends PassiveAbility {
 
         if (player.isInWater())
             player.setAirSupply(300);
+    }
+    private void offPassiveEvent(PlayerEntity player)
+    {
+        if(player.getAttribute(ForgeMod.SWIM_SPEED.get()).hasModifier(SWIM_SPEED))
+            player.getAttribute(ForgeMod.SWIM_SPEED.get()).removeModifier(SWIM_SPEED);
+
     }
 }

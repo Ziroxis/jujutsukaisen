@@ -15,7 +15,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 @SuppressWarnings("unchecked")
 public class SwordSenseiRenderer extends MobRenderer<SwordSenseiEntity, HumanoidModel<SwordSenseiEntity>> {
 
-    protected static final ResourceLocation TEXTURE =
+    private static final ResourceLocation TEXTURE =
             new ResourceLocation(Main.MODID, "textures/entities/npc/swordsensei.png");
 
     public SwordSenseiRenderer(EntityRendererManager renderManager)
