@@ -37,7 +37,7 @@ public class Main
 
     public Main() {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.register(new ModCapabilities.Registry());
+        MinecraftForge.EVENT_BUS.register(new AttachingCapabilities.Registry());
 
         ModAttributes.ATTRIBUTES.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
@@ -62,7 +62,6 @@ public class Main
         ModCapabilities.init();
         ArgumentTypes.register("ability", AbilityArgument.class, new ArgumentSerializer<>(AbilityArgument::ability));
         ArgumentTypes.register("group", AbilityGroupArgument.class, new ArgumentSerializer<>(AbilityGroupArgument::abilityGroup));
-        MinecraftForge.EVENT_BUS.register(ModEventBusEvents.class);
 
         event.enqueueWork(() ->
         {
@@ -91,19 +90,8 @@ public class Main
     {
 
     }
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
 
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-
-        }
     }
 }

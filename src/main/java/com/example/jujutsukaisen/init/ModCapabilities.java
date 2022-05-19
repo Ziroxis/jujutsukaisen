@@ -25,6 +25,7 @@ public class ModCapabilities {
         QuestDataCapability.register();
     }
 
+    /*
     public static class Registry
     {
         @SubscribeEvent
@@ -37,6 +38,7 @@ public class ModCapabilities {
             }
         }
     }
+     */
 
 
     @SubscribeEvent

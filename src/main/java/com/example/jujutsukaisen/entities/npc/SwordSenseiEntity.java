@@ -63,70 +63,7 @@ public class SwordSenseiEntity extends Quester {
         //TODO redo more clean
         if (!player.level.isClientSide)
         {
-            Quest[] quests = questProps.getInProgressQuests();
 
-            for (int i = 0; i < quests.length; i++)
-            {
-                if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_01))
-                {
-                    player.sendMessage(new StringTextComponent("You already went for the path of punching curses... I'm sorry but I can't teach you my noble art."), player.getUUID());
-                    return ActionResultType.PASS;
-                }
-                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_01) && !(questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01)))
-                {
-                    player.sendMessage(new StringTextComponent("Almost done?"), player.getUUID());
-                    if (quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
-                    {
-                        questProps.addFinishedQuest(quests[i]);
-                        questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
-                        player.sendMessage(new StringTextComponent("Good job! But that's not enough to prove me your worth..."), player.getUUID());
-                    }
-
-                    else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
-                    {
-                        System.out.println("Quest is not over yet");
-                    }
-                    break;
-                }
-                else if (quests[i] == null && !(questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01)))
-                {
-                    questProps.addInProgressQuest(ModQuests.CURSED_SWORD_01.create());
-                    PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
-                    player.sendMessage(new StringTextComponent("Go kill ANYTHING to prove you're worth mastering the art of slashing curses!"), player.getUUID());
-                    System.out.println(quests[i]);
-                    break;
-                }
-
-
-                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_02) && !(questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02)))
-                {
-                    player.sendMessage(new StringTextComponent("Now go out and do what I asked!"), player.getUUID());
-                    if (quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
-                    {
-                        questProps.addFinishedQuest(quests[i]);
-                        questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                        player.sendMessage(new StringTextComponent("Good job! Here ya go, simple cursed sword lemme teach you that real quick"), player.getUUID());
-                        player.sendMessage(new StringTextComponent("You have unlocked Cursed Sword"), player.getUUID());
-                    }
-                    else if (!quests[i].isComplete() && quests[i].triggerStartEvent(Minecraft.getInstance().player))
-                    {
-                        System.out.println("Quest is not over yet");
-                    }
-                    break;
-                }
-                else if (quests[i] == null && questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01)
-                        && !(questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02)))
-                {
-                    questProps.addInProgressQuest(ModQuests.CURSED_SWORD_02.create());
-                    PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                    player.sendMessage(new StringTextComponent("Go collect me a bone to prove your kill."), player.getUUID());
-                    System.out.println(quests[i]);
-                    break;
-                }
-                System.out.println(quests[i]);
-            }
         }
         return ActionResultType.PASS;
     }

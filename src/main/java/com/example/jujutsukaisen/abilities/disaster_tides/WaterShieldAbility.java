@@ -21,7 +21,7 @@ public class WaterShieldAbility extends ContinuousAbility {
         super("Water Shield", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("The user gets resistance by enveloping himself with water");
         this.setMaxCooldown(30);
-        this.setCursedEnergyCost(0);
+        this.setCursedEnergyCost(3);
         this.onStartContinuityEvent = this::onStartContinuityEvent;
         this.onEndContinuityEvent = this::onEndContinuityEvent;
     }
@@ -29,7 +29,7 @@ public class WaterShieldAbility extends ContinuousAbility {
     private boolean onStartContinuityEvent(PlayerEntity player)
     {
         IEntityStats propsEntity = EntityStatsCapability.get(player);
-        propsEntity.alterCursedEnergy(-30);
+        propsEntity.alterCursedEnergy(-25);
         player.getAttribute(Attributes.ARMOR).addTransientModifier(WATER_RESISTANCE);
         return true;
     }

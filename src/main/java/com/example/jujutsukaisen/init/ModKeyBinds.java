@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
 
 
-@Mod.EventBusSubscriber(modid = Main.MODID)
+@Mod.EventBusSubscriber(modid = Main.MODID, value = Dist.CLIENT)
 public class ModKeyBinds {
     public static KeyBinding infoCard, enterCombatMode, nextCombatBar, prevCombatBar, combatSlot1, combatSlot2, combatSlot3, combatSlot4, combatSlot5, combatSlot6, combatSlot7, combatSlot8;
     private static KeyBinding[] keyBindsCombatbar;

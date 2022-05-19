@@ -11,7 +11,7 @@ public class BoodEdgeDropEvent {
 
     //TODO make blood edge get deleted when dropped
     @SubscribeEvent
-    public void onBloodEdgeDrop(ItemTossEvent event)
+    public static void onBloodEdgeDrop(ItemTossEvent event)
     {
         if (event.getEntityItem().getItem().getItem().equals(ModItems.BLOOD_EDGE.get()))
             System.out.println("You dropped the blood edge!");

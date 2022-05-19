@@ -15,7 +15,6 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.HashMap;
 
-@Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModQuests {
 
     private static HashMap<String, String> langMap = new HashMap<String, String>();

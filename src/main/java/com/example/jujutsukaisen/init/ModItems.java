@@ -31,7 +31,7 @@ public class ModItems {
 
 
     //WEAPONS
-    public static final RegistryObject<Item> BLACK_BLADE = ITEMS.register("black_blade", () -> new BlackBlade(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 8, 0f));
+    public static final RegistryObject<Item> BLACK_BLADE = ITEMS.register("black_blade", BlackBlade::new);
     public static final RegistryObject<Item> CURSED_HAMMER = ITEMS.register("cursed_hammer", () -> new CursedHammer(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 4, 0f));
     public static final RegistryObject<Item> CURSED_SPEAR = ITEMS.register("cursed_spear", () -> new CursedSpear(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 4, 0f));
     public static final RegistryObject<Item> DEMON_SLAUGHTERER = ITEMS.register("demon_slaughterer", () -> new DemonSlaughterer(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 5, 0f));

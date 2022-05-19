@@ -18,7 +18,7 @@ public class CursedEnergyContinuousPunchAbility extends ContinuousPunchAbility {
 
     public CursedEnergyContinuousPunchAbility()
     {
-        super("Cursed punch", AbilityCategories.AbilityCategory.BASIC);
+        super("Cursed punch continuous", AbilityCategories.AbilityCategory.BASIC);
         this.setDescription("The user envelops his next punches with an amount of cursed energy");
         this.setMaxCooldown(5);
         this.setCursedEnergyCost(2);

@@ -10,7 +10,9 @@ import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
@@ -30,6 +32,8 @@ public class CursedEnergyContinuousSwordAbility extends ContinuousPunchAbility {
 
     private float onHitEntity(PlayerEntity player, LivingEntity target)
     {
+        ItemStack weapon = player.getItemInHand(player.getUsedItemHand());
+        float damage = weapon.getDamageValue();
         if (!(player.getMainHandItem().getItem() instanceof SwordItem))
         {
             player.sendMessage(new StringTextComponent("Need to hold a sword!"), Util.NIL_UUID);
@@ -37,7 +41,11 @@ public class CursedEnergyContinuousSwordAbility extends ContinuousPunchAbility {
         }
 
         IEntityStats propsEntity = EntityStatsCapability.get(player);
+        float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
+        float finalDamage = (damage + strength) * (float)propsEntity.getDamageMultiplier();
+
         target.knockback(1, 2, 2);
+        target.hurt(ModDamageSource.causeAbilityDamage(player, this), finalDamage);
         propsEntity.alterCursedEnergy(-1);
         PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
 
