@@ -1,12 +1,9 @@
 package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.containers.ShadowContainer;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.spongepowered.asm.mixin.Shadow;
 
 public class ModContainers {
 

@@ -1,8 +1,11 @@
 package com.example.jujutsukaisen.client.renderer.entities.npc;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
 import com.example.jujutsukaisen.entities.npc.SwordSenseiEntity;
 import com.example.jujutsukaisen.models.npcs.HumanoidModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -21,6 +24,11 @@ public class SwordSenseiRenderer extends MobRenderer<SwordSenseiEntity, Humanoid
     public SwordSenseiRenderer(EntityRendererManager renderManager)
     {
         super(renderManager, new HumanoidModel<>(), 0.1F);
+    }
+
+    @Override
+    public void render(SwordSenseiEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     @Override

@@ -39,14 +39,6 @@ public class SwordSenseiEntity extends Quester {
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
     }
 
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(Attributes.ATTACK_DAMAGE, 30)
-                .add(Attributes.ARMOR, 20)
-                .add(Attributes.MAX_HEALTH, 200)
-                .add(Attributes.FOLLOW_RANGE, 100)
-                .add(Attributes.MOVEMENT_SPEED, 2);
-    }
 
     @Override
     public boolean removeWhenFarAway(double d) {

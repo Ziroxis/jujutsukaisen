@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.client.renderer.entities.npc;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.entities.curses.LizardEntity;
+import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
 import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
 import com.example.jujutsukaisen.models.npcs.HumanoidModel;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -26,8 +27,8 @@ public class PunchSenseiRenderer extends MobRenderer<PunchSenseiEntity, Humanoid
     }
 
     @Override
-    public ResourceLocation getTextureLocation(PunchSenseiEntity entity) {
-        return TEXTURE;
+    public void render(PunchSenseiEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     public static class Factory implements IRenderFactory<PunchSenseiEntity> {
@@ -36,5 +37,10 @@ public class PunchSenseiRenderer extends MobRenderer<PunchSenseiEntity, Humanoid
         public EntityRenderer<? super PunchSenseiEntity> createRenderFor(EntityRendererManager manager) {
             return new PunchSenseiRenderer(manager);
         }
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(PunchSenseiEntity entity) {
+        return TEXTURE;
     }
 }
