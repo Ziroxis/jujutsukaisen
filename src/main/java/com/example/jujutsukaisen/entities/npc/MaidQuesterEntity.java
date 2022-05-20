@@ -23,7 +23,7 @@ public class MaidQuesterEntity extends Quester {
     public MaidQuesterEntity(EntityType type, World world) {
         super(type, world);
     }
-    boolean acceptance = false;
+    boolean acceptanceMaidQuester_01 = false;
     @Override
     protected ActionResultType mobInteract(PlayerEntity player, Hand hand)
     {
@@ -37,12 +37,12 @@ public class MaidQuesterEntity extends Quester {
         {
             Quest[] quests = questProps.getInProgressQuests();
             //Check if they already have or already done the quest
-            if (questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !acceptance)
+            if (questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
             {
                 player.sendMessage(new StringTextComponent("Thank you for the big help! I'll talk to you when I need you again"), player.getUUID());
                 return ActionResultType.PASS;
             }
-            else if (questProps.hasInProgressQuest(ModQuests.OBTAIN_SWORD_01) && !acceptance)
+            else if (questProps.hasInProgressQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
             {
                 player.sendMessage(new StringTextComponent("Come back when you killed them! I'll give you a reward"), player.getUUID());
                 for (int i = 0; i < quests.length; i++)
@@ -61,10 +61,10 @@ public class MaidQuesterEntity extends Quester {
                 }
                     return ActionResultType.PASS;
             }
-            else if (!acceptance)
+            else if (!acceptanceMaidQuester_01)
             {
                 player.sendMessage(new StringTextComponent("Hey, could you help me with something if you can? I'll definitely give you a reward!"), player.getUUID());
-                acceptance = true;
+                acceptanceMaidQuester_01 = true;
                 return ActionResultType.PASS;
             }
             else
@@ -79,7 +79,7 @@ public class MaidQuesterEntity extends Quester {
                         break;
                     }
                 }
-                acceptance = false;
+                acceptanceMaidQuester_01 = false;
                 return ActionResultType.PASS;
             }
             //Give the quest if they haven't done or are doing it

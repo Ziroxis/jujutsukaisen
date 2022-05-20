@@ -1,10 +1,13 @@
 package com.example.jujutsukaisen.entities.npc;
 
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.quest.IQuestData;
 import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.init.ModQuests;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
+import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
@@ -25,6 +28,7 @@ import net.minecraft.world.World;
 
 public class SwordSenseiEntity extends Quester {
 
+    boolean swordSenseiAcceptance = false;
     public SwordSenseiEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
@@ -51,12 +55,77 @@ public class SwordSenseiEntity extends Quester {
             return ActionResultType.PASS;
 
         IQuestData questProps = QuestDataCapability.get(player);
+        IEntityStats statsProps = EntityStatsCapability.get(player);
 
-        //TODO redo more clean
+
         if (!player.level.isClientSide)
         {
+            Quest[] quests = questProps.getInProgressQuests();
+            for (int i = 0; i < quests.length; i++)
+            {
+                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
+                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
+                {
+                    questProps.addFinishedQuest(quests[i]);
+                    questProps.removeInProgressQuest(quests[i]);
+                    statsProps.alterLevel(1);
+                    PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                    PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
+                    player.sendMessage(new StringTextComponent("GOOD JOB!!! So proud of you! *Headpats you*"), player.getUUID());
+                    return ActionResultType.PASS;
+                }
+            }
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02))
+            {
+                player.sendMessage(new StringTextComponent("Come back when I got more stuff for ya to do uwu"), player.getUUID());
+            }
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_01))
+            {
+                player.sendMessage(new StringTextComponent("You already chose the path to punch curses, I'm very sorry but I can't teach you my teachings..."), player.getUUID());
+                return ActionResultType.PASS;
+            }
+            else if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_02))
+            {
+                player.sendMessage(new StringTextComponent("Hey, sorry to bother you but could you also get me a bone? Just to be sure, sorry...."), player.getUUID());
+                for (int i = 0; i<quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.CURSED_SWORD_02);
+                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        break;
+                    }
+                }
+                return ActionResultType.PASS;
+            }
+            else if (questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_01) || questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_02))
+            {
+                player.sendMessage(new StringTextComponent("C-Cou-Could you please do what I ask? Pretty please?"), player.getUUID());
+                return ActionResultType.PASS;
+            }
+            else if (!questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && !swordSenseiAcceptance)
+            {
+                player.sendMessage(new StringTextComponent("H-He-Hey there, are you interested in learning the way of the sword? Just asking... Sorry if I bother you."), player.getUUID());
+                swordSenseiAcceptance = true;
+                return ActionResultType.PASS;
+            }
+            else if (!questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && swordSenseiAcceptance)
+            {
+                player.sendMessage(new StringTextComponent("I'm so happy you said yes ^_^, could you just kill something for me? Just to be sure you really want it. It's okay if you don't though TT."), player.getUUID());
+                for (int i = 0; i<quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.CURSED_SWORD_01);
+                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        break;
+                    }
+                }
+                return ActionResultType.PASS;
+            }
 
         }
         return ActionResultType.PASS;
     }
 }
+
