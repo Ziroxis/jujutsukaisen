@@ -72,7 +72,6 @@ public class PunchSenseiEntity extends Quester {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
                     statsProps.alterLevel(1);
-                    PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
                     PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
                     player.sendMessage(new StringTextComponent("Good job kid, gotta give it to ya"), player.getUUID());
                     return ActionResultType.PASS;
@@ -95,7 +94,7 @@ public class PunchSenseiEntity extends Quester {
                     if (quests[i] == null)
                     {
                         questProps.addInProgressQuest(ModQuests.CURSED_PUNCHES_02);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         break;
                     }
                 }
@@ -120,7 +119,7 @@ public class PunchSenseiEntity extends Quester {
                     if (quests[i] == null)
                     {
                         questProps.addInProgressQuest(ModQuests.CURSED_PUNCHES_01);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         break;
                     }
                 }

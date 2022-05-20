@@ -45,6 +45,7 @@ public class FlowingRedScaleAbility extends ContinuousAbility {
         player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(RED);
         player.getAttribute(ModAttributes.STEP_HEIGHT.get()).addTransientModifier(STEP_HEIGHT);
         player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(RED);
+        player.getAttribute(ModAttributes.FALL_RESISTANCE.get()).addTransientModifier(RED);
 
 
         return true;
@@ -56,6 +57,7 @@ public class FlowingRedScaleAbility extends ContinuousAbility {
         player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).removeModifier(RED);
         player.getAttribute(ModAttributes.STEP_HEIGHT.get()).removeModifier(STEP_HEIGHT);
         player.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(RED);
+        player.getAttribute(ModAttributes.FALL_RESISTANCE.get()).removeModifier(RED);
 
         return true;
     }

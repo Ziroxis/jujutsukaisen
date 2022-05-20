@@ -6,8 +6,6 @@ import com.example.jujutsukaisen.data.quest.IQuestData;
 import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.init.ModQuests;
 import com.example.jujutsukaisen.networking.PacketHandler;
-import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
-import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
@@ -36,7 +34,6 @@ public class MaidQuesterEntity extends Quester {
         if (!player.level.isClientSide)
         {
             Quest[] quests = questProps.getInProgressQuests();
-            //Check if they already have or already done the quest
             if (questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
             {
                 player.sendMessage(new StringTextComponent("Thank you for the big help! I'll talk to you when I need you again"), player.getUUID());
@@ -52,8 +49,7 @@ public class MaidQuesterEntity extends Quester {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
                         statsProps.alterLevel(1);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
-                        PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         player.sendMessage(new StringTextComponent("HUGE THANKS!!!! HERE IS A REWARD!"), player.getUUID());
                         player.sendMessage(new StringTextComponent("I'll see you around!!!"), player.getUUID());
                         remove();
@@ -75,8 +71,7 @@ public class MaidQuesterEntity extends Quester {
                     if (quests[i] == null)
                     {
                         questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
-                        break;
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);                        break;
                     }
                 }
                 acceptanceMaidQuester_01 = false;

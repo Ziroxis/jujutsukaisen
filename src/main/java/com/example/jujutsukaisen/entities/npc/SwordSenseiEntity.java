@@ -69,7 +69,6 @@ public class SwordSenseiEntity extends Quester {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
                     statsProps.alterLevel(1);
-                    PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
                     PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
                     player.sendMessage(new StringTextComponent("GOOD JOB!!! So proud of you! *Headpats you*"), player.getUUID());
                     return ActionResultType.PASS;
@@ -78,6 +77,7 @@ public class SwordSenseiEntity extends Quester {
             if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02))
             {
                 player.sendMessage(new StringTextComponent("Come back when I got more stuff for ya to do uwu"), player.getUUID());
+                return ActionResultType.PASS;
             }
             if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_01))
             {
@@ -92,7 +92,7 @@ public class SwordSenseiEntity extends Quester {
                     if (quests[i] == null)
                     {
                         questProps.addInProgressQuest(ModQuests.CURSED_SWORD_02);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         break;
                     }
                 }
@@ -117,7 +117,7 @@ public class SwordSenseiEntity extends Quester {
                     if (quests[i] == null)
                     {
                         questProps.addInProgressQuest(ModQuests.CURSED_SWORD_01);
-                        PacketHandler.sendToServer(new SSyncQuestDataPacket(i, questProps));
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         break;
                     }
                 }
