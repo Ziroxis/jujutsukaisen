@@ -37,8 +37,9 @@ public class Main
 
     public Main() {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.register(new AttachingCapabilities.Registry());
 
+
+        MinecraftForge.EVENT_BUS.register(new AttachingCapabilities.Registry());
         ModAttributes.ATTRIBUTES.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
         ModEntities.ENTITIES.register(modEventBus);
@@ -60,6 +61,8 @@ public class Main
     private void setup(final FMLCommonSetupEvent event)
     {
         ModCapabilities.init();
+        ModNetwork.init();
+
         ArgumentTypes.register("ability", AbilityArgument.class, new ArgumentSerializer<>(AbilityArgument::ability));
         ArgumentTypes.register("group", AbilityGroupArgument.class, new ArgumentSerializer<>(AbilityGroupArgument::abilityGroup));
 
@@ -70,7 +73,6 @@ public class Main
         });
 
 
-        ModNetwork.init();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event)
@@ -88,10 +90,6 @@ public class Main
 
     private void processIMC(final InterModProcessEvent event)
     {
-
-    }
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
 
     }
 }

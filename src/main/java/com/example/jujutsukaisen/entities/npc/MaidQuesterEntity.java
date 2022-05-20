@@ -47,7 +47,7 @@ public class MaidQuesterEntity extends Quester {
                 player.sendMessage(new StringTextComponent("Come back when you killed them! I'll give you a reward"), player.getUUID());
                 for (int i = 0; i < quests.length; i++)
                 {
-                    if (quests[i] != null && quests[i].equals(ModQuests.OBTAIN_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player))
+                    if (quests[i] != null && quests[i].equals(ModQuests.OBTAIN_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
                     {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);

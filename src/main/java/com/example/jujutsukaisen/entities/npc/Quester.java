@@ -71,7 +71,7 @@ public abstract class Quester extends CreatureEntity {
                 }
                 else if (quests[i] != null && quests[i].equals(quest) && !(questProps.hasFinishedQuest(quest)))
                     player.sendMessage(new StringTextComponent(during), player.getUUID());
-                if (quests[i] != null && quests[i].isComplete() && quests[i].triggerCompleteEvent(Minecraft.getInstance().player)) {
+                if (quests[i] != null && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)) {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
                     PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));

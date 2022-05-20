@@ -15,6 +15,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -305,15 +306,13 @@ public class AbilitiesEvents
 			PlayerEntity player = event.getPlayer();
 			ItemStack heldItem = player.getMainHandItem();
 
-			if (!heldItem.isEmpty())
-				return;
 			
 			IEntityStats statProps = EntityStatsCapability.get(player);
 			IAbilityData props = AbilityDataCapability.get(player);
 			LivingEntity target = (LivingEntity) event.getTarget();
 
 
-			
+
 			for (Ability ability : props.getEquippedAbilities(AbilityCategories.AbilityCategory.ALL))
 			{
 				if (ability == null)
@@ -323,8 +322,27 @@ public class AbilitiesEvents
 				{
 					if (ability instanceof ContinuousPunchAbility && ability.isContinuous())
 					{
-
+						if (!heldItem.isEmpty())
+							return;
 						float damage = ((ContinuousPunchAbility) props.getEquippedAbility(ability)).hitEntity(player, target);
+
+						if (damage <= 0)
+						{
+							event.setCanceled(true);
+							System.out.println("cancelled");
+							return;
+						}
+
+						float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
+						float finalDamage = (damage + strength) * (float)statProps.getDamageMultiplier();
+						System.out.println("Final damage is +" + finalDamage);
+						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
+					}
+					if (ability instanceof PunchAbility && ability.isContinuous())
+					{
+						if (!heldItem.isEmpty())
+							return;
+						float damage = ((PunchAbility) props.getEquippedAbility(ability)).hitEntity(player, target);
 
 						if (damage <= 0)
 						{
@@ -337,10 +355,11 @@ public class AbilitiesEvents
 						System.out.println("Final damage is +" + finalDamage);
 						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
 					}
-					if (ability instanceof PunchAbility && ability.isContinuous())
+					if (ability instanceof ContinuousSwordAbility && ability.isContinuous())
 					{
-
-						float damage = ((PunchAbility) props.getEquippedAbility(ability)).hitEntity(player, target);
+						if (!(heldItem.getItem() instanceof SwordItem))
+							return;
+						float damage = ((ContinuousSwordAbility) props.getEquippedAbility(ability)).hitEntity(player, target);
 
 						if (damage <= 0)
 						{

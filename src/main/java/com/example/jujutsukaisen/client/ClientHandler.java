@@ -34,25 +34,11 @@ public class ClientHandler {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.POSSESED_PUPPET.get(), new PossesedPuppetRenderer.Factory());
 
         Map<String, PlayerRenderer> playerSkinMap = Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap();
+        /*
         ClientHandler.addPlayerLayers(playerSkinMap.get("default"));
         ClientHandler.addPlayerLayers(playerSkinMap.get("slim"));
 
-    }
+         */
 
-    @OnlyIn(Dist.CLIENT)
-    public static void addPlayerLayers(PlayerRenderer renderer)
-    {
-        List<LayerRenderer<AbstractClientPlayerEntity, PlayerModel<AbstractClientPlayerEntity>>> layers = ObfuscationReflectionHelper.getPrivateValue(LivingRenderer.class, renderer, "field_177097_h");
-        if(layers != null)
-        {
-            /*
-            layers.add(new GrimoireLayer<>(renderer));
-            layers.add(new TGLayer<>(renderer));
-            layers.add(new BlackModeLayer<>(renderer));
-            layers.add(new BlackCocoonLayer<>(renderer));
-            layers.add(new SlashBladesLayer<>(renderer));
-            */
-        }
     }
-
 }
