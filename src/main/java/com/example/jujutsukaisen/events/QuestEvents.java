@@ -1,10 +1,13 @@
 package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityUseEvent;
+import com.example.jujutsukaisen.damagesource.AbilityDamageSource;
 import com.example.jujutsukaisen.data.quest.IQuestData;
 import com.example.jujutsukaisen.data.quest.objectives.*;
 import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
+import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.networking.PacketHandler;
@@ -150,6 +153,10 @@ public class QuestEvents
     @SubscribeEvent
     public static void onEntityDies(LivingDeathEvent event)
     {
+        System.out.println(event.getSource());
+        System.out.println(event.getSource().getEntity());
+
+
         if (!(event.getSource().getEntity() instanceof PlayerEntity) || event.getSource().getEntity().level.isClientSide)
             return;
 

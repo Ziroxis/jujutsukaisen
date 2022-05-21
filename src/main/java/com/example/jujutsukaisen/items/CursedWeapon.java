@@ -7,6 +7,7 @@ import com.example.jujutsukaisen.entities.CurseEntity;
 import com.example.jujutsukaisen.init.ModDamageSource;
 import com.example.jujutsukaisen.init.ModItems;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -20,11 +21,15 @@ public abstract class CursedWeapon extends SwordItem {
     @Override
     public boolean hurtEnemy(ItemStack itemStack, LivingEntity target, LivingEntity attacker)
     {
-        float damage = this.getDamage();
-        if (target instanceof CurseEntity)
+        if (target instanceof CurseEntity && attacker instanceof PlayerEntity)
         {
+            PlayerEntity player = (PlayerEntity) attacker;
+            System.out.println(player);
+            System.out.println(target);
             target.invulnerableTime = 0;
-            target.hurt(ModDamageSource.causeAbilityDamage(attacker, new Ability("Cursed weapon", AbilityCategories.AbilityCategory.ALL)), damage);
+            float damage = this.getDamage();
+            ModDamageSource source = ModDamageSource.causeAbilityDamage(player, new Ability("Cursed weapon use", AbilityCategories.AbilityCategory.ALL)).getSource();
+            target.hurt(source, damage);
         }
         return super.hurtEnemy(itemStack, target, attacker);
     }

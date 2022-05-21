@@ -32,7 +32,6 @@ public class MaidQuesterEntity extends Quester {
 
         IQuestData questProps = QuestDataCapability.get(player);
         IEntityStats statsProps = EntityStatsCapability.get(player);
-
         if (!player.level.isClientSide)
         {
             Quest[] quests = questProps.getInProgressQuests();
@@ -52,7 +51,7 @@ public class MaidQuesterEntity extends Quester {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
                         statsProps.alterLevel(1);
-                        PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         player.sendMessage(new StringTextComponent("HUGE THANKS!!!! HERE IS A REWARD!"), player.getUUID());
                         player.sendMessage(new StringTextComponent("I'll see you around!!!"), player.getUUID());
                         remove();
@@ -71,10 +70,10 @@ public class MaidQuesterEntity extends Quester {
                 player.sendMessage(new StringTextComponent("Thank you! Could you please get rid of those small annoying spirits?"), player.getUUID());
                 for (int i = 0; i < quests.length; i++)
                 {
-                    if (quests[i].isLocked(questProps) && quests[i].triggerStartEvent(player))
+                    if (quests[i] == null)
                     {
                         questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01.create());
-                        PacketHandler.sendToServer(new CSyncQuestDataPacket(questProps));
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         break;
                     }
                 }

@@ -72,7 +72,7 @@ public class PunchSenseiEntity extends Quester {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
                     statsProps.alterLevel(1);
-                    PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
+                    PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                     player.sendMessage(new StringTextComponent("Good job kid, gotta give it to ya"), player.getUUID());
                     return ActionResultType.PASS;
                 }
