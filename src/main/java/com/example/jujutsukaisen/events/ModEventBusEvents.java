@@ -6,6 +6,7 @@ import com.example.jujutsukaisen.entities.curses.GrassHopperEntity;
 import com.example.jujutsukaisen.entities.curses.LizardEntity;
 import com.example.jujutsukaisen.entities.curses.RoppongiEntity;
 import com.example.jujutsukaisen.entities.curses.SmallPoxEntity;
+import com.example.jujutsukaisen.entities.npc.GradeCheckerEntity;
 import com.example.jujutsukaisen.entities.npc.MaidQuesterEntity;
 import com.example.jujutsukaisen.entities.npc.PunchSenseiEntity;
 import com.example.jujutsukaisen.entities.npc.SwordSenseiEntity;
@@ -26,6 +27,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.PUNCH_SENSEI.get(), PunchSenseiEntity.setCustomAttributes().build());
         event.put(ModEntities.SWORD_SENSEI.get(), SwordSenseiEntity.setCustomAttributes().build());
         event.put(ModEntities.MAID_QUESTER.get(), MaidQuesterEntity.setCustomAttributes().build());
+        event.put(ModEntities.GRADE_CHECKER.get(), GradeCheckerEntity.setCustomAttributes().build());
         event.put(ModEntities.GRASS_HOPPER.get(), GrassHopperEntity.setCustomAttributes().build());
         event.put(ModEntities.POSSESED_PUPPET.get(), GrassHopperEntity.setCustomAttributes().build());
 

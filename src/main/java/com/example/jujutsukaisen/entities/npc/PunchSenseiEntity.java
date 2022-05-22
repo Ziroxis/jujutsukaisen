@@ -80,6 +80,7 @@ public class PunchSenseiEntity extends Quester {
             if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02))
             {
                 player.sendMessage(new StringTextComponent("Got nothing else for ya to do kid!"), player.getUUID());
+                return ActionResultType.PASS;
             }
             if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) || questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_01))
             {

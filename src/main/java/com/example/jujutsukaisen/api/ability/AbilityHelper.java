@@ -34,6 +34,21 @@ import java.util.function.Predicate;
 
 public class AbilityHelper {
 
+
+    public static Predicate<Ability> getAbilityFromCategoryPredicate(AbilityCategories.AbilityCategory category)
+    {
+        // Removes all non-command abilities obtained from category
+        return (ability) ->
+        {
+            if(ability.getUnlockType() == AbilityUnlock.COMMAND)
+                return false;
+
+            if(ability.getCategory() == category)
+                return true;
+
+            return false;
+        };
+    }
     @Nullable
     public static AbilityOverlay getCurrentOverlay(PlayerEntity player)
     {
