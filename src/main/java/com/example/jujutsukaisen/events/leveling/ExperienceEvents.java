@@ -3,6 +3,7 @@ package com.example.jujutsukaisen.events.leveling;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,7 +38,10 @@ public class ExperienceEvents {
             ExperienceUpEvent eventExperienceUp = new ExperienceUpEvent(player, statsProps.getExperience());
             if (MinecraftForge.EVENT_BUS.post(eventExperienceUp))
                 return;
-            statsProps.setMaxCursedEnergy(statsProps.getMaxCursedEnergy() + 50);
+            if (statsProps.getCurse().equals(ModValues.HUMAN))
+                statsProps.setMaxCursedEnergy(statsProps.getMaxCursedEnergy() + 50);
+            else
+                statsProps.setMaxCursedEnergy(statsProps.getMaxExperience() + 75);
             PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
             //player.sendMessage(new StringTextComponent("You leveled up to level " + statsProps.getLevel() + "!"), player.getUUID());
         }
