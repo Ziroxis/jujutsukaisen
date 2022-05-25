@@ -143,7 +143,6 @@ public class CursedSpiritAcceptanceScreen extends Screen {
 
     public void backgroundRendering(MatrixStack matrixStack)
     {
-        PlayerEntity player = this.getMinecraft().player;
 
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);

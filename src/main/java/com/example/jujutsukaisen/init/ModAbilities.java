@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.abilities.basic.punch.CursedPunchAbility;
+import com.example.jujutsukaisen.abilities.basic.punch.DivergentFistAbility;
 import com.example.jujutsukaisen.abilities.basic.sword.BattoSwordAbility;
 import com.example.jujutsukaisen.abilities.basic.punch.CursedEnergyContinuousPunchAbility;
 import com.example.jujutsukaisen.abilities.basic.sword.CursedEnergyContinuousSwordAbility;
@@ -43,7 +44,7 @@ public class ModAbilities {
     public static final Ability[] BLOOD_MANIPULATION = new Ability[] {BloodShurikenAbility.INSTANCE, PiercingBloodAbility.INSTANCE, BloodMeteoriteAbility.INSTANCE, BloodEdgeAbility.INSTANCE, FlowingRedScaleAbility.INSTANCE};
     public static final Ability[] PROJECTION_SORCERY = new Ability[] {FrameSpeedAbility.INSTANCE, FrameBreakAbility.INSTANCE, FrameTeleportationAbility.INSTANCE, FrameCatchAbility.INSTANCE, FrameMovementPassive.INSTANCE};
     public static final Ability[] TENSHADOW_TECHNIQUE = new Ability[] {DivineDogsAbility.INSTANCE, ShadowInventoryAbility.INSTANCE};
-    public static final Ability[] CURSED_PUNCHES = new Ability[] {CursedEnergyContinuousPunchAbility.INSTANCE, CursedPunchAbility.INSTANCE};
+    public static final Ability[] CURSED_PUNCHES = new Ability[] {CursedEnergyContinuousPunchAbility.INSTANCE, CursedPunchAbility.INSTANCE, DivergentFistAbility.INSTANCE};
     public static final Ability[] CURSED_SWORD = new Ability[] {BattoSwordAbility.INSTANCE, CursedEnergyContinuousSwordAbility.INSTANCE, EveningMoonAbility.INSTANCE};
 
     private static Ability registerAbility(Ability ability)

@@ -11,13 +11,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.vector.Vector3d;
 
-public class CursedPunchAbility extends PunchAbility {
-    public static final CursedPunchAbility INSTANCE = new CursedPunchAbility();
+public class DivergentFistAbility extends PunchAbility {
+    public static final DivergentFistAbility INSTANCE = new DivergentFistAbility();
 
-    public CursedPunchAbility()
+    public DivergentFistAbility()
     {
-        super("Cursed Punch", AbilityCategories.AbilityCategory.BASIC);
-        this.setDescription("You envelop your next punch with an extra amount of cursed energy");
+        super("Divergent Fist", AbilityCategories.AbilityCategory.BASIC);
+        this.setDescription("You punch your enemy in two times");
         this.setCursedEnergyCost(1);
         this.setMaxCooldown(5);
         this.onHitEntityEvent = this::onHitEntity;
@@ -28,9 +28,9 @@ public class CursedPunchAbility extends PunchAbility {
         IEntityStats propsEntity = EntityStatsCapability.get(player);
         Vector3d speed = Beapi.propulsion(target, -1, -1);
         target.setDeltaMovement(speed.x, 0.2, speed.z);
-        propsEntity.alterCursedEnergy(-10);
+        propsEntity.alterCursedEnergy(-5);
         PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
 
-        return 5;
+        return 8;
     }
 }
