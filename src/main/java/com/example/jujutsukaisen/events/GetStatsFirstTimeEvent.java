@@ -16,6 +16,7 @@ import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.server.SOpenCursedSpiritAcceptanceScreenPacket;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.ability.SSyncAbilityDataPacket;
 import net.minecraft.client.Minecraft;
@@ -45,7 +46,7 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng = Beapi.RNG(5);
+            int rng = Beapi.RNG(4);
             switch (rng)
             {
                 case 0:
@@ -67,20 +68,8 @@ public class GetStatsFirstTimeEvent {
                     props.setCurse(ModValues.HUMAN);
                     break;
                 case 3:
-                    props.setClan(ModValues.NONE);
-                    props.setTechnique(ModValues.DISASTER_TIDES);
-                    abilityProps.addUnlockedAbility(WaterFlowAbility.INSTANCE);
-                    abilityProps.addUnlockedAbility(DisasterTidesPassive.INSTANCE);
-                    props.setCurse(ModValues.WATER);
+                    PacketHandler.sendTo(new SOpenCursedSpiritAcceptanceScreenPacket(), player);
                     break;
-                case 4:
-                    props.setClan(ModValues.NONE);
-                    props.setTechnique(ModValues.DISASTER_FLAMES);
-                    abilityProps.addUnlockedAbility(FlameTouchAbility.INSTANCE);
-                    abilityProps.addUnlockedAbility(DisasterFlamesPassive.INSTANCE);
-                    props.setCurse(ModValues.FIRE);
-                    break;
-
             }
         }
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);

@@ -5,10 +5,7 @@ import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.*;
 import com.example.jujutsukaisen.networking.client.ability.*;
-import com.example.jujutsukaisen.networking.server.SOpenPlayerScreenPacket;
-import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
-import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
-import com.example.jujutsukaisen.networking.server.SSyncWorldDataPacket;
+import com.example.jujutsukaisen.networking.server.*;
 import com.example.jujutsukaisen.networking.server.ability.*;
 
 public class ModNetwork {
@@ -23,6 +20,7 @@ public class ModNetwork {
         PacketHandler.registerPacket(CChangeCombatBarPacket.class, CChangeCombatBarPacket::encode, CChangeCombatBarPacket::decode, CChangeCombatBarPacket::handle);
         PacketHandler.registerPacket(CEquipAbilityPacket.class, CEquipAbilityPacket::encode, CEquipAbilityPacket::decode, CEquipAbilityPacket::handle);
         PacketHandler.registerPacket(CTogglePassiveAbilityPacket.class, CTogglePassiveAbilityPacket::encode, CTogglePassiveAbilityPacket::decode, CTogglePassiveAbilityPacket::handle);
+        PacketHandler.registerPacket(COpenCursedSpiritAcceptanceScreenPacket.class, COpenCursedSpiritAcceptanceScreenPacket::encode, COpenCursedSpiritAcceptanceScreenPacket::decode, COpenCursedSpiritAcceptanceScreenPacket::handle);
         PacketHandler.registerPacket(COpenPlayerScreenPacket.class, COpenPlayerScreenPacket::encode, COpenPlayerScreenPacket::decode, COpenPlayerScreenPacket::handle);
         PacketHandler.registerPacket(CRequestSyncWorldDataPacket.class, CRequestSyncWorldDataPacket::encode, CRequestSyncWorldDataPacket::decode, CRequestSyncWorldDataPacket::handle);
         PacketHandler.registerPacket(CSyncQuestDataPacket.class, CSyncQuestDataPacket::encode, CSyncQuestDataPacket::decode, CSyncQuestDataPacket::handle);
@@ -40,6 +38,7 @@ public class ModNetwork {
         PacketHandler.registerPacket(SViewProtectionPacket.class, SViewProtectionPacket::encode, SViewProtectionPacket::decode, SViewProtectionPacket::handle);
         PacketHandler.registerPacket(SAnimeScreamPacket.class, SAnimeScreamPacket::encode, SAnimeScreamPacket::decode, SAnimeScreamPacket::handle);
         PacketHandler.registerPacket(SUpdateEquippedAbilityPacket.class, SUpdateEquippedAbilityPacket::encode, SUpdateEquippedAbilityPacket::decode, SUpdateEquippedAbilityPacket::handle);
+        PacketHandler.registerPacket(SOpenCursedSpiritAcceptanceScreenPacket.class, SOpenCursedSpiritAcceptanceScreenPacket::encode, SOpenCursedSpiritAcceptanceScreenPacket::decode, SOpenCursedSpiritAcceptanceScreenPacket::handle);
         PacketHandler.registerPacket(SOpenPlayerScreenPacket.class, SOpenPlayerScreenPacket::encode, SOpenPlayerScreenPacket::decode, SOpenPlayerScreenPacket::handle);
         PacketHandler.registerPacket(SChangeCombatBarPacket.class, SChangeCombatBarPacket::encode, SChangeCombatBarPacket::decode, SChangeCombatBarPacket::handle);
         PacketHandler.registerPacket(SSyncWorldDataPacket.class, SSyncWorldDataPacket::encode, SSyncWorldDataPacket::decode, SSyncWorldDataPacket::handle);
