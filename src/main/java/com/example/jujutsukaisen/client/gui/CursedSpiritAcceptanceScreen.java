@@ -147,7 +147,7 @@ public class CursedSpiritAcceptanceScreen extends Screen {
 
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
-        drawString(matrixStack, font, TextFormatting.GRAY + "DO YOU ACCEPT THE WEIGHT OF CURSES?", guiLeft + 72, guiTop + 30, Color.GRAY.getRGB());
+        drawString(matrixStack, font, TextFormatting.GRAY + "DO YOU ACCEPT THE WEIGHT OF CURSES?", guiLeft + 42, guiTop + 30, Color.GRAY.getRGB());
     }
 
     @Override

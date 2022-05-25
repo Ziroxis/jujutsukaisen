@@ -17,18 +17,16 @@ public class cursedEnergyEvents {
     {
 
         PlayerEntity player = event.player;
-        if (!player.level.isClientSide)
-        {
-            IEntityStats propsEntity = EntityStatsCapability.get(player);
-            float regeneration = 0;
-            if (propsEntity.getCurse().equals(ModValues.HUMAN))
-                regeneration = propsEntity.getLevel()/2;
-            else
-                regeneration = propsEntity.getLevel();
+        IEntityStats propsEntity = EntityStatsCapability.get(player);
+        float regeneration = 0;
+        if (propsEntity.getCurse().equals(ModValues.HUMAN))
+            regeneration = propsEntity.getLevel()/2;
+        else
+            regeneration = propsEntity.getLevel();
 
 
-            if (player.tickCount % 20 == 0)
-                propsEntity.alterCursedEnergy((int) (1 + regeneration));
-        }
+        if (player.tickCount % 20 == 0)
+            propsEntity.alterCursedEnergy((int) (1 + regeneration));
+
     }
 }
