@@ -46,8 +46,10 @@ public class GradeCheckerEntity extends Quester {
         {
             player.sendMessage(new StringTextComponent("For now I'll give ya grade 4, alright?"), player.getUUID());
             statsProps.setCurseGrade(ModValues.grade_4);
+            PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
+            return ActionResultType.PASS;
         }
-        if (talkedBefore && ((this.tickCount - tickCountOne) >= 1200))
+        if (talkedBefore && ((this.tickCount - tickCountOne) >= 24000))
         {
             player.sendMessage(new StringTextComponent("Lemme check your grade real quick."), player.getUUID());
             int level = statsProps.getLevel();
@@ -57,8 +59,39 @@ public class GradeCheckerEntity extends Quester {
                 player.sendMessage(new StringTextComponent("I'm sorry but you're just... Not cut for a higher grade yet."), player.getUUID());
 
             }
+            if (level < 5 && level > 0)
+            {
+                player.sendMessage(new StringTextComponent("For now I'll give ya grade 3, alright?"), player.getUUID());
+                statsProps.setCurseGrade(ModValues.grade_3);
+            }
+            if (level < 15 && level > 5)
+            {
+                player.sendMessage(new StringTextComponent("For now I'll give ya grade 2, alright?"), player.getUUID());
+                statsProps.setCurseGrade(ModValues.grade_2);
+
+            }
+            if (level < 40 && level > 15)
+            {
+                player.sendMessage(new StringTextComponent("For now I'll give ya grade 1, alright?"), player.getUUID());
+                statsProps.setCurseGrade(ModValues.grade_1);
+
+            }
+            if (level < 60 && level > 40)
+            {
+                player.sendMessage(new StringTextComponent("For now I'll give ya semi special grade, alright?"), player.getUUID());
+                statsProps.setCurseGrade(ModValues.semi_special_grade);
+
+            }
+            if (level <= 70)
+            {
+                player.sendMessage(new StringTextComponent("For now I'll give ya special grade, alright?"), player.getUUID());
+                statsProps.setCurseGrade(ModValues.special_grade);
+            }
             tickCountOne = this.tickCount;
         }
+        else
+            player.sendMessage(new StringTextComponent("I just rated you... Come back tomorrow ay?"), player.getUUID());
+
 
 
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);

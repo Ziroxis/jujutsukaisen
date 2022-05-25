@@ -92,6 +92,11 @@ public class DyingEvents {
         INBT nbt = new CompoundNBT();
         // Quest data is persisted no matter the config option.
         // Keep the quests data
+        IEntityStats oldEntityStats = EntityStatsCapability.get(original);
+        nbt = EntityStatsCapability.INSTANCE.writeNBT(oldEntityStats, null);
+        IEntityStats newEntityStats = EntityStatsCapability.get(player);
+        EntityStatsCapability.INSTANCE.readNBT(newEntityStats, null, nbt);
+
         IQuestData oldQuestData = QuestDataCapability.get(original);
         nbt = QuestDataCapability.INSTANCE.writeNBT(oldQuestData, null);
         IQuestData newQuestData = QuestDataCapability.get(player);

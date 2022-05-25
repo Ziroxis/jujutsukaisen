@@ -18,6 +18,7 @@ public abstract class CursedWeapon extends SwordItem {
         super(itemTier, damage, attackSpeed, properties);
     }
 
+    /*
     @Override
     public boolean hurtEnemy(ItemStack itemStack, LivingEntity target, LivingEntity attacker)
     {
@@ -33,6 +34,7 @@ public abstract class CursedWeapon extends SwordItem {
         }
         return super.hurtEnemy(itemStack, target, attacker);
     }
+     */
 
     @Override
     public int getEnchantmentValue()

@@ -84,7 +84,6 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 		{
 			System.out.println("Check 4");
 			PacketHandler.sendToServer(new CGiveItemStackPacket(stack));
-			player.inventory.add(stack);
 			return true;
 		}
 		else
