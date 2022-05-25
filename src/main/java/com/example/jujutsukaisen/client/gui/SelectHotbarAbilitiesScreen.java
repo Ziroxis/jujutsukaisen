@@ -51,7 +51,7 @@ public class SelectHotbarAbilitiesScreen extends Screen
 	{
 		this.renderBackground(matrixStack);
 
-		Minecraft.getInstance().getTextureManager().bind(ModResources.BLANK);
+		Minecraft.getInstance().getTextureManager().bind(ModResources.ABILITIES);
 
 		int posX = this.width;
 		int posY = this.height;

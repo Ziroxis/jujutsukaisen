@@ -23,7 +23,7 @@ public class SmallPoxEntity extends CurseEntity {
     public SmallPoxEntity(EntityType<? extends SmallPoxEntity> type, World world)
     {
         super(type, world);
-        this.xpDrop = 100;
+        this.xpDrop = 1000;
     }
 
     @Override
@@ -45,11 +45,11 @@ public class SmallPoxEntity extends CurseEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes()
     {
         return MobEntity.createMobAttributes()
-                .add(Attributes.ARMOR, 10)
-                .add(Attributes.MAX_HEALTH, 20)
+                .add(Attributes.ARMOR, 12)
+                .add(Attributes.MAX_HEALTH, 70)
                 .add(Attributes.FOLLOW_RANGE, 25)
-                .add(Attributes.MOVEMENT_SPEED, 0.26)
-                .add(Attributes.ATTACK_DAMAGE, 5)
+                .add(Attributes.MOVEMENT_SPEED, 0.5)
+                .add(Attributes.ATTACK_DAMAGE, 12)
                 .add(Attributes.ATTACK_SPEED, 5);
     }
 

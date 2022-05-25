@@ -22,6 +22,7 @@ public class PossesedPuppetEntity extends CurseEntity {
     public PossesedPuppetEntity(EntityType<? extends PossesedPuppetEntity> type, World world) {
         super(type, world);
         this.xpDrop = 50;
+        this.setCurseGrade(4);
     }
 
     @Override
@@ -43,11 +44,11 @@ public class PossesedPuppetEntity extends CurseEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes()
     {
         return MobEntity.createMobAttributes()
-                .add(Attributes.ARMOR, 10)
-                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.ARMOR, 2)
+                .add(Attributes.MAX_HEALTH, 20)
                 .add(Attributes.FOLLOW_RANGE, 25)
                 .add(Attributes.MOVEMENT_SPEED, 0.27)
-                .add(Attributes.ATTACK_DAMAGE, 10)
+                .add(Attributes.ATTACK_DAMAGE, 4)
                 .add(Attributes.ATTACK_SPEED, 2);
     }
 

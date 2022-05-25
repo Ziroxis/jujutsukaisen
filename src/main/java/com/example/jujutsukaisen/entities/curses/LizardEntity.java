@@ -23,7 +23,8 @@ public class LizardEntity extends CurseEntity {
 
     public LizardEntity(EntityType<? extends LizardEntity> type, World world) {
         super(type, world);
-        this.xpDrop = 50;
+        this.xpDrop = 200;
+        this.setCurseGrade(2);
     }
 
     @Override
@@ -45,11 +46,11 @@ public class LizardEntity extends CurseEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes()
     {
         return MobEntity.createMobAttributes()
-                .add(Attributes.ARMOR, 10)
-                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.ARMOR, 5)
+                .add(Attributes.MAX_HEALTH, 35)
                 .add(Attributes.FOLLOW_RANGE, 25)
-                .add(Attributes.MOVEMENT_SPEED, 0.27)
-                .add(Attributes.ATTACK_DAMAGE, 10)
+                .add(Attributes.MOVEMENT_SPEED, 0.35)
+                .add(Attributes.ATTACK_DAMAGE, 7)
                 .add(Attributes.ATTACK_SPEED, 2);
     }
 

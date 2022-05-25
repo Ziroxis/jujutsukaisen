@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class GrassHopperEntity extends CurseEntity {
     public GrassHopperEntity(EntityType<? extends GrassHopperEntity> type, World world) {
         super(type, world);
-        this.xpDrop = 50;
+        this.xpDrop = 500;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class GrassHopperEntity extends CurseEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes()
     {
         return MobEntity.createMobAttributes()
-                .add(Attributes.ARMOR, 10)
-                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.ARMOR, 7)
+                .add(Attributes.MAX_HEALTH, 50)
                 .add(Attributes.FOLLOW_RANGE, 25)
-                .add(Attributes.MOVEMENT_SPEED, 0.27)
-                .add(Attributes.ATTACK_DAMAGE, 10)
+                .add(Attributes.MOVEMENT_SPEED, 0.4)
+                .add(Attributes.ATTACK_DAMAGE, 8)
                 .add(Attributes.ATTACK_SPEED, 2);
     }
 

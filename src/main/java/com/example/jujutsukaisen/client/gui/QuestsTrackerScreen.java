@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 @OnlyIn(Dist.CLIENT)
 public class QuestsTrackerScreen extends Screen
 {
-	private final ResourceLocation background = new ResourceLocation("jujutsukaisen:textures/gui/backgrounds/playerstats.png");
+	private final ResourceLocation background = ModResources.QUEST;
 
 	private PlayerEntity player;
 	private IQuestData qprops;
@@ -63,8 +63,8 @@ public class QuestsTrackerScreen extends Screen
 	public void init()
 	{
 
-		int guiLeft = (this.width - 256) / 2;
-		int guiTop = (this.height - 256) / 2;
+		guiLeft = (this.width - this.xSize) / 2;
+		guiTop = (this.height - this.ySize) / 2;
 
 		int posX = ((this.width - 256) / 2) - 110;
 		int posY = (this.height - 256) / 2;
@@ -102,7 +102,7 @@ public class QuestsTrackerScreen extends Screen
 
 
 		minecraft.getTextureManager().bind(background);
-		GuiUtils.drawTexturedModalRect(matrixStack, guiLeft + 80, guiTop + 20, 0, 0, xSize, ySize, 0);
+		GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
 		//TODO add a little V icon when it's done
 		for (int i = 0; i < quests.length; i++)
@@ -112,14 +112,14 @@ public class QuestsTrackerScreen extends Screen
 				Quest questInProgress = questProps.getInProgressQuests()[i];
 				String questInProgressString = questInProgress.getTitle();
 				String questInProgressDescription = questInProgress.getDescription();
-				drawString(matrixStack, font, "Quest in progress: ", guiLeft + 85 , guiTop + 30 + (i * 40), 16777215);
-				drawString(matrixStack, font, questInProgressString, guiLeft + 85, guiTop + 40+ (i * 40), 16777215);
+				drawString(matrixStack, font, "Quest in progress: ", guiLeft + 5 , guiTop + 30 + (i * 40), 16777215);
+				drawString(matrixStack, font, questInProgressString, guiLeft + 5, guiTop + 40+ (i * 40), 16777215);
 				List<Objective> objectives = questInProgress.getObjectives();
 				for (int a = 0; a < objectives.size(); a++)
 				{
 					Objective objective = objectives.get(a);
 					String objectiveString = objective.getTitle();
-					drawString(matrixStack, font, "Goal: " + objectiveString, guiLeft + 85, guiTop + 50 + (i * 40) + (a * 5), 16777215);
+					drawString(matrixStack, font, "Goal: " + objectiveString, guiLeft + 5, guiTop + 50 + (i * 40) + (a * 5), 16777215);
 				}
 			}
 

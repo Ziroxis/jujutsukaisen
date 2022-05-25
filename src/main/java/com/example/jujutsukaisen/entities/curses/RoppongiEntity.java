@@ -19,7 +19,8 @@ public class RoppongiEntity extends CurseEntity {
 
     public RoppongiEntity(EntityType<? extends RoppongiEntity> type, World world) {
         super(type, world);
-        this.xpDrop = 50;
+        this.xpDrop = 10;
+        this.setCurseGrade(4);
     }
 
     @Override
@@ -41,12 +42,12 @@ public class RoppongiEntity extends CurseEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes()
     {
         return MobEntity.createMobAttributes()
-                .add(Attributes.ARMOR, 10)
-                .add(Attributes.MAX_HEALTH, 10)
+                .add(Attributes.ARMOR, 4)
+                .add(Attributes.MAX_HEALTH, 30)
                 .add(Attributes.FOLLOW_RANGE, 25)
-                .add(Attributes.MOVEMENT_SPEED, 0.24)
-                .add(Attributes.ATTACK_DAMAGE, 1)
-                .add(Attributes.ATTACK_SPEED, 1);
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
+                .add(Attributes.ATTACK_DAMAGE, 5)
+                .add(Attributes.ATTACK_SPEED, 3);
     }
 
     @Override

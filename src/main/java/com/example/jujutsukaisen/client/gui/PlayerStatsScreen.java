@@ -142,7 +142,7 @@ public class PlayerStatsScreen extends Screen {
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
         //3.
-        drawString(matrixStack, font, TextFormatting.GRAY + "INFO CARD", guiLeft + 92, guiTop + 30, Color.GRAY.getRGB());
+        drawString(matrixStack, font, TextFormatting.GRAY + "INFO CARD", guiLeft + 102, guiTop + 30, Color.GRAY.getRGB());
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Name: " + name, guiLeft + 5, guiTop + 40, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Clan: " + clan, guiLeft + 5, guiTop + 50, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Technique: " + technique, guiLeft + 5, guiTop + 60, 16777215);
