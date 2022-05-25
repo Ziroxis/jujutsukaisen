@@ -1,5 +1,6 @@
 package com.example.jujutsukaisen.client;
 
+import com.example.jujutsukaisen.client.overlay.renderer.CursedEnergyArmRenderer;
 import com.example.jujutsukaisen.client.overlay.renderer.InumakiLayerRenderer;
 import com.example.jujutsukaisen.client.renderer.entities.curses.*;
 import com.example.jujutsukaisen.client.renderer.entities.npc.GradeCheckerRenderer;
@@ -51,6 +52,7 @@ public class ClientHandler {
         {
 
             layers.add(new InumakiLayerRenderer<>(renderer));
+            layers.add(new CursedEnergyArmRenderer<>(renderer));
                         /*
             layers.add(new TGLayer<>(renderer));
             layers.add(new BlackModeLayer<>(renderer));
