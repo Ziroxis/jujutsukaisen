@@ -19,7 +19,7 @@ public class RoppongiEntity extends CurseEntity {
 
     public RoppongiEntity(EntityType<? extends RoppongiEntity> type, World world) {
         super(type, world);
-        this.xpDrop = 10;
+        this.xpDrop = 100;
         this.setCurseGrade(4);
     }
 

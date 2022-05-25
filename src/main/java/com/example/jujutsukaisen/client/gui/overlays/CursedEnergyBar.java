@@ -1,4 +1,4 @@
-package com.example.jujutsukaisen.client.gui;
+package com.example.jujutsukaisen.client.gui.overlays;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
