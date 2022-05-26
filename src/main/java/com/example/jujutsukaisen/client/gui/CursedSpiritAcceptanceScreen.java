@@ -180,6 +180,7 @@ public class CursedSpiritAcceptanceScreen extends Screen {
             {
                 props.setClan(ModValues.Zenin);
                 props.setCurse(ModValues.HUMAN);
+                props.setTechnique(ModValues.BRUTE_FORCE);
                 props.setMaxCursedEnergy(0);
                 props.setCursedEnergy(0);
                 player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(HEAVENLY_STRENGTH);

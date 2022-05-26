@@ -25,8 +25,9 @@ public class ModValues {
     //TECHNIQUES
     public static final String DIVINE_DOGS = "Divine Dogs";
     public static final String LIMITLESS = "LIMITLESS";
-    public static final String MASTER_CURSED = "Master of Curses";
-    public static final String PROJECTION_SORCERY = "Astral Projection";
+    public static final String MASTER_CURSES = "Master of Curses";
+    public static final String PROJECTION_SORCERY = "Projection Sorcery";
+    public static final String BRUTE_FORCE = "Brute force";
     public static final String CURSED_SPEECH = "Cursed Speech";
     public static final String BLOOD_MANIPULATION = "Blood manipulation";
     public static final String DISASTER_TIDES = "Disaster tides";

@@ -138,6 +138,7 @@ public class GetStatsFirstTimeEvent {
             {
                 props.setClan(ModValues.Zenin);
                 props.setCurse(ModValues.HUMAN);
+                props.setTechnique(ModValues.BRUTE_FORCE);
                 props.setMaxCursedEnergy(0);
                 props.setCursedEnergy(0);
                 abilityProps.addUnlockedAbility(ShiranuiGataAbility.INSTANCE);

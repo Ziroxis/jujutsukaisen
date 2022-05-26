@@ -14,12 +14,12 @@ import java.util.function.Function;
 public class AbilityCategories {
 
 
-    private static final Function<PlayerEntity, ResourceLocation> GET_CLAN_ICON = (player) ->
+    private static final Function<PlayerEntity, ResourceLocation> GET_TECHNIQUE_ICON = (player) ->
     {
         IEntityStats props = EntityStatsCapability.get(player);
-        String iconName = props.getClan();
+        String iconName = props.getTechnique();
         ResourceLocation icon = null;
-        icon = new ResourceLocation(Main.MODID, "textures/clan/" + Beapi.getResourceName(iconName) + ".png");
+        icon = new ResourceLocation(Main.MODID, "textures/technique/" + Beapi.getResourceName(iconName) + ".png");
 
         return icon;
     };
@@ -34,6 +34,7 @@ public class AbilityCategories {
         return icon;
     };
 
+    //TODO make this actually usable
     private static final Function<PlayerEntity, ResourceLocation> GET_CURSED_ICON = (player) ->
     {
         IEntityStats props = EntityStatsCapability.get(player);
@@ -49,7 +50,7 @@ public class AbilityCategories {
     public static enum AbilityCategory implements IExtensibleEnum
     {
         ALL,
-        TECHNIQUE(GET_CLAN_ICON),
+        TECHNIQUE(GET_TECHNIQUE_ICON),
         CURSED(GET_CURSED_ICON),
         BASIC(GET_BASIC_ICON);
 
