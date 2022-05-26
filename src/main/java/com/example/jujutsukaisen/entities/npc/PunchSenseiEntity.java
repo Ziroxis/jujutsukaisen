@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.quest.IQuestData;
 import com.example.jujutsukaisen.data.quest.QuestDataCapability;
 import com.example.jujutsukaisen.init.ModQuests;
+import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
 import com.example.jujutsukaisen.quest.Quest;
@@ -57,6 +58,12 @@ public class PunchSenseiEntity extends Quester {
 
         if (!player.level.isClientSide)
         {
+            if (statsProps.getRestriction().equals(ModValues.RESTRICTION_HEAVENLY))
+            {
+                player.sendMessage(new StringTextComponent("Kid, I don't know what the heck is wrong with you but you got 0, absolutely 0 cursed energy in ya. Can't help ya"), player.getUUID());
+                player.sendMessage(new StringTextComponent("Also maybe go to a doctor for that."), player.getUUID());
+                return ActionResultType.PASS;
+            }
             Quest[] quests = questProps.getInProgressQuests();
             for (int i = 0; i < quests.length; i++)
             {
