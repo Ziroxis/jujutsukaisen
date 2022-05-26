@@ -7,6 +7,10 @@ import com.example.jujutsukaisen.abilities.disaster_flames.DisasterFlamesPassive
 import com.example.jujutsukaisen.abilities.disaster_flames.FlameTouchAbility;
 import com.example.jujutsukaisen.abilities.disaster_tides.DisasterTidesPassive;
 import com.example.jujutsukaisen.abilities.disaster_tides.WaterFlowAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.DashAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.KihonZukiAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.ManjiKickAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.ShiranuiGataAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.client.gui.CursedSpiritAcceptanceScreen;
@@ -136,6 +140,11 @@ public class GetStatsFirstTimeEvent {
                 props.setCurse(ModValues.HUMAN);
                 props.setMaxCursedEnergy(0);
                 props.setCursedEnergy(0);
+                abilityProps.addUnlockedAbility(ShiranuiGataAbility.INSTANCE);
+                abilityProps.addUnlockedAbility(ManjiKickAbility.INSTANCE);
+                abilityProps.addUnlockedAbility(KihonZukiAbility.INSTANCE);
+                abilityProps.addUnlockedAbility(DashAbility.INSTANCE);
+
                 player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(HEAVENLY_STRENGTH);
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(HEAVENLY_SPEED);
                 player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(HEAVENLY_JUMP);

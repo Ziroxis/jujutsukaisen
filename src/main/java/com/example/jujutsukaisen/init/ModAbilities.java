@@ -11,6 +11,10 @@ import com.example.jujutsukaisen.abilities.blood_manipulation.*;
 import com.example.jujutsukaisen.abilities.cursed_speech.*;
 import com.example.jujutsukaisen.abilities.disaster_flames.*;
 import com.example.jujutsukaisen.abilities.disaster_tides.*;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.DashAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.KihonZukiAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.ManjiKickAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.ShiranuiGataAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.*;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.DivineDogsAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
@@ -38,6 +42,7 @@ public class ModAbilities {
     public static final IForgeRegistry<Ability> ABILITIES_REGISTRY = RegistryManager.ACTIVE.getRegistry(Ability.class);
     private static final DeferredRegister<Ability> ABILITIES = DeferredRegister.create(ABILITIES_REGISTRY, Main.MODID);
 
+    public static final Ability[] HEAVENLY_RESTRICTION = new Ability[] {ShiranuiGataAbility.INSTANCE, KihonZukiAbility.INSTANCE, ManjiKickAbility.INSTANCE, DashAbility.INSTANCE};
     public static final Ability[] DISASTER_FLAMES = new Ability[] {EmberInsectsAbility.INSTANCE, FlameArrowAbility.INSTANCE, FlameBallAbility.INSTANCE, FlameTouchAbility.INSTANCE, PurpleFlamesAbility.INSTANCE, DisasterFlamesPassive.INSTANCE};
     public static final Ability[] DISASTER_TIDES = new Ability[] {CursedFishAbility.INSTANCE, CursedSharkAbility.INSTANCE, DeathSwarmAbility.INSTANCE, WaterChargeAbility.INSTANCE, WaterFlowAbility.INSTANCE, WaterShieldAbility.INSTANCE, DisasterTidesPassive.INSTANCE};
     public static final Ability[] CURSED_SPEECH = new Ability[] {StopAbility.INSTANCE, SleepAbility.INSTANCE, GetTwistedAbility.INSTANCE, FallDownUnderAbility.INSTANCE, ExplodeAbility.INSTANCE, BlastAwayAbility.INSTANCE};
@@ -67,6 +72,7 @@ public class ModAbilities {
 
     public static void register(IEventBus eventBus)
     {
+        registerAbilities(HEAVENLY_RESTRICTION);
         registerAbilities(DISASTER_FLAMES);
         registerAbilities(DISASTER_TIDES);
         registerAbilities(CURSED_SPEECH);
