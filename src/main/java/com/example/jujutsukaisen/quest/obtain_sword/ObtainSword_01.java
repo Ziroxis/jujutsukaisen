@@ -9,19 +9,22 @@ import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public class ObtainSword_01 extends Quest {
     private static final KillEntityObjective.ICheckKill TARGET_CHECK = (player, target, source) ->
     {
-        return target.getType() == ModEntities.ROPPONGI.get();
+        return target.getType() == EntityType.CREEPER;
     };
-    private Objective killObjective = new KillEntityObjective("Kill 5 roppongis", 5, TARGET_CHECK);
+    private Objective killObjective = new KillEntityObjective("Kill 5 creepers", 5, TARGET_CHECK);
 
     public ObtainSword_01()
     {
-        super("obtainsword_01", "Get rid of some curses");
+        super("obtainsword_01", "Get rid of some creepers");
         this.addObjective(this.killObjective);
         this.onCompleteEvent = this::giveReward;
     }
