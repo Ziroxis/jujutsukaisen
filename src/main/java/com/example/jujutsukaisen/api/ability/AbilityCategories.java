@@ -24,6 +24,15 @@ public class AbilityCategories {
         return icon;
     };
 
+    private static final Function<PlayerEntity, ResourceLocation> GET_REVERSED_ICON = (player) ->
+    {
+        IEntityStats props = EntityStatsCapability.get(player);
+        ResourceLocation icon = null;
+        icon = new ResourceLocation(Main.MODID, "textures/technique/reversed_energy.png");
+
+        return icon;
+    };
+
     private static final Function<PlayerEntity, ResourceLocation> GET_BASIC_ICON = (player) ->
     {
         IEntityStats props = EntityStatsCapability.get(player);
@@ -50,6 +59,7 @@ public class AbilityCategories {
     public static enum AbilityCategory implements IExtensibleEnum
     {
         ALL,
+        REVERSED(GET_REVERSED_ICON),
         TECHNIQUE(GET_TECHNIQUE_ICON),
         CURSED(GET_CURSED_ICON),
         BASIC(GET_BASIC_ICON);

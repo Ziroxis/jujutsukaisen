@@ -30,10 +30,8 @@ public class ShiranuiGataAbilityEvent {
     @SubscribeEvent
     public static void gettingHurt(LivingHurtEvent event)
     {
-        System.out.println("Check 1");
         if (!(event.getEntityLiving() instanceof PlayerEntity))
             return;
-        System.out.println("Check 2");
         PlayerEntity player = (PlayerEntity) event.getEntityLiving();
         IEntityStats statsProps = EntityStatsCapability.get(player);
         IAbilityData abilityProps = AbilityDataCapability.get(player);
@@ -47,7 +45,6 @@ public class ShiranuiGataAbilityEvent {
             {
                 if (ability instanceof ShiranuiGataAbility && ability.isContinuous())
                 {
-                    System.out.println("Check 3");
                     float damage = event.getAmount();
                     Entity attacker = event.getSource().getEntity();
                     assert attacker != null;

@@ -73,5 +73,12 @@
   "ability.jujutsukaisen.dash": "Dash",
   "ability.jujutsukaisen.kihon_zuki": "Kihon zuki",
   "ability.jujutsukaisen.manji_kick": "Manji kick",
-  "ability.jujutsukaisen.shiranui_gata": "Shiranui Gata"
+  "ability.jujutsukaisen.shiranui_gata": "Shiranui Gata",
+
+  "ability.jujutsukaisen.self_healing": "Self healing",
+  "ability.jujutsukaisen.heal_other": "Heal other",
+  "ability.jujutsukaisen.heal_other_regeneration": "Heal other regeneration",
+  "ability.jujutsukaisen.rejuvination": "Rejuvination",
+  "ability.jujutsukaisen.self_healing_regeneration": "Self healing regeneration",
+  "ability.jujutsukaisen.self_healing_regeneration_passive": "Regeneration passive"
 }

@@ -12,7 +12,8 @@ import net.minecraftforge.common.ForgeMod;
 import java.util.UUID;
 
 public class DisasterTidesPassive extends PassiveAbility {
-    private static final AttributeModifier SWIM_SPEED = new AttributeModifier(UUID.fromString("a11440ee-5d84-4c36-960b-992e13b66aff"), "Fishman Speed Multiplier", 1.8, AttributeModifier.Operation.MULTIPLY_BASE);
+    private static final AttributeModifier SWIM_SPEED = new AttributeModifier(UUID.fromString("a11440ee-5d84-4c36-960b-992e13b66aff"),
+            "Fishman Speed Multiplier", 1.8, AttributeModifier.Operation.MULTIPLY_BASE);
     public static final DisasterTidesPassive INSTANCE = new DisasterTidesPassive();
     boolean hasJumped = false;
 
