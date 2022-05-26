@@ -137,10 +137,12 @@ public class PlayerStatsScreen extends Screen {
         String grade = props.getCurseGrade();
         String technique = props.getTechnique();
         String spirit = props.getCurse();
+        String restriction = props.getRestriction();
 
         minecraft.getTextureManager().bind(playerstats);
         GuiUtils.drawTexturedModalRect(matrixStack, guiLeft, guiTop + 20, 0, 0, xSize, ySize, 0);
 
+        //TODO add hovering text that gives extra information, while hovering certain things
         //3.
         drawString(matrixStack, font, TextFormatting.GRAY + "INFO CARD", guiLeft + 102, guiTop + 30, Color.GRAY.getRGB());
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Name: " + name, guiLeft + 5, guiTop + 40, 16777215);
@@ -148,6 +150,7 @@ public class PlayerStatsScreen extends Screen {
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Technique: " + technique, guiLeft + 5, guiTop + 60, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Grade: " + grade, guiLeft + 5, guiTop + 70, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Curse: " + spirit, guiLeft + 5, guiTop + 80, 16777215);
+        drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Restriction: " + restriction, guiLeft + 5, guiTop + 90, 16777215);
     }
 
     public static void renderEntityInInventory(int p_228187_0_, int p_228187_1_, int p_228187_2_, float p_228187_3_, float p_228187_4_, LivingEntity p_228187_5_) {

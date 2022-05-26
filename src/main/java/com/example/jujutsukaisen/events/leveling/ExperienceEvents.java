@@ -38,9 +38,9 @@ public class ExperienceEvents {
             ExperienceUpEvent eventExperienceUp = new ExperienceUpEvent(player, statsProps.getExperience());
             if (MinecraftForge.EVENT_BUS.post(eventExperienceUp))
                 return;
-            if (statsProps.getCurse().equals(ModValues.HUMAN))
+            if (statsProps.getCurse().equals(ModValues.HUMAN) && !statsProps.getRestriction().equals(ModValues.RESTRICTION_HEAVENLY) && !statsProps.getRestriction().equals(ModValues.RESTRICTION_CONSTITUTION))
                 statsProps.setMaxCursedEnergy(statsProps.getMaxCursedEnergy() + 50);
-            else
+            else if (!statsProps.getRestriction().equals(ModValues.RESTRICTION_HEAVENLY))
                 statsProps.setMaxCursedEnergy(statsProps.getMaxExperience() + 75);
             PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
             //player.sendMessage(new StringTextComponent("You leveled up to level " + statsProps.getLevel() + "!"), player.getUUID());

@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.abilities.basic.punch.CursedPunchAbility;
 import com.example.jujutsukaisen.abilities.basic.punch.DivergentFistAbility;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
 import com.example.jujutsukaisen.client.overlay.model.CursedEnergyArmModel;
 import com.example.jujutsukaisen.client.overlay.model.InumakiLayerModel;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -53,7 +54,7 @@ public class CursedEnergyArmRenderer<T extends LivingEntity, M extends EntityMod
 
             try
             {
-                if (ability instanceof CursedEnergyContinuousPunchAbility || ability instanceof CursedPunchAbility || ability instanceof DivergentFistAbility)
+                if (ability instanceof CursedEnergyContinuousPunchAbility && ability.isContinuous() || ability instanceof CursedPunchAbility && ability.isContinuous() || ability instanceof DivergentFistAbility && ability.isContinuous())
                 {
                     matrixStackIn.pushPose();
                     this.getParentModel().copyPropertiesTo(this.model);

@@ -19,6 +19,10 @@ public interface IEntityStats {
     boolean hasClan();
     void setClan(String value);
     String getClan();
+
+    boolean hasRestriction();
+    void setRestriction(String value);
+    String getRestriction();
     //CLANS
     boolean isKamo();
     boolean isGojo();

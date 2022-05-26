@@ -18,8 +18,10 @@ public class cursedEnergyEvents {
 
         PlayerEntity player = event.player;
         IEntityStats propsEntity = EntityStatsCapability.get(player);
+        if (propsEntity.getRestriction().equals(ModValues.RESTRICTION_HEAVENLY))
+            return;
         float regeneration = 0;
-        if (propsEntity.getCurse().equals(ModValues.HUMAN))
+        if (propsEntity.getCurse().equals(ModValues.HUMAN) && !propsEntity.getRestriction().equals(ModValues.RESTRICTION_CONSTITUTION))
             regeneration = propsEntity.getLevel()/2;
         else
             regeneration = propsEntity.getLevel();

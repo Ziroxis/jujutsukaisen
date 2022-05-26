@@ -10,6 +10,7 @@ public class EntityStatsBase implements IEntityStats{
     private String technique = "";
     private String grade = "";
     private String curse = "";
+    private String restriction = "";
     private int level;
     private int experience;
     private int maxExperience;
@@ -76,6 +77,25 @@ public class EntityStatsBase implements IEntityStats{
     public String getClan() {
         return this.clan;
     }
+
+    @Override
+    public boolean hasRestriction() {
+        if (Beapi.isNullOrEmpty(this.restriction))
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public void setRestriction(String value) {
+        this.restriction = value;
+    }
+
+    @Override
+    public String getRestriction() {
+        return this.restriction;
+    }
+
 
     @Override
     public boolean isKamo() {

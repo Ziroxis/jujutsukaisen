@@ -4,13 +4,17 @@ import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.damagesource.AbilityDamageSource;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.entities.CurseEntity;
 import com.example.jujutsukaisen.init.ModDamageSource;
+import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.items.CursedWeapon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -32,16 +36,18 @@ public class CursedSpiritInvincibility {
             return;
 
         DamageSource source = event.getSource();
-        if (source.getDirectEntity() instanceof LivingEntity)
+        if (source.getDirectEntity() instanceof LivingEntity && source.getDirectEntity() instanceof PlayerEntity)
         {
             LivingEntity target = event.getEntityLiving();
-            LivingEntity attacker = (LivingEntity) source.getDirectEntity();
+            PlayerEntity attacker = (PlayerEntity) source.getDirectEntity();
+            IEntityStats statsProps = EntityStatsCapability.get(attacker);
+
             if (!(target instanceof CurseEntity))
                 return;
             ItemStack item = attacker.getMainHandItem();
             Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(item);
 
-            if (!(source instanceof AbilityDamageSource) && !(item.getItem() instanceof CursedWeapon)
+            if (!(source instanceof AbilityDamageSource) && !(item.getItem() instanceof CursedWeapon && !statsProps.getCurse().equals(ModValues.HUMAN))
                     && !(enchantment.get(Enchantments.BINDING_CURSE) != null)
                     && !(enchantment.get(Enchantments.VANISHING_CURSE) != null))
             {

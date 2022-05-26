@@ -8,6 +8,10 @@ public class ModValues {
     public static final String Zenin = "Zenin";
     public static final String Inumaki = "Inumaki";
 
+    //RESTRICTIONS
+    public static final String RESTRICTION_HEAVENLY = "Heavenly";
+    public static final String RESTRICTION_CONSTITUTION = "Constitution";
+
     //Curse Grades
     public static final String grade_1 = "Grade 1";
     public static final String grade_2 = "Grade 2";

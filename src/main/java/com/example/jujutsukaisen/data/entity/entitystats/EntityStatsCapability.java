@@ -33,6 +33,7 @@ public class EntityStatsCapability {
                 props.putInt("maxCursedEnergy", instance.getMaxCursedEnergy());
                 props.putString("technique", instance.getTechnique());
                 props.putString("curse", instance.getCurse());
+                props.putString("restriction", instance.getRestriction());
 
                 return props;
             }
@@ -53,6 +54,7 @@ public class EntityStatsCapability {
                 instance.setMaxCursedEnergy(props.getInt("maxCursedEnergy"));
                 instance.setTechnique(props.getString("technique"));
                 instance.setCurse(props.getString("curse"));
+                instance.setRestriction(props.getString("restriction"));
 
             }
         }, () -> new EntityStatsBase());
