@@ -7,6 +7,10 @@ import com.example.jujutsukaisen.abilities.disaster_flames.DisasterFlamesPassive
 import com.example.jujutsukaisen.abilities.disaster_flames.FlameTouchAbility;
 import com.example.jujutsukaisen.abilities.disaster_tides.DisasterTidesPassive;
 import com.example.jujutsukaisen.abilities.disaster_tides.WaterFlowAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.DashAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.KihonZukiAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.ManjiKickAbility;
+import com.example.jujutsukaisen.abilities.heavenly_restriction.ShiranuiGataAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -30,6 +34,8 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.play.server.SUpdateHealthPacket;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -56,6 +62,7 @@ public class CursedSpiritAcceptanceScreen extends Screen {
             "Heavenly", 10, AttributeModifier.Operation.ADDITION);
 
     //256, 256
+    //TODO change the textures to the latest texture
     private final ResourceLocation playerstats = ModResources.STATS;
 
     private final int xSize = 256;
@@ -183,6 +190,10 @@ public class CursedSpiritAcceptanceScreen extends Screen {
                 props.setTechnique(ModValues.BRUTE_FORCE);
                 props.setMaxCursedEnergy(0);
                 props.setCursedEnergy(0);
+                abilityProps.addUnlockedAbility(ShiranuiGataAbility.INSTANCE);
+                abilityProps.addUnlockedAbility(ManjiKickAbility.INSTANCE);
+                abilityProps.addUnlockedAbility(KihonZukiAbility.INSTANCE);
+                abilityProps.addUnlockedAbility(DashAbility.INSTANCE);
                 player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(HEAVENLY_STRENGTH);
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(HEAVENLY_SPEED);
                 player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(HEAVENLY_JUMP);

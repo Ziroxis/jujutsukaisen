@@ -154,6 +154,12 @@ public class GetStatsFirstTimeEvent {
                 player.setHealth(30);
             }
         }
+        if (props.getRestriction().equals(ModValues.RESTRICTION_CONSTITUTION))
+        {
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+            if (player.getHealth() < player.getMaxHealth())
+                player.setHealth(player.getMaxHealth());
+        }
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), props), player);
         PacketHandler.sendTo(new SSyncAbilityDataPacket(player.getId(), abilityProps), player);
         ((ServerPlayerEntity) event.getPlayer()).connection.send(new SUpdateHealthPacket(event.getPlayer().getHealth(), event.getPlayer().getFoodData().getFoodLevel(), event.getPlayer().getFoodData().getSaturationLevel()));

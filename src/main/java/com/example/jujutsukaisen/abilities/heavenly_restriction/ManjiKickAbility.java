@@ -15,6 +15,7 @@ public class ManjiKickAbility extends PunchAbility {
     {
         super("Manji Kick", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("Kick the enemy, completely stunning him");
+        this.setCursedEnergyCost(0);
         this.setMaxCooldown(5);
 
         this.onHitEntityEvent = this::onHitEntityEvent;

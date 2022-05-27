@@ -47,7 +47,7 @@ public class CursedSpiritInvincibility {
             ItemStack item = attacker.getMainHandItem();
             Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(item);
 
-            if (!(source instanceof AbilityDamageSource) && !(item.getItem() instanceof CursedWeapon && !statsProps.getCurse().equals(ModValues.HUMAN))
+            if (!(source instanceof AbilityDamageSource) && !(item.getItem() instanceof CursedWeapon) && !statsProps.getCurse().equals(ModValues.HUMAN)
                     && !(enchantment.get(Enchantments.BINDING_CURSE) != null)
                     && !(enchantment.get(Enchantments.VANISHING_CURSE) != null))
             {

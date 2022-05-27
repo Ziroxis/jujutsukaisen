@@ -22,7 +22,8 @@ public class RejuvinationAbility extends PassiveAbility {
 
     public RejuvinationAbility()
     {
-        super("Rejuvination", AbilityCategories.AbilityCategory.REVERSED);
+        super("Rejuvenation", AbilityCategories.AbilityCategory.REVERSED);
+        this.setDescription("Come back to life once with help of reversed cursed energy draining your cursed energy");
         this.setMaxCooldown(1620);
         this.hideInGUI(false);
         this.duringPassiveEvent = this::duringPassiveEvent;

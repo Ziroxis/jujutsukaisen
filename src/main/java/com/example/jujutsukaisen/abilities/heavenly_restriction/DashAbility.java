@@ -16,6 +16,8 @@ public class DashAbility extends Ability {
         super("Dash", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("Spurt towards a place which makes it look like teleportation");
         this.setMaxCooldown(2);
+        this.setCursedEnergyCost(0);
+
         this.onUseEvent = this::onUseEvent;
     }
 

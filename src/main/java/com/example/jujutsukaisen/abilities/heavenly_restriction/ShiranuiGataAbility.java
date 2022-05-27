@@ -15,6 +15,7 @@ public class ShiranuiGataAbility extends ContinuousAbility {
         super("Shiranui Gata", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("Take a specific pose where the next physical attack gets deflected and doubled");
         this.setMaxCooldown(5);
+        this.setCursedEnergyCost(0);
         this.duringContinuityEvent = this::duringContinuityEvent;
         this.onEndContinuityEvent = this::onEndContinuityEvent;
     }

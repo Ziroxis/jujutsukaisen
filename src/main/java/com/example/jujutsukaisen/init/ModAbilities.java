@@ -43,7 +43,7 @@ public class ModAbilities {
     public static final IForgeRegistry<Ability> ABILITIES_REGISTRY = RegistryManager.ACTIVE.getRegistry(Ability.class);
     private static final DeferredRegister<Ability> ABILITIES = DeferredRegister.create(ABILITIES_REGISTRY, Main.MODID);
 
-    public static final Ability[] REVERSED_ENERGY = new Ability[] {SelfHealingAbility.INSTANCE, SelfHealingRegenerationAbility.INSTANCE, SelfHealingRegenerationPassive.INSTANCE, HealOtherAbility.INSTANCE, HealOtherRegenerationAbility.INSTANCE, RejuvinationAbility.INSTANCE};
+    public static final Ability[] REVERSED_ENERGY = new Ability[] {SelfHealingAbility.INSTANCE, SelfHealingRegenerationAbility.INSTANCE, SelfHealingRegenerationPassive.INSTANCE, HealOtherAbility.INSTANCE, RejuvinationAbility.INSTANCE};
     public static final Ability[] HEAVENLY_RESTRICTION = new Ability[] {ShiranuiGataAbility.INSTANCE, KihonZukiAbility.INSTANCE, ManjiKickAbility.INSTANCE, DashAbility.INSTANCE};
     public static final Ability[] DISASTER_FLAMES = new Ability[] {EmberInsectsAbility.INSTANCE, FlameArrowAbility.INSTANCE, FlameBallAbility.INSTANCE, FlameTouchAbility.INSTANCE, PurpleFlamesAbility.INSTANCE, DisasterFlamesPassive.INSTANCE};
     public static final Ability[] DISASTER_TIDES = new Ability[] {CursedFishAbility.INSTANCE, CursedSharkAbility.INSTANCE, DeathSwarmAbility.INSTANCE, WaterChargeAbility.INSTANCE, WaterFlowAbility.INSTANCE, WaterShieldAbility.INSTANCE, DisasterTidesPassive.INSTANCE};

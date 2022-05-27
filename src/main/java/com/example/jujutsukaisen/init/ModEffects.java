@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.effects.MovementBlockedEffect;
+import com.example.jujutsukaisen.effects.RegenerationEffect;
 import com.example.jujutsukaisen.effects.sleep.SleepEffect;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.fml.RegistryObject;
@@ -14,6 +15,7 @@ public class ModEffects {
 
     public static final RegistryObject<Effect> MOVEMENT_BLOCKED = EFFECTS.register("movement_blocked", MovementBlockedEffect::new);
     public static final RegistryObject<Effect> SLEEP = EFFECTS.register("sleep", SleepEffect::new);
+    public static final RegistryObject<Effect> REGENERATION = EFFECTS.register("regeneration", RegenerationEffect::new);
 
 
 }

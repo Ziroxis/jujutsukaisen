@@ -16,6 +16,7 @@ public class KihonZukiAbility extends PunchAbility {
         super("Kihon Zuki", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("Leap towards your enemy and throw a devastating punch");
         this.setMaxCooldown(5);
+        this.setCursedEnergyCost(0);
 
         this.onStartContinuityEvent = this::onStartContinuityEvent;
         this.onHitEntityEvent = this::onHitEntityEvent;
