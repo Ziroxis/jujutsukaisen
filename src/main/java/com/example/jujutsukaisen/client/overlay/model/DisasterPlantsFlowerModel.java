@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
+//TODO make it so it opens and closes
 public class DisasterPlantsFlowerModel<T extends LivingEntity> extends BipedModel<T> {
 
     private final ModelRenderer FlowerArmOverlay;
@@ -20,14 +21,13 @@ public class DisasterPlantsFlowerModel<T extends LivingEntity> extends BipedMode
         texHeight = 16;
 
         FlowerArmOverlay = new ModelRenderer(this);
-        FlowerArmOverlay.setPos(-5.0F, 2.0F, 0.0F);
-        FlowerArmOverlay.texOffs(0, 0).addBox(-3.0F, -3.0F, -2.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
-        FlowerArmOverlay.texOffs(0, 5).addBox(-2.0F, -5.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, false);
-        FlowerArmOverlay.texOffs(6, 10).addBox(-2.0F, -4.0F, 1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-        FlowerArmOverlay.texOffs(6, 5).addBox(-2.0F, -4.0F, -2.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-        FlowerArmOverlay.texOffs(0, 9).addBox(-3.0F, -4.0F, -1.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
-        FlowerArmOverlay.texOffs(6, 7).addBox(0.0F, -4.0F, -1.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
-    }
+        FlowerArmOverlay.setPos(-6.0F, -2.0F, 0.0F);
+        FlowerArmOverlay.texOffs(0, 0).addBox(-2.0F, 1.0F, -2.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(0, 5).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(6, 10).addBox(-1.0F, 0.0F, 1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(6, 5).addBox(-1.0F, 0.0F, -2.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(0, 9).addBox(-2.0F, 0.0F, -1.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(6, 7).addBox(1.0F, 0.0F, -1.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);    }
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);

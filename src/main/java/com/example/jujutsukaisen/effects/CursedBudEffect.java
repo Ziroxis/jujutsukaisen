@@ -1,10 +1,22 @@
 package com.example.jujutsukaisen.effects;
 
 import com.example.jujutsukaisen.api.Beapi;
+import com.example.jujutsukaisen.api.ability.Ability;
+import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousPunchAbility;
+import com.example.jujutsukaisen.api.ability.sorts.DamagedPassiveAbility;
+import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
+import com.example.jujutsukaisen.data.ability.IAbilityData;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.init.ModDamageSource;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 
 public class CursedBudEffect extends SpecialEffect {
@@ -17,8 +29,36 @@ public class CursedBudEffect extends SpecialEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier)
     {
-        //Shit happens here for the cursed bud
-        //TODO make the effect
+        if (!(entity.tickCount % 20 == 0))
+            return;
+        if (!(entity instanceof PlayerEntity))
+            return;
+
+
+        PlayerEntity player = (PlayerEntity) entity;
+        IEntityStats propStats = EntityStatsCapability.get(player);
+        IAbilityData ablProps = AbilityDataCapability.get(entity);
+
+        for (Ability ability : ablProps.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL))
+        {
+            if (ability == null)
+                continue;
+
+            try
+            {
+                if (ability instanceof ContinuousAbility && ability.isContinuous())
+                {
+                    player.hurt(DamageSource.GENERIC, 3);
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        propStats.alterCursedEnergy(-2);
+
     }
 
     @Override

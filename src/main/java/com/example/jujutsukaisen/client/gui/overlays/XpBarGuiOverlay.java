@@ -49,8 +49,8 @@ public class XpBarGuiOverlay {
 
             String level = "Level: " + props.getLevel();
             Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), level, ((posX - 175) / 2), posY - 239, Color.BLUE.getRGB());
-            String experience = "Experience: " + props.getExperience();
-            Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), experience, ((posX + 20) / 2), posY - 239, Color.BLUE.getRGB());
+            String experience = "Experience: " + props.getExperience() + "/" + props.getMaxExperience();
+            Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), experience, ((posX + 30) / 2), posY - 239, Color.BLUE.getRGB());
 
 
         }

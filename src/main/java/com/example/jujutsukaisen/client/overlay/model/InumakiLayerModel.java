@@ -21,8 +21,8 @@ public class InumakiLayerModel<T extends LivingEntity> extends BipedModel<T> {
 
         Cursed_Speech_Overlay = new ModelRenderer(this);
         Cursed_Speech_Overlay.setPos(0.0F, 0.0F, 0.0F);
-        Cursed_Speech_Overlay.texOffs(0, 0).addBox(-4.0F, -3.0F, -4.1F, 8.0F, 1.0F, 0.0F, 0.0F, false);    }
-
+        Cursed_Speech_Overlay.texOffs(0, 0).addBox(-4.0F, -2.0F, -4.1F, 8.0F, 1.0F, 0.0F, 0.0F, false);
+    }
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);

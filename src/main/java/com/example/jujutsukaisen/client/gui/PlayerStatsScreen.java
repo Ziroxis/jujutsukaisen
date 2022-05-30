@@ -183,7 +183,7 @@ public class PlayerStatsScreen extends Screen {
 
         String level = "Level: " + props.getLevel();
         Beapi.drawStringWithBorder(Minecraft.getInstance().font, matrixStack, level, guiLeft + 5, guiTop + 160, Color.BLUE.getRGB());
-        String experience = "Experience: " + props.getExperience();
+        String experience = "Experience: " + props.getExperience() + "/" + props.getMaxExperience();
         Beapi.drawStringWithBorder(Minecraft.getInstance().font, matrixStack, experience, guiLeft + 5, guiTop + 170, Color.BLUE.getRGB());
 
     }
