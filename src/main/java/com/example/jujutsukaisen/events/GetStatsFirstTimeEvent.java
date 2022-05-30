@@ -31,6 +31,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SUpdateHealthPacket;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -150,6 +151,7 @@ public class GetStatsFirstTimeEvent {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(HEAVENLY_SPEED);
                 player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(HEAVENLY_JUMP);
                 player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(HEAVENLY_HASTE);
+                player.getAttribute(ForgeMod.SWIM_SPEED.get()).addTransientModifier(HEAVENLY_SPEED);
                 player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
                 player.setHealth(30);
             }

@@ -45,6 +45,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fml.client.gui.GuiUtils;
 
 import java.awt.*;
@@ -210,6 +211,7 @@ public class CursedSpiritAcceptanceScreen extends Screen {
                 player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(HEAVENLY_JUMP);
                 player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(HEAVENLY_HASTE);
                 player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(HEAVENLY_HEALTH);
+                player.getAttribute(ForgeMod.SWIM_SPEED.get()).addTransientModifier(HEAVENLY_SPEED);
                 player.setHealth(30);
             }
 
