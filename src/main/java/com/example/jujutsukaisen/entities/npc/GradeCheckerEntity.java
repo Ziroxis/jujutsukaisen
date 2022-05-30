@@ -14,7 +14,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-//TODO have to finish this shit
 public class GradeCheckerEntity extends Quester {
     public GradeCheckerEntity(EntityType type, World world)
     {

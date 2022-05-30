@@ -64,7 +64,6 @@ public class CursedSpiritAcceptanceScreen extends Screen {
             "Heavenly", 10, AttributeModifier.Operation.ADDITION);
 
     //256, 256
-    //TODO change the textures to the latest texture
     private final ResourceLocation playerstats = ModResources.STATS;
 
     private final int xSize = 256;
