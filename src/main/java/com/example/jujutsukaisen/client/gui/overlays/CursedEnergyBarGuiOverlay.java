@@ -1,10 +1,8 @@
 package com.example.jujutsukaisen.client.gui.overlays;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +12,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @OnlyIn(Dist.CLIENT)
-public class CursedEnergyBar {
+public class CursedEnergyBarGuiOverlay {
 
     private final ResourceLocation manaBar = new ResourceLocation(Main.MODID + ":textures/gui/overlay/mana_bars.png");
     private final int tex_width = 9, tex_height = 102, bar_width = 7, bar_height = 100;
@@ -54,10 +52,13 @@ public class CursedEnergyBar {
                 int colour_x = ((2 * 8) + 9); // CORRECT FORMULA ((chakra.returncolorChakra() * 8) + 9)
                 mc.textureManager.bind(manaBar);
                 mc.gui.blit(event.getMatrixStack(), 20, 130, 0, 0, tex_width, tex_height);
-                if (props.getMaxCursedEnergy() <= 0) {
+                if (props.getMaxCursedEnergy() <= 0)
+                {
                     int set_height = tex_height;
                     mc.gui.blit(event.getMatrixStack(), 20, 130, colour_x, 0, tex_width, set_height); // set_height
-                } else {
+                }
+                else
+                {
                     float manaRatio = ((float) props.returnCursedEnergy() / (float) props.getMaxCursedEnergy());
                     int set_height = (int) (tex_height * manaRatio);//(int) (bar_height * chakraratio)
                     int move_tex = (tex_height - set_height);

@@ -2,7 +2,7 @@ package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
-import com.example.jujutsukaisen.client.gui.overlays.CursedEnergyBar;
+import com.example.jujutsukaisen.client.gui.overlays.CursedEnergyBarGuiOverlay;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -154,6 +154,6 @@ public class DyingEvents {
         }
 
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
-        MinecraftForge.EVENT_BUS.register(new CursedEnergyBar());
+        MinecraftForge.EVENT_BUS.register(new CursedEnergyBarGuiOverlay());
     }
 }

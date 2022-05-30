@@ -1,5 +1,7 @@
 package com.example.jujutsukaisen.client.gui;
 
+import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
@@ -14,6 +16,7 @@ import com.example.jujutsukaisen.networking.client.CRequestSyncWorldDataPacket;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -49,6 +52,11 @@ public class PlayerStatsScreen extends Screen {
 
     private int guiLeft;
     private int guiTop;
+
+    private static final ResourceLocation xpBar = new ResourceLocation(Main.MODID + ":textures/gui/overlay/xp_bar.png");
+    private static final int tex_width = 165;
+    private static final int tex_height = 10;
+
 
     ITextComponent skills = new StringTextComponent("skills");
 
@@ -114,6 +122,7 @@ public class PlayerStatsScreen extends Screen {
     {
         this.renderBackground(matrixStack);
         backgroundRendering(matrixStack); //Points to another method where everything actually happens
+        xpBarRenderering(matrixStack);
         //renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player); -> bugs out for now
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
@@ -151,6 +160,32 @@ public class PlayerStatsScreen extends Screen {
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Grade: " + grade, guiLeft + 5, guiTop + 70, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Curse: " + spirit, guiLeft + 5, guiTop + 80, 16777215);
         drawString(matrixStack, font, TextFormatting.DARK_PURPLE + "Restriction: " + restriction, guiLeft + 5, guiTop + 90, 16777215);
+    }
+    public void xpBarRenderering(MatrixStack matrixStack)
+    {
+        int posX = minecraft.getWindow().getGuiScaledWidth();
+        int posY = minecraft.getWindow().getGuiScaledHeight();
+
+
+        ClientPlayerEntity player = Minecraft.getInstance().player;
+        IEntityStats props = EntityStatsCapability.get(player);
+        minecraft.getTextureManager().bind(xpBar);
+
+        //45, 159 -> Coordinates empty bar
+        //45, 140 -> Coordinates full bar
+        GuiUtils.drawTexturedModalRect(guiLeft + 5, guiTop + 179, 45, 150, tex_width, tex_height, 0);
+
+        float xpRatio = ((float) props.getExperience() /(float) props.getMaxExperience()) ;
+        int set_width = (int) (tex_width * xpRatio);
+        int move_tex = (tex_width - set_width);
+        GuiUtils.drawTexturedModalRect(guiLeft + 5, guiTop + 178, 45, 132, set_width, tex_height, 0);
+
+
+        String level = "Level: " + props.getLevel();
+        Beapi.drawStringWithBorder(Minecraft.getInstance().font, matrixStack, level, guiLeft + 5, guiTop + 160, Color.BLUE.getRGB());
+        String experience = "Experience: " + props.getExperience();
+        Beapi.drawStringWithBorder(Minecraft.getInstance().font, matrixStack, experience, guiLeft + 5, guiTop + 170, Color.BLUE.getRGB());
+
     }
 
     public static void renderEntityInInventory(int p_228187_0_, int p_228187_1_, int p_228187_2_, float p_228187_3_, float p_228187_4_, LivingEntity p_228187_5_) {

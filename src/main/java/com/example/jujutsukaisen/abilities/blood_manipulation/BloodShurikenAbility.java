@@ -15,7 +15,7 @@ public class BloodShurikenAbility extends Ability {
     {
         super("Blood Shuriken", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("Shoots a shuriken made from blood and imbued in cursed energy");
-        this.setMaxCooldown(10);
+        this.setMaxCooldown(5);
         this.setCursedEnergyCost(15);
         this.onUseEvent = this::onUseEvent;
     }

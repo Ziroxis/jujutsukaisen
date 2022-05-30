@@ -3,7 +3,8 @@ package com.example.jujutsukaisen;
 import com.example.jujutsukaisen.api.ability.AbilityArgument;
 import com.example.jujutsukaisen.api.ability.AbilityGroupArgument;
 import com.example.jujutsukaisen.client.ClientHandler;
-import com.example.jujutsukaisen.client.gui.overlays.CursedEnergyBar;
+import com.example.jujutsukaisen.client.gui.overlays.CursedEnergyBarGuiOverlay;
+import com.example.jujutsukaisen.client.gui.overlays.XpBarGuiOverlay;
 import com.example.jujutsukaisen.init.*;
 import com.example.jujutsukaisen.world.structure.configured.ConfiguredStructures;
 import net.minecraft.command.arguments.ArgumentSerializer;
@@ -74,7 +75,8 @@ public class Main
     {
         ClientHandler.OnSetup();
         ModKeyBinds.init();
-        MinecraftForge.EVENT_BUS.register(new CursedEnergyBar());
+        MinecraftForge.EVENT_BUS.register(new CursedEnergyBarGuiOverlay());
+        MinecraftForge.EVENT_BUS.register(new XpBarGuiOverlay());
 
     }
 
