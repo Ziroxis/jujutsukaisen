@@ -5,6 +5,8 @@ import com.example.jujutsukaisen.abilities.blood_manipulation.BloodShurikenAbili
 import com.example.jujutsukaisen.abilities.cursed_speech.StopAbility;
 import com.example.jujutsukaisen.abilities.disaster_flames.DisasterFlamesPassive;
 import com.example.jujutsukaisen.abilities.disaster_flames.FlameTouchAbility;
+import com.example.jujutsukaisen.abilities.disaster_plants.PhotoSynthesisPassive;
+import com.example.jujutsukaisen.abilities.disaster_plants.WoodenBallAbility;
 import com.example.jujutsukaisen.abilities.disaster_tides.DisasterTidesPassive;
 import com.example.jujutsukaisen.abilities.disaster_tides.WaterFlowAbility;
 import com.example.jujutsukaisen.abilities.heavenly_restriction.DashAbility;
@@ -100,12 +102,13 @@ public class CursedSpiritAcceptanceScreen extends Screen {
         posX += 120;
         Button acceptanceButton = new Button(posX, posY + 190, 70, 20, new TranslationTextComponent("Yes.", "Accept"), b ->
         {
-            int rng = Beapi.RNG(2);
+            int rng = Beapi.RNG(3);
             switch (rng)
             {
                 case 0:
                     props.setClan(ModValues.NONE);
                     props.setTechnique(ModValues.DISASTER_TIDES);
+                    props.setRestriction(ModValues.NONE);
                     abilityProps.addUnlockedAbility(WaterFlowAbility.INSTANCE);
                     abilityProps.addUnlockedAbility(DisasterTidesPassive.INSTANCE);
                     props.setCurse(ModValues.WATER);
@@ -113,9 +116,18 @@ public class CursedSpiritAcceptanceScreen extends Screen {
                 case 1:
                     props.setClan(ModValues.NONE);
                     props.setTechnique(ModValues.DISASTER_FLAMES);
+                    props.setRestriction(ModValues.NONE);
                     abilityProps.addUnlockedAbility(FlameTouchAbility.INSTANCE);
                     abilityProps.addUnlockedAbility(DisasterFlamesPassive.INSTANCE);
                     props.setCurse(ModValues.FIRE);
+                    break;
+                case 2:
+                    props.setClan(ModValues.NONE);
+                    props.setTechnique(ModValues.DISASTER_PLANTS);
+                    props.setRestriction(ModValues.NONE);
+                    abilityProps.addUnlockedAbility(WoodenBallAbility.INSTANCE);
+                    abilityProps.addUnlockedAbility(PhotoSynthesisPassive.INSTANCE);
+                    props.setCurse(ModValues.PLANTS);
                     break;
             }
             PacketHandler.sendToServer(new CSyncentityStatsPacket(props));

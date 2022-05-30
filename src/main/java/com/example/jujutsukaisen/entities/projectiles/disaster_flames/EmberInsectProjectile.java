@@ -23,7 +23,7 @@ public class EmberInsectProjectile extends AbilityProjectileEntity {
     {
         super(DisasterFlamesProjectiles.EMBER_INSECT.get(), world, player);
         this.setDamage(2);
-        this.setMaxLife(32);
+        this.setMaxLife(64);
         this.setPhysical(false);
 
         this.onBlockImpactEvent = this::onBlockImpactEvent;

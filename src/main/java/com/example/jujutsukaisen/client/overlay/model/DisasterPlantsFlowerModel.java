@@ -10,25 +10,30 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class InumakiLayerModel<T extends LivingEntity> extends BipedModel<T> {
+public class DisasterPlantsFlowerModel<T extends LivingEntity> extends BipedModel<T> {
 
-    private final ModelRenderer Cursed_Speech_Overlay;
+    private final ModelRenderer FlowerArmOverlay;
 
-    public InumakiLayerModel() {
+    public DisasterPlantsFlowerModel() {
         super(RenderType::entityTranslucent, 1, 0.0F, 64, 64);
         texWidth = 16;
         texHeight = 16;
 
-        Cursed_Speech_Overlay = new ModelRenderer(this);
-        Cursed_Speech_Overlay.setPos(0.0F, 0.0F, 0.0F);
-        Cursed_Speech_Overlay.texOffs(0, 0).addBox(-4.0F, -3.0F, -4.1F, 8.0F, 1.0F, 0.0F, 0.0F, false);    }
-
+        FlowerArmOverlay = new ModelRenderer(this);
+        FlowerArmOverlay.setPos(-5.0F, 2.0F, 0.0F);
+        FlowerArmOverlay.texOffs(0, 0).addBox(-3.0F, -3.0F, -2.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(0, 5).addBox(-2.0F, -5.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(6, 10).addBox(-2.0F, -4.0F, 1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(6, 5).addBox(-2.0F, -4.0F, -2.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(0, 9).addBox(-3.0F, -4.0F, -1.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+        FlowerArmOverlay.texOffs(6, 7).addBox(0.0F, -4.0F, -1.0F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+    }
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         this.crouching = entityIn.isCrouching();
 
-        this.Cursed_Speech_Overlay.copyFrom(this.hat);
+        this.FlowerArmOverlay.copyFrom(this.body);
 
 
         if(!(entityIn instanceof PlayerEntity))
@@ -39,13 +44,13 @@ public class InumakiLayerModel<T extends LivingEntity> extends BipedModel<T> {
 
         this.swimAmount = clientPlayer.getSwimAmount(ageInTicks);
 
-        this.Cursed_Speech_Overlay.copyFrom(this.hat);
+        this.FlowerArmOverlay.copyFrom(this.body);
     }
 
 
     @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-        ImmutableList.of(this.Cursed_Speech_Overlay).forEach((modelRenderer) -> {
+        ImmutableList.of(this.FlowerArmOverlay).forEach((modelRenderer) -> {
             modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         });
     }

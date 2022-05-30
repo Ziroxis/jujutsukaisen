@@ -10,6 +10,7 @@ import com.example.jujutsukaisen.abilities.disaster_flames.EmberInsectsAbility;
 import com.example.jujutsukaisen.abilities.disaster_flames.FlameArrowAbility;
 import com.example.jujutsukaisen.abilities.disaster_flames.FlameBallAbility;
 import com.example.jujutsukaisen.abilities.disaster_flames.PurpleFlamesAbility;
+import com.example.jujutsukaisen.abilities.disaster_plants.*;
 import com.example.jujutsukaisen.abilities.disaster_tides.*;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
@@ -74,6 +75,14 @@ public class AbilityProgressionEvents
 			gainAbility(event.getPlayer(), 10, FlameBallAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 15, PurpleFlamesAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 20, FlameArrowAbility.INSTANCE);
+		}
+		if (props.getTechnique().equals(ModValues.DISASTER_PLANTS))
+		{
+			gainAbility(event.getPlayer(), 5, CursedBudsAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 10, EnergyAbsorptionAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 15, FlowerFieldAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 20, RootEncasementAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 25, WoodArmorAbility.INSTANCE);
 		}
 	}
 

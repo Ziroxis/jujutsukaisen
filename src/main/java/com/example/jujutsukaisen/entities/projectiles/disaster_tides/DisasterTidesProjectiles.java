@@ -1,12 +1,8 @@
 package com.example.jujutsukaisen.entities.projectiles.disaster_tides;
 
 import com.example.jujutsukaisen.Main;
-import com.example.jujutsukaisen.abilities.disaster_tides.CursedFishAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.AbilityProjectileRenderer;
-import com.example.jujutsukaisen.models.projectiles.blood_manipulation.BloodMeteoriteModel;
-import com.example.jujutsukaisen.models.projectiles.blood_manipulation.BloodShurikenModel;
-import com.example.jujutsukaisen.models.projectiles.blood_manipulation.PiercingBloodModel;
 import com.example.jujutsukaisen.models.projectiles.disaster_tide.CursedFishModel;
 import com.example.jujutsukaisen.models.projectiles.disaster_tide.CursedSharkModel;
 import com.example.jujutsukaisen.models.projectiles.disaster_tide.WaterChargeModel;

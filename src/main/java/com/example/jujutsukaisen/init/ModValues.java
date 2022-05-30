@@ -32,6 +32,7 @@ public class ModValues {
     public static final String BLOOD_MANIPULATION = "Blood manipulation";
     public static final String DISASTER_TIDES = "Disaster tides";
     public static final String DISASTER_FLAMES = "Disaster flames";
+    public static final String DISASTER_PLANTS = "Disaster plants";
 
     public static final String NONE = "None";
 
@@ -39,4 +40,5 @@ public class ModValues {
     public static final String WATER = "Water";
     public static final String FIRE = "Fire";
     public static final String HUMAN = "Human";
+    public static final String PLANTS = "Plants";
 }

@@ -1,9 +1,6 @@
 package com.example.jujutsukaisen.client;
 
-import com.example.jujutsukaisen.client.overlay.renderer.CursedEnergyArmRenderer;
-import com.example.jujutsukaisen.client.overlay.renderer.DisasterFlamesVolcanoRenderer;
-import com.example.jujutsukaisen.client.overlay.renderer.DisasterTidesTailRenderer;
-import com.example.jujutsukaisen.client.overlay.renderer.InumakiLayerRenderer;
+import com.example.jujutsukaisen.client.overlay.renderer.*;
 import com.example.jujutsukaisen.client.renderer.entities.curses.*;
 import com.example.jujutsukaisen.client.renderer.entities.npc.GradeCheckerRenderer;
 import com.example.jujutsukaisen.client.renderer.entities.npc.MaidQuestRenderer;
@@ -57,13 +54,8 @@ public class ClientHandler {
             layers.add(new CursedEnergyArmRenderer<>(renderer));
             layers.add(new DisasterTidesTailRenderer<>(renderer));
             layers.add(new DisasterFlamesVolcanoRenderer<>(renderer));
-                        /*
-            layers.add(new TGLayer<>(renderer));
-            layers.add(new BlackModeLayer<>(renderer));
-            layers.add(new BlackCocoonLayer<>(renderer));
-            layers.add(new SlashBladesLayer<>(renderer));
-            layers.add(new WaterArmorLayer<>(renderer));
-            */
+            layers.add(new DisasterPlantsFlowerRenderer<>(renderer));
+
         }
     }
 }
