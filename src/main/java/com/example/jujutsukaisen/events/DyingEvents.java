@@ -16,6 +16,7 @@ import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.ability.SSyncAbilityDataPacket;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -66,6 +67,8 @@ public class DyingEvents {
         IAbilityData newAbilityData = AbilityDataCapability.get(player);
         INBT nbt = new CompoundNBT();
 
+        AttributeModifierManager attributesOld = original.getAttributes();
+        player.getAttributes().assignValues(attributesOld);
         // Keep the entity stats
         IEntityStats oldEntityStats = EntityStatsCapability.get(original);
         nbt = EntityStatsCapability.INSTANCE.writeNBT(oldEntityStats, null);
