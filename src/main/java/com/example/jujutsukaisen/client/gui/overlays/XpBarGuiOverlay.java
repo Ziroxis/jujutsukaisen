@@ -39,18 +39,18 @@ public class XpBarGuiOverlay {
 
             //45, 159 -> Coordinates empty bar
             //45, 140 -> Coordinates full bar
-            GuiUtils.drawTexturedModalRect((posX - 175) / 2, posY - 250, 45, 150, tex_width, tex_height, 0);
+            GuiUtils.drawTexturedModalRect(160, 0, 45, 150, tex_width, tex_height, 0);
 
             float xpRatio = ((float) props.getExperience() /(float) props.getMaxExperience()) ;
             int set_width = (int) (tex_width * xpRatio);
             int move_tex = (tex_width - set_width);
-            GuiUtils.drawTexturedModalRect((posX - 175) / 2, posY - 249, 45, 132, set_width, tex_height, 0);
+            GuiUtils.drawTexturedModalRect(160, 0, 45, 132, set_width, tex_height, 0);
 
 
             String level = "Level: " + props.getLevel();
-            Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), level, ((posX - 175) / 2), posY - 239, Color.BLUE.getRGB());
+            Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), level, 160, 10, Color.BLUE.getRGB());
             String experience = "Experience: " + props.getExperience() + "/" + props.getMaxExperience();
-            Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), experience, ((posX + 30) / 2), posY - 239, Color.BLUE.getRGB());
+            Beapi.drawStringWithBorder(Minecraft.getInstance().font, event.getMatrixStack(), experience, 240, 10, Color.BLUE.getRGB());
 
 
         }

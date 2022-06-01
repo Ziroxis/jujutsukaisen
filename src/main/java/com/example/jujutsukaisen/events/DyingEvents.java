@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.events;
 
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
+import com.example.jujutsukaisen.api.ability.AbilityHelper;
 import com.example.jujutsukaisen.client.gui.overlays.CursedEnergyBarGuiOverlay;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
@@ -13,6 +14,7 @@ import com.example.jujutsukaisen.init.ModAttributes;
 import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
+import com.example.jujutsukaisen.networking.server.ability.SSyncAbilityDataPacket;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -47,46 +49,19 @@ public class DyingEvents {
     {
         if (event.isWasDeath())
         {
-            IEntityStats oldstatProps = EntityStatsCapability.get(event.getOriginal());
-            IAbilityData oldabilityProps = AbilityDataCapability.get(event.getOriginal());
-            String clan = oldstatProps.getClan();
-            String technique = oldstatProps.getTechnique();
-            String oldGrade = oldstatProps.getCurseGrade();
-            int oldLevel = oldstatProps.getLevel();
-            int level = oldLevel / 3;
-            int oldMaxCursedEnergy = oldstatProps.getMaxCursedEnergy();
-
-            IEntityStats newEntityStats = EntityStatsCapability.get(event.getPlayer());
             IAbilityData newAbilityData = AbilityDataCapability.get(event.getPlayer());
-
-
-            for (int i = 0; i <= oldabilityProps.getUnlockedAbilities(AbilityCategories.AbilityCategory.ALL).size(); i++)
-                newAbilityData.addUnlockedAbility(oldabilityProps.getUnlockedAbility(i));
-
-
-            newEntityStats.setClan(clan);
-            newEntityStats.setTechnique(technique);
-            newEntityStats.setCurseGrade(ModValues.locked);
-            newEntityStats.setLevel(level);
-            newEntityStats.setMaxCursedEnergy((level * 50) + 50);
-            newEntityStats.setExperience(0);
-            newEntityStats.setMaxExperience((level * 50) + 50);
-
-
-            //PacketHandler.sendTo(new SSyncEntityStatsPacket(event.getPlayer().getId(), newEntityStats), event.getPlayer());
-            //PacketHandler.sendTo(new SSyncAbilityDataPacket(event.getPlayer().getId(), newAbilityData), event.getPlayer());
-
-            DyingEvents.restorePermaData(event.getOriginal(), event.getPlayer());
-
+            INBT nbt = new CompoundNBT();
+            restoreFullData(event.getOriginal(), event.getPlayer());
+            restorePermaData(event.getOriginal(), event.getPlayer());
+            PacketHandler.sendTo(new SSyncAbilityDataPacket(event.getPlayer().getId(), newAbilityData), event.getPlayer());
         }
         else
-            DyingEvents.restoreFullData(event.getOriginal(), event.getPlayer());
+            restoreFullData(event.getOriginal(), event.getPlayer());
     }
 
     private static void restoreFullData(PlayerEntity original, PlayerEntity player)
     {
         IAbilityData newAbilityData = AbilityDataCapability.get(player);
-
         INBT nbt = new CompoundNBT();
 
         // Keep the entity stats
@@ -95,24 +70,19 @@ public class DyingEvents {
         IEntityStats newEntityStats = EntityStatsCapability.get(player);
         EntityStatsCapability.INSTANCE.readNBT(newEntityStats, null, nbt);
 
-        // Keep the abilities
+        // Keep the ability stats
         IAbilityData oldAbilityData = AbilityDataCapability.get(original);
         nbt = AbilityDataCapability.INSTANCE.writeNBT(oldAbilityData, null);
         AbilityDataCapability.INSTANCE.readNBT(newAbilityData, null, nbt);
 
+        restorePermaData(original, player);
 
-        DyingEvents.restorePermaData(original, player);
     }
     private static void restorePermaData(PlayerEntity original, PlayerEntity player)
     {
         INBT nbt = new CompoundNBT();
         // Quest data is persisted no matter the config option.
         // Keep the quests data
-        IEntityStats oldEntityStats = EntityStatsCapability.get(original);
-        nbt = EntityStatsCapability.INSTANCE.writeNBT(oldEntityStats, null);
-        IEntityStats newEntityStats = EntityStatsCapability.get(player);
-        EntityStatsCapability.INSTANCE.readNBT(newEntityStats, null, nbt);
-
         IQuestData oldQuestData = QuestDataCapability.get(original);
         nbt = QuestDataCapability.INSTANCE.writeNBT(oldQuestData, null);
         IQuestData newQuestData = QuestDataCapability.get(player);
@@ -120,12 +90,13 @@ public class DyingEvents {
 
         // Keep the abilities
         IAbilityData oldAbilityData = AbilityDataCapability.get(original);
-
         oldAbilityData.clearEquippedAbilities(AbilityCategories.AbilityCategory.ALL);
 
         nbt = AbilityDataCapability.INSTANCE.writeNBT(oldAbilityData, null);
         IAbilityData newAbilityData = AbilityDataCapability.get(player);
         AbilityDataCapability.INSTANCE.readNBT(newAbilityData, null, nbt);
+
+
     }
 
     @SubscribeEvent
