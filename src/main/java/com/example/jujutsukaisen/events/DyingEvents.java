@@ -31,7 +31,7 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class DyingEvents {
-
+/*
     public static final AttributeModifier HEAVENLY_STRENGTH = new AttributeModifier(UUID.fromString("9cd5ec6c-dcd7-11ec-9d64-0242ac120002"),
             "Heavenly", 3, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier HEAVENLY_SPEED = new AttributeModifier(UUID.fromString("b7b47dd2-dcd7-11ec-9d64-0242ac120002"),
@@ -44,6 +44,8 @@ public class DyingEvents {
             "Heavenly", 10, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier RESTRICTION_CONSTITUTION = new AttributeModifier(UUID.fromString("21624492-dce4-11ec-9d64-0242ac120002"),
             "Constitution", -10, AttributeModifier.Operation.ADDITION);
+
+ */
     @SubscribeEvent
     public static void onClonePlayer(PlayerEvent.Clone event)
     {
@@ -51,12 +53,12 @@ public class DyingEvents {
         {
             IAbilityData newAbilityData = AbilityDataCapability.get(event.getPlayer());
             INBT nbt = new CompoundNBT();
-            restoreFullData(event.getOriginal(), event.getPlayer());
-            restorePermaData(event.getOriginal(), event.getPlayer());
+            DyingEvents.restoreFullData(event.getOriginal(), event.getPlayer());
+            DyingEvents.restorePermaData(event.getOriginal(), event.getPlayer());
             PacketHandler.sendTo(new SSyncAbilityDataPacket(event.getPlayer().getId(), newAbilityData), event.getPlayer());
         }
         else
-            restoreFullData(event.getOriginal(), event.getPlayer());
+            DyingEvents.restoreFullData(event.getOriginal(), event.getPlayer());
     }
 
     private static void restoreFullData(PlayerEntity original, PlayerEntity player)
@@ -75,7 +77,7 @@ public class DyingEvents {
         nbt = AbilityDataCapability.INSTANCE.writeNBT(oldAbilityData, null);
         AbilityDataCapability.INSTANCE.readNBT(newAbilityData, null, nbt);
 
-        restorePermaData(original, player);
+        DyingEvents.restorePermaData(original, player);
 
     }
     private static void restorePermaData(PlayerEntity original, PlayerEntity player)
@@ -99,6 +101,7 @@ public class DyingEvents {
 
     }
 
+    /*
     @SubscribeEvent
     public static void onRespawnPlayer(PlayerEvent.PlayerRespawnEvent event)
     {
@@ -127,4 +130,6 @@ public class DyingEvents {
         PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), statsProps), player);
         MinecraftForge.EVENT_BUS.register(new CursedEnergyBarGuiOverlay());
     }
+
+     */
 }

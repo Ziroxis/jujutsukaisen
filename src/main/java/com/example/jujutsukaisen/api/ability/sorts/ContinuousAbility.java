@@ -125,7 +125,7 @@ public class ContinuousAbility extends Ability {
         {
             if (player.tickCount % 20 == 0)
                 propsEntity.alterCursedEnergy((int) -getCursedEnergyCost());
-            PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
+            PacketHandler.sendTo(new CursedEnergySync(propsEntity.returnCursedEnergy()), player);
             this.continueTime++;
             if((this.isClientSide() || !player.level.isClientSide) && !this.isStateForced())
                 this.duringContinuityEvent.duringContinuity(player, this.continueTime);

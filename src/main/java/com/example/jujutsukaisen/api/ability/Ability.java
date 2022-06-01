@@ -96,7 +96,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
 
             IEntityStats propsEntity = EntityStatsCapability.get(player);
             propsEntity.alterCursedEnergy(-cursedEnergyCost);
-            PacketHandler.sendToServer(new CursedEnergySync(propsEntity.returnCursedEnergy()));
+            PacketHandler.sendTo(new CursedEnergySync(propsEntity.returnCursedEnergy()), player);
 
             this.startCooldown(player);
             props.setPreviouslyUsedAbility(this);
