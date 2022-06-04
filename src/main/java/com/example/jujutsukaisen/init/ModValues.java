@@ -33,7 +33,7 @@ public class ModValues {
     public static final String DISASTER_TIDES = "Disaster tides";
     public static final String DISASTER_FLAMES = "Disaster flames";
     public static final String DISASTER_PLANTS = "Disaster plants";
-
+    public static final String STRAW_DOLL = "Straw doll";
     public static final String NONE = "None";
 
     //CURSE RELATED

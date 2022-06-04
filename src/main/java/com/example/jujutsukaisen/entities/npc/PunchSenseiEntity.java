@@ -68,27 +68,61 @@ public class PunchSenseiEntity extends Quester {
             for (int i = 0; i < quests.length; i++)
             {
                 if (quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
+                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
+                || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCH_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
+                || quests[i] != null && quests[i].equals(ModQuests.DIVERGENT_FIST_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
                 {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
-                    statsProps.alterLevel(1);
                     PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                     player.sendMessage(new StringTextComponent("Good job kid, gotta give it to ya"), player.getUUID());
                     return ActionResultType.PASS;
                 }
             }
-            if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02))
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCH_01) && questProps.hasFinishedQuest(ModQuests.DIVERGENT_FIST_01))
             {
                 player.sendMessage(new StringTextComponent("Got nothing else for ya to do kid!"), player.getUUID());
                 return ActionResultType.PASS;
             }
+
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCH_01) && !questProps.hasFinishedQuest(ModQuests.DIVERGENT_FIST_01) && !questProps.hasInProgressQuest(ModQuests.DIVERGENT_FIST_01))
+            {
+                player.sendMessage(new StringTextComponent("It's pretty damn hard to fight against these long range curses right? That's why imma teach you something new"), player.getUUID());
+                player.sendMessage(new StringTextComponent("Go kill roppongis with a sword and I'll teach you, like 20."), player.getUUID());
+                for (int i = 0; i<quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.DIVERGENT_FIST_01);
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
+                        break;
+                    }
+                }
+                return ActionResultType.PASS;
+
+            }
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02) && !questProps.hasFinishedQuest(ModQuests.CURSED_PUNCH_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_PUNCH_01))
+            {
+                player.sendMessage(new StringTextComponent("It's time for you to learn something -_- just slashing gets boring after a while"), player.getUUID());
+                player.sendMessage(new StringTextComponent("Go kill zombies with an actual sword now, like 20. That's actual practice"), player.getUUID());
+                for (int i = 0; i<quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.CURSED_PUNCH_01);
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
+                        break;
+                    }
+                }
+                return ActionResultType.PASS;
+            }
+
             if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) || questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_01))
             {
                 player.sendMessage(new StringTextComponent("Go beat it brat, you already chose the path of slashing stuff."), player.getUUID());
                 return ActionResultType.PASS;
             }
-            else if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_02))
+            else if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_02) && !questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02))
             {
                 player.sendMessage(new StringTextComponent("That's not enough to prove me your kill, go get me a bone."), player.getUUID());
                 for (int i = 0; i<quests.length; i++)
@@ -102,7 +136,7 @@ public class PunchSenseiEntity extends Quester {
                 }
                 return ActionResultType.PASS;
             }
-            else if (questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_01) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_02))
+            else if (questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_01) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_02) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCH_01) || questProps.hasInProgressQuest(ModQuests.DIVERGENT_FIST_01))
             {
                 player.sendMessage(new StringTextComponent("Beat it brat. Go do what I asked."), player.getUUID());
                 return ActionResultType.PASS;

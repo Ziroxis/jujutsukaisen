@@ -1,9 +1,11 @@
-package com.example.jujutsukaisen.quest.cursed_punches;
+package com.example.jujutsukaisen.quest.cursed_punches.cursed_punch_questline;
 
+import com.example.jujutsukaisen.abilities.basic.punch.CursedPunchAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.init.ModAbilities;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
@@ -11,27 +13,32 @@ import com.example.jujutsukaisen.quest.Objective;
 import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
 import com.example.jujutsukaisen.quest.objectives.SharedKillChecks;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class CursedPunches_01 extends Quest {
+public class CursedPunch_01 extends Quest {
 
-    private Objective objective = new KillEntityObjective("Kill any entity once", 1, SharedKillChecks.EXISTS);
-
-    public CursedPunches_01()
+    private static final KillEntityObjective.ICheckKill TARGET_CHECK = (player, target, source) ->
     {
-        super("cursedpunches_01", "Proving your worth by a punch");
-        this.setDescription("Prove your worth by killing an entity");
-        this.addObjectives(this.objective);
+        return target.getType() == EntityType.ZOMBIE;
+    };
+    private Objective killObjective = new KillEntityObjective("Kill 20 zombies", 20, TARGET_CHECK.and(SharedKillChecks.HAS_EMPTY_HAND));
+
+    public CursedPunch_01()
+    {
+        super("cursedpunch_01", "Get rid of some zombies with your bare fist, 20");
+        this.addObjective(this.killObjective);
         this.onCompleteEvent = this::giveReward;
     }
 
     public boolean giveReward(PlayerEntity player)
     {
-        player.giveExperienceLevels(50);
         IAbilityData propsAbility = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
-        PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));
+        propsStats.alterExperience(200);
+        propsAbility.addUnlockedAbility(CursedPunchAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
+        PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));
         return true;
     }
 }

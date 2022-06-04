@@ -71,19 +71,54 @@ public class SwordSenseiEntity extends Quester {
             for (int i = 0; i < quests.length; i++)
             {
                 if (quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
+                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
+                || quests[i] != null && quests[i].equals(ModQuests.BATTO_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
+                || quests[i] != null && quests[i].equals(ModQuests.EVENING_MOON_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
                 {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
-                    statsProps.alterLevel(1);
                     PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                     player.sendMessage(new StringTextComponent("GOOD JOB!!! So proud of you! *Headpats you*"), player.getUUID());
                     return ActionResultType.PASS;
                 }
             }
-            if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02))
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02) && questProps.hasFinishedQuest(ModQuests.BATTO_SWORD_01) && questProps.hasFinishedQuest(ModQuests.EVENING_MOON_01))
             {
-                player.sendMessage(new StringTextComponent("Come back when I got more stuff for ya to do uwu"), player.getUUID());
+                player.sendMessage(new StringTextComponent("You're done with everything for now! Come back in a later update! Euh I mean.. Later date.."), player.getUUID());
+                player.sendMessage(new StringTextComponent("(I should really stop breaking the fourth wall...)"), player.getUUID());
+
+                return ActionResultType.PASS;
+
+            }
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02) && questProps.hasFinishedQuest(ModQuests.BATTO_SWORD_01) && !questProps.hasFinishedQuest(ModQuests.EVENING_MOON_01) && !questProps.hasInProgressQuest(ModQuests.EVENING_MOON_01))
+            {
+                player.sendMessage(new StringTextComponent("It's pretty damn hard to fight against these long range curses right? That's why imma teach you something new"), player.getUUID());
+                player.sendMessage(new StringTextComponent("Go kill roppongis with a sword and I'll teach you, like 20."), player.getUUID());
+                for (int i = 0; i<quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.EVENING_MOON_01);
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
+                        break;
+                    }
+                }
+                return ActionResultType.PASS;
+
+            }
+            if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02) && !questProps.hasFinishedQuest(ModQuests.BATTO_SWORD_01) && !questProps.hasInProgressQuest(ModQuests.BATTO_SWORD_01))
+            {
+                player.sendMessage(new StringTextComponent("It's time for you to learn something -_- just slashing gets boring after a while"), player.getUUID());
+                player.sendMessage(new StringTextComponent("Go kill zombies with an actual sword now, like 20. That's actual practice"), player.getUUID());
+                for (int i = 0; i<quests.length; i++)
+                {
+                    if (quests[i] == null)
+                    {
+                        questProps.addInProgressQuest(ModQuests.BATTO_SWORD_01);
+                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
+                        break;
+                    }
+                }
                 return ActionResultType.PASS;
             }
             if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) || questProps.hasInProgressQuest(ModQuests.CURSED_PUNCHES_01))
@@ -91,7 +126,7 @@ public class SwordSenseiEntity extends Quester {
                 player.sendMessage(new StringTextComponent("You already chose the path to punch curses, I'm very sorry but I can't teach you my teachings..."), player.getUUID());
                 return ActionResultType.PASS;
             }
-            else if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_02))
+            else if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_02) && !questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02))
             {
                 player.sendMessage(new StringTextComponent("Hey, sorry to bother you but could you also get me a bone? Just to be sure, sorry...."), player.getUUID());
                 for (int i = 0; i<quests.length; i++)
@@ -105,7 +140,7 @@ public class SwordSenseiEntity extends Quester {
                 }
                 return ActionResultType.PASS;
             }
-            else if (questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_01) || questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_02))
+            else if (questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_01) || questProps.hasInProgressQuest(ModQuests.CURSED_SWORD_02) || questProps.hasInProgressQuest(ModQuests.BATTO_SWORD_01) || questProps.hasInProgressQuest(ModQuests.EVENING_MOON_01))
             {
                 player.sendMessage(new StringTextComponent("C-Cou-Could you please do what I ask? Pretty please?"), player.getUUID());
                 return ActionResultType.PASS;

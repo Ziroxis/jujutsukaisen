@@ -26,7 +26,7 @@ public class SmallNailProjectile extends AbilityProjectileEntity {
     private void onEntityImpactEvent(LivingEntity entity)
     {
         if (!entity.hasEffect(ModEffects.HAIR_PIN.get()))
-            entity.addEffect(new EffectInstance(ModEffects.HAIR_PIN.get()));
+            entity.addEffect(new EffectInstance(ModEffects.HAIR_PIN.get(), 10000, 0));
     }
 
 }

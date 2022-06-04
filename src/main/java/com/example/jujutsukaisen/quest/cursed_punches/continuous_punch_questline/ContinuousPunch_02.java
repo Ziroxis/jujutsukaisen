@@ -1,4 +1,4 @@
-package com.example.jujutsukaisen.quest.cursed_punches;
+package com.example.jujutsukaisen.quest.cursed_punches.continuous_punch_questline;
 
 import com.example.jujutsukaisen.abilities.basic.punch.CursedEnergyContinuousPunchAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -14,11 +14,11 @@ import com.example.jujutsukaisen.quest.objectives.ObtainItemObjective;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 
-public class CursedPunches_02 extends Quest {
+public class ContinuousPunch_02 extends Quest {
 
     private Objective objective = new ObtainItemObjective("Prove your kill", 1, Items.BONE);
 
-    public CursedPunches_02()
+    public ContinuousPunch_02()
     {
         super("cursedpunches_02", "Proving your worth by bone and punch");
         this.setDescription("Collect one bone");
@@ -28,9 +28,9 @@ public class CursedPunches_02 extends Quest {
 
     public boolean giveReward(PlayerEntity player)
     {
-        player.giveExperienceLevels(10);
         IAbilityData props = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
+        propsStats.alterExperience(100);
         props.addUnlockedAbility(CursedEnergyContinuousPunchAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));

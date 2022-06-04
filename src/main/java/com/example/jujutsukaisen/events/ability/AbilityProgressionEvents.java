@@ -16,6 +16,9 @@ import com.example.jujutsukaisen.abilities.projection_sorcery.FrameBreakAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameCatchAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameTeleportationAbility;
+import com.example.jujutsukaisen.abilities.straw_doll.GiantNailAbility;
+import com.example.jujutsukaisen.abilities.straw_doll.HairpinAbility;
+import com.example.jujutsukaisen.abilities.straw_doll.ResonanceAbility;
 import com.example.jujutsukaisen.abilities.tenshadow_technique.ShadowInventoryAbility;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -83,6 +86,12 @@ public class AbilityProgressionEvents
 			gainAbility(event.getPlayer(), 15, FlowerFieldAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 20, RootEncasementAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 25, WoodArmorAbility.INSTANCE);
+		}
+		if (props.getTechnique().equals(ModValues.STRAW_DOLL))
+		{
+			gainAbility(event.getPlayer(), 5, GiantNailAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 10, ResonanceAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 20, HairpinAbility.INSTANCE);
 		}
 	}
 

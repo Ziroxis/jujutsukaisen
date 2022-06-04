@@ -26,6 +26,6 @@ public class CursedBudsProjectile extends AbilityProjectileEntity {
     private void onEntityImpactEvent(LivingEntity entity)
     {
         if (!entity.hasEffect(ModEffects.CURSED_BUD.get()))
-            entity.addEffect(new EffectInstance(ModEffects.CURSED_BUD.get()));
+            entity.addEffect(new EffectInstance(ModEffects.CURSED_BUD.get(), 100000, 0));
     }
 }
