@@ -23,7 +23,6 @@ public class CursedBudEffect extends SpecialEffect {
 
     public CursedBudEffect() {
         super(EffectType.HARMFUL, Beapi.hexToRGB("#000000").getRGB());
-
     }
 
     @Override

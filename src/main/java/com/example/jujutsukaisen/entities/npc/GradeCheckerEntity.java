@@ -81,7 +81,7 @@ public class GradeCheckerEntity extends Quester {
                 statsProps.setCurseGrade(ModValues.semi_special_grade);
 
             }
-            if (level <= 70)
+            if (level >= 70)
             {
                 player.sendMessage(new StringTextComponent("For now I'll give ya special grade, alright?"), player.getUUID());
                 statsProps.setCurseGrade(ModValues.special_grade);

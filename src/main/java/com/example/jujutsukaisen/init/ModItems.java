@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen.init;
 
 import com.example.jujutsukaisen.Main;
+import com.example.jujutsukaisen.items.other.StrawDollItem;
 import com.example.jujutsukaisen.items.spawneggs.*;
 import com.example.jujutsukaisen.items.weapons.*;
 import net.minecraft.item.Item;
@@ -37,4 +38,7 @@ public class ModItems {
     public static final RegistryObject<Item> DEMON_SLAUGHTERER = ITEMS.register("demon_slaughterer", () -> new DemonSlaughterer(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 5, 0f));
     public static final RegistryObject<Item> NANAMI_BLADE = ITEMS.register("nanami_blade", () -> new NanamiBlade(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 6, 0f));
     public static final RegistryObject<Item> BLOOD_EDGE = ITEMS.register("blood_edge", () -> new BloodEdge(new Item.Properties().tab(ItemGroup.TAB_COMBAT).stacksTo(1), 7, 1.9f));
+
+    //OTHER
+    public static final RegistryObject<Item> STRAW_DOLL = ITEMS.register("straw_doll", StrawDollItem::new);
 }

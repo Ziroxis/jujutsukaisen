@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 public enum AbilityCommandGroup implements IExtensibleEnum
 {
+	STRAW_DOLL(() -> ModAbilities.STRAW_DOLL),
 	DISASTER_PLANTS(() -> ModAbilities.DISASTER_PLANTS),
 	REVERSED_ENERGY(() -> ModAbilities.REVERSED_ENERGY),
 	HEAVENLY_RESTRICTION(() -> ModAbilities.HEAVENLY_RESTRICTION),

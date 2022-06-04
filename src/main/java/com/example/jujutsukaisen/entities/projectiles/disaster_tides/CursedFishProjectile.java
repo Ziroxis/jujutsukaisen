@@ -15,7 +15,7 @@ public class CursedFishProjectile extends AbilityProjectileEntity {
     {
         super(DisasterTidesProjectiles.CURSED_FISH_PROJECTILE.get(), world, player);
         this.setDamage(10);
-        this.setMaxLife(32);
+        this.setMaxLife(64);
         this.setPhysical(false);
     }
 }
