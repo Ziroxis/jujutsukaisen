@@ -21,7 +21,7 @@ public class ContinuousSword_02 extends Quest {
 
     public ContinuousSword_02()
     {
-        super("cursedsword_02", "Proving your worth by bone and sword");
+        super("continuoussword_02", "Proving your worth by bone and sword");
         this.addObjective(this.objective);
         this.onCompleteEvent = this::giveReward;
     }
@@ -35,7 +35,6 @@ public class ContinuousSword_02 extends Quest {
         props.addUnlockedAbility(CursedEnergyContinuousSwordAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
-        PacketHandler.sendTo(new SSyncEntityStatsPacket(), player);
 
         return true;
     }

@@ -5,7 +5,6 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
-import com.example.jujutsukaisen.init.ModAbilities;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;

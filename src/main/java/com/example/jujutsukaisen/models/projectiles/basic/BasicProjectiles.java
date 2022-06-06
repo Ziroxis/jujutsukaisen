@@ -19,7 +19,7 @@ public class BasicProjectiles {
 
     public static final RegistryObject<EntityType<BloodShurikenProjectile>> EVENING_MOON = Beapi.registerEntityType("Evening Moon",
             () -> Beapi.createEntityType(EveningMoonProjectile::new)
-                    .sized(0.5f, 0.5f)
+                    .sized(2f, 2f)
                     .build(Main.MODID + ":evening_moon"));
 
 

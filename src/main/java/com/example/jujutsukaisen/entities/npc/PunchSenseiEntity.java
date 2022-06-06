@@ -104,7 +104,7 @@ public class PunchSenseiEntity extends Quester {
             if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02) && !questProps.hasFinishedQuest(ModQuests.CURSED_PUNCH_01) && !questProps.hasInProgressQuest(ModQuests.CURSED_PUNCH_01))
             {
                 player.sendMessage(new StringTextComponent("It's time for you to learn something -_- just slashing gets boring after a while"), player.getUUID());
-                player.sendMessage(new StringTextComponent("Go kill zombies with an actual sword now, like 20. That's actual practice"), player.getUUID());
+                player.sendMessage(new StringTextComponent("Go kill zombies with an actual punch now, like 20. That's actual practice"), player.getUUID());
                 for (int i = 0; i<quests.length; i++)
                 {
                     if (quests[i] == null)

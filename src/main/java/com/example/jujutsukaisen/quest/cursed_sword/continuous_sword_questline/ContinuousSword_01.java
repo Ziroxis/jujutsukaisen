@@ -1,7 +1,9 @@
 package com.example.jujutsukaisen.quest.cursed_sword.continuous_sword_questline;
 
+import com.example.jujutsukaisen.abilities.basic.punch.CursedPunchAbility;
 import com.example.jujutsukaisen.abilities.basic.sword.BattoSwordAbility;
 import com.example.jujutsukaisen.abilities.basic.sword.CursedEnergyContinuousSwordAbility;
+import com.example.jujutsukaisen.api.ability.sorts.ContinuousSwordAbility;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
@@ -21,8 +23,7 @@ public class ContinuousSword_01 extends Quest {
 
     public ContinuousSword_01()
     {
-        super("cursedsword_01", "Proving your worth by a slash");
-        this.setDescription("Prove your worth by killing an entity");
+        super("continuoussword_01", "Proving your worth by a slash");
         this.addObjectives(this.objective);
         this.onCompleteEvent = this::giveReward;
     }
@@ -32,7 +33,6 @@ public class ContinuousSword_01 extends Quest {
         IAbilityData propsAbility = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
         propsStats.alterExperience(50);
-        propsAbility.addUnlockedAbility(BattoSwordAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
         return true;

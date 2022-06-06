@@ -33,7 +33,6 @@ public class ContinuousPunch_01 extends Quest {
         propsStats.alterExperience(50);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
-        PacketHandler.sendTo(new SSyncEntityStatsPacket(), player);
         return true;
     }
 }
