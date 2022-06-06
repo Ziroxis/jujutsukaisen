@@ -33,6 +33,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.gui.GuiUtils;
+import org.lwjgl.system.CallbackI;
 
 import java.awt.*;
 
@@ -121,9 +122,8 @@ public class PlayerStatsScreen extends Screen {
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
         this.renderBackground(matrixStack);
-        backgroundRendering(matrixStack); //Points to another method where everything actually happens
+        backgroundRendering(matrixStack);
         xpBarRenderering(matrixStack);
-        //renderEntityInInventory(guiLeft + 180, guiTop + 200, 75, (guiLeft + 179) - mouseX, (guiTop + 78) - mouseY, this.minecraft.player); -> bugs out for now
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
@@ -135,6 +135,9 @@ public class PlayerStatsScreen extends Screen {
      */
     public void backgroundRendering(MatrixStack matrixStack)
     {
+
+
+
         //1.
         PlayerEntity player = this.getMinecraft().player;
         IEntityStats props = EntityStatsCapability.get(player);
@@ -187,46 +190,10 @@ public class PlayerStatsScreen extends Screen {
         Beapi.drawStringWithBorder(Minecraft.getInstance().font, matrixStack, experience, guiLeft + 5, guiTop + 170, Color.BLUE.getRGB());
 
     }
-
-    public static void renderEntityInInventory(int p_228187_0_, int p_228187_1_, int p_228187_2_, float p_228187_3_, float p_228187_4_, LivingEntity p_228187_5_) {
-        float f = (float)Math.atan((double)(p_228187_3_ / 40.0F));
-        float f1 = (float)Math.atan((double)(p_228187_4_ / 40.0F));
-        RenderSystem.pushMatrix();
-        RenderSystem.translatef((float)p_228187_0_, (float)p_228187_1_, 1050.0F);
-        RenderSystem.scalef(1.0F, 1.0F, -1.0F);
-        MatrixStack matrixstack = new MatrixStack();
-        matrixstack.translate(0.0D, 0.0D, 1000.0D);
-        matrixstack.scale((float)p_228187_2_, (float)p_228187_2_, (float)p_228187_2_);
-        Quaternion quaternion = Vector3f.ZP.rotationDegrees(180.0F);
-        Quaternion quaternion1 = Vector3f.XP.rotationDegrees(f1 * 20.0F);
-        quaternion.mul(quaternion1);
-        matrixstack.mulPose(quaternion);
-        float f2 = p_228187_5_.yBodyRot;
-        float f3 = p_228187_5_.yRot;
-        float f4 = p_228187_5_.xRot;
-        float f5 = p_228187_5_.yHeadRotO;
-        float f6 = p_228187_5_.yHeadRot;
-        p_228187_5_.yBodyRot = 180.0F + f * 20.0F;
-        p_228187_5_.yRot = 180.0F + f * 40.0F;
-        p_228187_5_.xRot = -f1 * 20.0F;
-        p_228187_5_.yHeadRot = p_228187_5_.yRot;
-        p_228187_5_.yHeadRotO = p_228187_5_.yRot;
-        EntityRendererManager entityrenderermanager = Minecraft.getInstance().getEntityRenderDispatcher();
-        quaternion1.conj();
-        entityrenderermanager.overrideCameraOrientation(quaternion1);
-        entityrenderermanager.setRenderShadow(false);
-        IRenderTypeBuffer.Impl irendertypebuffer$impl = Minecraft.getInstance().renderBuffers().bufferSource();
-        RenderSystem.runAsFancy(() -> {
-            entityrenderermanager.render(p_228187_5_, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, matrixstack, irendertypebuffer$impl, 15728880);
-        });
-        irendertypebuffer$impl.endBatch();
-        entityrenderermanager.setRenderShadow(true);
-        p_228187_5_.yBodyRot = f2;
-        p_228187_5_.yRot = f3;
-        p_228187_5_.xRot = f4;
-        p_228187_5_.yHeadRotO = f5;
-        p_228187_5_.yHeadRot = f6;
+    public void hoveringText(MatrixStack matrixStack, int mouseX, int mouseY)
+    {
     }
+
 
     @Override
     public boolean isPauseScreen()

@@ -3,7 +3,7 @@ package com.example.jujutsukaisen.events.ability;
 import com.example.jujutsukaisen.Main;
 import com.example.jujutsukaisen.api.ability.AbilityHelper;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
-import com.example.jujutsukaisen.events.ProjectileHitEvent;
+import com.example.jujutsukaisen.events.projectile.ProjectileHitEvent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;

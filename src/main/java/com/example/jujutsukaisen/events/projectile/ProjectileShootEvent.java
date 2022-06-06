@@ -1,4 +1,4 @@
-package com.example.jujutsukaisen.events;
+package com.example.jujutsukaisen.events.projectile;
 
 import com.example.jujutsukaisen.entities.spells.AbilityProjectileEntity;
 import net.minecraftforge.eventbus.api.Cancelable;

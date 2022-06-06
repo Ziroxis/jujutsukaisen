@@ -1,13 +1,11 @@
 package com.example.jujutsukaisen.entities.spells;
 
-import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
-import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
-import com.example.jujutsukaisen.events.ProjectileBlockEvent;
-import com.example.jujutsukaisen.events.ProjectileHitEvent;
-import com.example.jujutsukaisen.events.ProjectileShootEvent;
+import com.example.jujutsukaisen.events.projectile.ProjectileBlockEvent;
+import com.example.jujutsukaisen.events.projectile.ProjectileHitEvent;
+import com.example.jujutsukaisen.events.projectile.ProjectileShootEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
