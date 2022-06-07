@@ -23,6 +23,9 @@ public class FlowerFieldAbility extends Ability {
         this.setDescription("Extend a flower field around you causing the enemies to be weakened");
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(30);
+
         this.onUseEvent = this::onUseEvent;
     }
 

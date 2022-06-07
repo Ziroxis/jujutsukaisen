@@ -19,6 +19,8 @@ public class BloodMeteoriteAbility extends RepeaterAbility {
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(20);
         this.setMaxRepeaterCount(8, 5);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(15);
         this.onUseEvent = this::onUseEvent;
     }
 

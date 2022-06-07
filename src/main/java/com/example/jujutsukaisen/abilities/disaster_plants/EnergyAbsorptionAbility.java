@@ -21,6 +21,9 @@ public class EnergyAbsorptionAbility extends ChargeableAbility {
         this.setMaxCooldown(20);
         this.setMaxChargeTime(15);
         this.setCursedEnergyCost(30);
+        this.setExperiencePoint(25);
+        this.setExperienceGainLevelCap(25);
+
         this.setCancelable();
 
         this.onStartChargingEvent = this::onStartChargingEvent;

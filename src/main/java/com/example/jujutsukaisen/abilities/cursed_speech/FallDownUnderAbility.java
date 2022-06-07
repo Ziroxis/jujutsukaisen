@@ -27,6 +27,8 @@ public class FallDownUnderAbility extends Ability {
         this.setDescription("The user screams fall down under");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(20);
+        this.setExperiencePoint(20);
+        this.setExperienceGainLevelCap(30);
         this.onUseEvent = this::onUseEvent;
     }
 

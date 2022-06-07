@@ -16,6 +16,9 @@ public class CursedBudsAbility extends RepeaterAbility {
         this.setDescription("Throw a few cursed buds");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(20);
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(10);
+
         this.setMaxRepeaterCount(7, 5);
         this.onUseEvent = this::onUseEvent;
     }

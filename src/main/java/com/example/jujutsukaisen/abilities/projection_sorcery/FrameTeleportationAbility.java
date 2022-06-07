@@ -17,6 +17,8 @@ public class FrameTeleportationAbility extends Ability {
         this.setDescription("The user teleports to another frame");
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(3);
+        this.setExperienceGainLevelCap(30);
 
         this.onUseEvent = this::onUseEvent;
     }

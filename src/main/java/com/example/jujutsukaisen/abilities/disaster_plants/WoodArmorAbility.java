@@ -23,6 +23,9 @@ public class WoodArmorAbility extends ContinuousAbility {
         this.setDescription("The user gets resistance by enveloping himself with wood");
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(3);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(50);
+
         this.onStartContinuityEvent = this::onStartContinuityEvent;
         this.onEndContinuityEvent = this::onEndContinuityEvent;
     }

@@ -38,6 +38,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     private String textureName = "";
     private int cursedEnergyCost = 1;
     private int experiencePoint = 0;
+    private int experienceGainLevelCap = 0;
     private ITextComponent tooltip;
     protected double cooldown;
     protected double maxCooldown;
@@ -99,11 +100,15 @@ public class Ability extends ForgeRegistryEntry<Ability> {
 
             IEntityStats propsEntity = EntityStatsCapability.get(player);
             propsEntity.alterCursedEnergy(-cursedEnergyCost);
-            propsEntity.alterExperience(experiencePoint);
+            if (propsEntity.getLevel() < experienceGainLevelCap)
+            {
+                propsEntity.alterExperience(experiencePoint);
+
+                ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, experiencePoint);
+                MinecraftForge.EVENT_BUS.post(eventExperience);
+            }
             PacketHandler.sendTo(new CursedEnergySync(propsEntity.returnCursedEnergy()), player);
             PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), propsEntity), player);
-            ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, experiencePoint);
-            MinecraftForge.EVENT_BUS.post(eventExperience);
 
 
             this.startCooldown(player);
@@ -289,6 +294,16 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     public double getCooldown()
     {
         return this.cooldown;
+    }
+
+    public void setExperienceGainLevelCap(int experienceGainLevelCap)
+    {
+        this.experienceGainLevelCap = experienceGainLevelCap;
+    }
+
+    public int getExperienceGainLevelCap()
+    {
+        return this.experienceGainLevelCap;
     }
 
     public void setExperiencePoint(int experiencePoint)

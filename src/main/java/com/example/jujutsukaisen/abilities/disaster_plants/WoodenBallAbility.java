@@ -16,6 +16,9 @@ public class WoodenBallAbility extends Ability {
         this.setDescription("Shoots a big wooden ball");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(30);
+
         this.onUseEvent = this::onUseEvent;
     }
 

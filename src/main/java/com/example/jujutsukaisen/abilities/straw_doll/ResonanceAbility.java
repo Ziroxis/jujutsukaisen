@@ -20,6 +20,8 @@ public class ResonanceAbility extends PunchAbility implements IParallelContinuou
         this.setDescription("Take a straw doll and resonate it with the player you just punched");
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(50);
+        this.setExperienceGainLevelCap(50);
         this.onHitEntityEvent = this::onHitEntity;
     }
 

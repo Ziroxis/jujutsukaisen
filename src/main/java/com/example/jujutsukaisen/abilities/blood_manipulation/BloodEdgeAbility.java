@@ -21,7 +21,7 @@ public class BloodEdgeAbility extends ItemAbility implements IParallelContinuous
         super("Blood Edge", AbilityCategories.AbilityCategory.TECHNIQUE);
         this.setDescription("Creates a sharp blade made out of solid blood");
         this.setMaxCooldown(0);
-        this.setCursedEnergyCost(3);
+        this.setCursedEnergyCost(20);
     }
 
 

@@ -18,6 +18,9 @@ public class FrameBreakAbility extends PunchAbility {
         this.setDescription("Instantly makes you stop and gives you enough power to punch one enemy for massive damage");
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(2);
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(15);
+
 
         this.duringContinuityEvent = this::duringContinuityEvent;
         this.onHitEntityEvent = this::onHitEntityEvent;

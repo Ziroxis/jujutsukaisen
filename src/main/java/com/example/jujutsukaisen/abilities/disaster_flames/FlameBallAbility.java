@@ -16,6 +16,8 @@ public class FlameBallAbility extends Ability {
         this.setDescription("Shoots an exploding flame ball");
         this.setMaxCooldown(25);
         this.setCursedEnergyCost(20);
+        this.setExperiencePoint(20);
+        this.setExperienceGainLevelCap(20);
         this.onUseEvent = this::onUseEvent;
     }
 

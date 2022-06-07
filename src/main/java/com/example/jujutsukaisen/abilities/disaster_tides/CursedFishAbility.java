@@ -17,6 +17,9 @@ public class CursedFishAbility extends Ability{
         this.setDescription("Shoots a cursed fish");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(30);
+
         this.onUseEvent = this::onUseEvent;
     }
 

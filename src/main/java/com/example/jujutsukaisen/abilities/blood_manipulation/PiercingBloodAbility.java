@@ -20,6 +20,8 @@ public class PiercingBloodAbility extends ChargeableAbility {
         this.setMaxCooldown(15);
         this.setMaxChargeTime(10);
         this.setCursedEnergyCost(20);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(30);
         this.setCancelable();
 
         this.onStartChargingEvent = this::onStartChargingEvent;

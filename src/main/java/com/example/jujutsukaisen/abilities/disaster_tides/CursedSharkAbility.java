@@ -20,6 +20,9 @@ public class CursedSharkAbility extends Ability{
         this.setDescription("Shoots a shark.");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(50);
+
         this.onUseEvent = this::onUseEvent;
     }
 

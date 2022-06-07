@@ -30,6 +30,8 @@ public class GetTwistedAbility extends Ability {
         this.setDescription("The user screams get twisted which makes the target get twisted");
         this.setMaxCooldown(15);
         this.setCursedEnergyCost(20);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(20);
         this.onUseEvent = this::onUseEvent;
     }
 

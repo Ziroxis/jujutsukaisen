@@ -6,8 +6,10 @@ import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.AbilityUseEvent;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -124,8 +126,18 @@ public class ContinuousAbility extends Ability {
         if(this.isContinuous())
         {
             if (player.tickCount % 20 == 0)
+            {
+                if (propsEntity.getLevel() < getExperienceGainLevelCap())
+                {
+                    propsEntity.alterExperience(getExperiencePoint());
+
+                    ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, getExperiencePoint());
+                    MinecraftForge.EVENT_BUS.post(eventExperience);
+                }
                 propsEntity.alterCursedEnergy((int) -getCursedEnergyCost());
+            }
             PacketHandler.sendTo(new CursedEnergySync(propsEntity.returnCursedEnergy()), player);
+            PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), propsEntity), player);
             this.continueTime++;
             if((this.isClientSide() || !player.level.isClientSide) && !this.isStateForced())
                 this.duringContinuityEvent.duringContinuity(player, this.continueTime);

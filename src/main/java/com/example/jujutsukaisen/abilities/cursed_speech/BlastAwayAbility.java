@@ -33,6 +33,9 @@ public class BlastAwayAbility extends Ability {
         this.setDescription("The user screams blast away which sends the enemy flying with an explosion");
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(40);
+        this.setExperiencePoint(50);
+        this.setExperienceGainLevelCap(40);
+
         this.onUseEvent = this::onUseEvent;
     }
 

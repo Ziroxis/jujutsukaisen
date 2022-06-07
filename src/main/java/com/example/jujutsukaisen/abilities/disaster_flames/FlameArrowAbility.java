@@ -17,6 +17,9 @@ public class FlameArrowAbility extends Ability {
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(30);
         this.onUseEvent = this::onUseEvent;
+        this.setExperiencePoint(30);
+        this.setExperienceGainLevelCap(50);
+
     }
 
     private boolean onUseEvent(PlayerEntity player)

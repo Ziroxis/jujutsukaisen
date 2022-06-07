@@ -26,6 +26,9 @@ public class FrameCatchAbility extends Ability {
         this.setDescription("Catches the entity the user is looking at in a frame and deals damage");
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(5);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(40);
+
         this.onUseEvent = this::onUseEvent;
     }
 

@@ -67,6 +67,7 @@ public class AbilityProgressionEvents
 		if (props.getTechnique().equals(ModValues.DISASTER_TIDES))
 		{
 			gainAbility(event.getPlayer(), 5, WaterChargeAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 8, WaterFlowAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 10, CursedFishAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 15, WaterShieldAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 25, CursedSharkAbility.INSTANCE);
@@ -82,6 +83,7 @@ public class AbilityProgressionEvents
 		if (props.getTechnique().equals(ModValues.DISASTER_PLANTS))
 		{
 			gainAbility(event.getPlayer(), 5, CursedBudsAbility.INSTANCE);
+			gainAbility(event.getPlayer(), 8, WoodenBallAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 10, EnergyAbsorptionAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 15, FlowerFieldAbility.INSTANCE);
 			gainAbility(event.getPlayer(), 20, RootEncasementAbility.INSTANCE);

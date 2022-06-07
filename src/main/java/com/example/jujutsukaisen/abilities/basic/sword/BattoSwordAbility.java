@@ -4,7 +4,12 @@ import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.api.ability.Ability;
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.interfaces.IMultiTargetAbility;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.init.ModDamageSource;
+import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SwordItem;
@@ -13,6 +18,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.List;
 
@@ -28,7 +34,9 @@ public class BattoSwordAbility extends Ability implements IMultiTargetAbility {
         super("Batto Sword", AbilityCategories.AbilityCategory.BASIC);
         this.setDescription("The user dashes forward and rapidly slashes his opponent with his sword imbued with cursed energy");
         this.setMaxCooldown(5);
-        this.setCursedEnergyCost(10);
+        this.setCursedEnergyCost(20);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(15);
         this.onUseEvent = this::onUseEvent;
         this.duringCooldownEvent = this::duringCooldown;
     }
@@ -40,6 +48,7 @@ public class BattoSwordAbility extends Ability implements IMultiTargetAbility {
             player.sendMessage(new StringTextComponent("Need to hold a sword!"), Util.NIL_UUID);
             return false;
         }
+
 
 
         this.clearTargets();

@@ -14,6 +14,8 @@ public class FlameTouchAbility extends PunchAbility {
         this.setDescription("You touch an entity and make it burn to crisps");
         this.setMaxCooldown(15);
         this.setCursedEnergyCost(10);
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(10);
 
         this.onHitEntityEvent = this::onHitEntity;
     }

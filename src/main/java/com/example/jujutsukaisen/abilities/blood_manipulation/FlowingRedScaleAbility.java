@@ -30,6 +30,8 @@ public class FlowingRedScaleAbility extends ContinuousAbility {
         this.setDescription("The user pumps his blood faster and faster in his body which makes him a super human");
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(4);
+        this.setExperiencePoint(15);
+        this.setExperienceGainLevelCap(40);
 
         this.onStartContinuityEvent = this::onStartContinuityEvent;
         this.onEndContinuityEvent = this::onEndContinuityEvent;

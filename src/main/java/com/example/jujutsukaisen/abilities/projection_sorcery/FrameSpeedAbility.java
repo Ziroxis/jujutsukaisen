@@ -29,6 +29,9 @@ public class FrameSpeedAbility extends ContinuousAbility {
         this.onStartContinuityEvent = this::onStartContinuityEvent;
         this.duringContinuityEvent = this::duringContinuityEvent;
         this.onEndContinuityEvent = this::onEndContinuityEvent;
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(10);
+
     }
 
     private boolean onStartContinuityEvent(PlayerEntity player)

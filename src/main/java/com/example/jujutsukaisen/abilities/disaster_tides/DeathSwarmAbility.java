@@ -21,6 +21,9 @@ public class DeathSwarmAbility extends RepeaterAbility {
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(20);
         this.setMaxRepeaterCount(15, 4);
+        this.setExperiencePoint(30);
+        this.setExperienceGainLevelCap(50);
+
         this.onUseEvent = this::onUseEvent;
     }
 

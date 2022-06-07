@@ -21,6 +21,8 @@ public class PurpleFlamesAbility extends Ability {
         this.setDescription("Burn the enemies around you for a long period");
         this.setMaxCooldown(15);
         this.setCursedEnergyCost(17);
+        this.setExperiencePoint(25);
+        this.setExperienceGainLevelCap(30);
 
         this.onUseEvent = this::onUseEvent;
     }

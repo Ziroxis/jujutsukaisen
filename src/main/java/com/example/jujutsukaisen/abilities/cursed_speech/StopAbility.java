@@ -28,6 +28,9 @@ public class StopAbility extends Ability {
         this.setDescription("The user screams stay which makes the target not be able to move for a few seconds");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(15);
+
         this.onUseEvent = this::onUseEvent;
     }
 

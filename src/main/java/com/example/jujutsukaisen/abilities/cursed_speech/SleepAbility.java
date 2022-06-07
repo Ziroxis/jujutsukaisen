@@ -27,6 +27,8 @@ public class SleepAbility extends Ability {
         this.setDescription("The user screams sleep which makes the target not be able to move for a few seconds");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(30);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(10);
         this.onUseEvent = this::onUseEvent;
     }
 

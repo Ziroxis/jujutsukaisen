@@ -22,6 +22,8 @@ public class WaterShieldAbility extends ContinuousAbility {
         this.setDescription("The user gets resistance by enveloping himself with water");
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(3);
+        this.setExperiencePoint(3);
+        this.setExperienceGainLevelCap(30);
         this.onStartContinuityEvent = this::onStartContinuityEvent;
         this.onEndContinuityEvent = this::onEndContinuityEvent;
     }

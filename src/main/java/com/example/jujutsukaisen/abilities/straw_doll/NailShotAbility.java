@@ -18,6 +18,8 @@ public class NailShotAbility extends RepeaterAbility {
         this.setMaxCooldown(5);
         this.setCursedEnergyCost(10);
         this.setMaxRepeaterCount(5, 5);
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(10);
         this.onUseEvent = this::onUseEvent;
     }
 

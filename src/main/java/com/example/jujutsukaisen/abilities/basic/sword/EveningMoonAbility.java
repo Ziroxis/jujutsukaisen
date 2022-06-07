@@ -20,6 +20,8 @@ public class EveningMoonAbility extends Ability {
         this.setDescription("Shoots a crescent air slash made by a sword slash");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(20);
+        this.setExperienceGainLevelCap(20);
         this.onUseEvent = this::onUseEvent;
     }
 

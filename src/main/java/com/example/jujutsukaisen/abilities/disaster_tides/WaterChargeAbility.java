@@ -18,6 +18,9 @@ public class WaterChargeAbility extends Ability{
         this.setDescription("Shoots a charge made of compressed water");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
+        this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(10);
+
         this.onUseEvent = this::onUseEvent;
     }
 

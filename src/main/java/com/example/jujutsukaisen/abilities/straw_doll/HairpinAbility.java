@@ -22,6 +22,9 @@ public class HairpinAbility extends Ability {
         this.setDescription("Detonate all nails in the enemies around you for huge damage");
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(30);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(30);
+
         this.onUseEvent = this::onUseEvent;
     }
 

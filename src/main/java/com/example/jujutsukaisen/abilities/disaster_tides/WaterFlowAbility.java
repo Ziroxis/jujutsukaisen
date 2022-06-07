@@ -20,6 +20,8 @@ public class WaterFlowAbility extends RepeaterAbility {
         this.setMaxCooldown(20);
         this.setCursedEnergyCost(20);
         this.setMaxRepeaterCount(5, 5);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(30);
         this.onUseEvent = this::onUseEvent;
     }
 

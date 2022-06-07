@@ -18,6 +18,8 @@ public class EmberInsectsAbility extends RepeaterAbility {
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(15);
         this.setMaxRepeaterCount(6, 5);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(10);
         this.onUseEvent = this::onUseEvent;
     }
 

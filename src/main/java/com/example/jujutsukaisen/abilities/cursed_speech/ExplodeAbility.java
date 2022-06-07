@@ -32,6 +32,8 @@ public class ExplodeAbility extends Ability {
         this.setDescription("The user screams explode which makes the target explode");
         this.setMaxCooldown(30);
         this.setCursedEnergyCost(30);
+        this.setExperiencePoint(40);
+        this.setExperienceGainLevelCap(50);
         this.onUseEvent = this::onUseEvent;
     }
 

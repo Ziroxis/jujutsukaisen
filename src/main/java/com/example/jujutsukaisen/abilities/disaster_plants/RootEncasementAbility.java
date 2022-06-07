@@ -17,6 +17,8 @@ public class RootEncasementAbility extends PunchAbility {
         this.setDescription("Hit an enemy to root them");
         this.setMaxCooldown(15);
         this.setCursedEnergyCost(10);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(40);
 
         this.onHitEntityEvent = this::onHitEntity;
     }

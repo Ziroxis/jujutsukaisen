@@ -18,6 +18,7 @@ public class BloodShurikenAbility extends Ability {
         this.setMaxCooldown(5);
         this.setCursedEnergyCost(15);
         this.setExperiencePoint(5);
+        this.setExperienceGainLevelCap(10);
         this.onUseEvent = this::onUseEvent;
     }
 

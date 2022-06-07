@@ -16,6 +16,8 @@ public class GiantNailAbility extends Ability {
         this.setDescription("Shoots a giant nail");
         this.setMaxCooldown(10);
         this.setCursedEnergyCost(10);
+        this.setExperiencePoint(10);
+        this.setExperienceGainLevelCap(30);
         this.onUseEvent = this::onUseEvent;
 
     }
