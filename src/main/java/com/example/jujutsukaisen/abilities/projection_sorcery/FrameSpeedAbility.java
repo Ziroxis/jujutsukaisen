@@ -19,7 +19,7 @@ public class FrameSpeedAbility extends ContinuousAbility {
     public static final FrameSpeedAbility INSTANCE = new FrameSpeedAbility();
 
     private static final AttributeModifier STEP_HEIGHT = new AttributeModifier(UUID.fromString("1d68a133-8a0e-4b8f-8790-1360007d4741"), "Step Height Multiplier", 1, AttributeModifier.Operation.ADDITION);
-    private static final AttributeModifier FRAME_SPEED_SIMPLE = new AttributeModifier(UUID.fromString("e3ae074c-40a9-49ff-aa3b-7cc9b98ddc2d"), "Frame Speed simple", 3, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier FRAME_SPEED_SIMPLE = new AttributeModifier(UUID.fromString("e3ae074c-40a9-49ff-aa3b-7cc9b98ddc2d"), "Frame Speed simple", 2, AttributeModifier.Operation.ADDITION);
     public FrameSpeedAbility()
     {
         super("Frame Speed", AbilityCategories.AbilityCategory.TECHNIQUE);

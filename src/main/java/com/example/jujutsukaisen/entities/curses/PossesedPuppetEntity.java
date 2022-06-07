@@ -1,6 +1,7 @@
 package com.example.jujutsukaisen.entities.curses;
 
 import com.example.jujutsukaisen.entities.CurseEntity;
+import com.example.jujutsukaisen.init.ModAttributes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
@@ -49,7 +50,8 @@ public class PossesedPuppetEntity extends CurseEntity {
                 .add(Attributes.FOLLOW_RANGE, 25)
                 .add(Attributes.MOVEMENT_SPEED, 0.27)
                 .add(Attributes.ATTACK_DAMAGE, 4)
-                .add(Attributes.ATTACK_SPEED, 2);
+                .add(Attributes.ATTACK_SPEED, 2)
+                .add(ModAttributes.ATTACK_RANGE.get(), 1.5);
     }
 
     @Override
