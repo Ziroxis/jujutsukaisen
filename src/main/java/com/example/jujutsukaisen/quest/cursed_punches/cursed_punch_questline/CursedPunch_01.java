@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
@@ -14,6 +15,7 @@ import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
 import com.example.jujutsukaisen.quest.objectives.SharedKillChecks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 public class CursedPunch_01 extends Quest {
 
@@ -35,6 +37,8 @@ public class CursedPunch_01 extends Quest {
         IAbilityData propsAbility = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
         propsStats.alterExperience(200);
+        ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, 200);
+        MinecraftForge.EVENT_BUS.post(eventExperience);
         propsAbility.addUnlockedAbility(CursedPunchAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));

@@ -5,6 +5,7 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
 import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
@@ -13,6 +14,7 @@ import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.ObtainItemObjective;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ContinuousPunch_02 extends Quest {
 
@@ -31,6 +33,8 @@ public class ContinuousPunch_02 extends Quest {
         IAbilityData props = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
         propsStats.alterExperience(100);
+        ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, 100);
+        MinecraftForge.EVENT_BUS.post(eventExperience);
         props.addUnlockedAbility(CursedEnergyContinuousPunchAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(props));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));

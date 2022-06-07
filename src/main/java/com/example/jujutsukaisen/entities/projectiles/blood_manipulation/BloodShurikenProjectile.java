@@ -15,7 +15,7 @@ public class BloodShurikenProjectile extends AbilityProjectileEntity {
     public BloodShurikenProjectile(World world, LivingEntity player)
     {
         super(BloodProjectiles.BLOOD_SHURIKEN.get(), world, player);
-        this.setDamage(7);
+        this.setDamage(5);
         this.setMaxLife(32);
         this.setPhysical(false);
     }

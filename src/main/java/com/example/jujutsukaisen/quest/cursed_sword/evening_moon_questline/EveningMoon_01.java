@@ -6,6 +6,7 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.init.ModEntities;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
@@ -15,6 +16,7 @@ import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
 import com.example.jujutsukaisen.quest.objectives.SharedKillChecks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 public class EveningMoon_01 extends Quest {
 
@@ -36,6 +38,8 @@ public class EveningMoon_01 extends Quest {
         IAbilityData propsAbility = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
         propsStats.alterExperience(250);
+        ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, 250);
+        MinecraftForge.EVENT_BUS.post(eventExperience);
         propsAbility.addUnlockedAbility(EveningMoonAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));

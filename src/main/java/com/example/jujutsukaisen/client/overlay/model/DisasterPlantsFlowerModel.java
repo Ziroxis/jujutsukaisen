@@ -33,7 +33,7 @@ public class DisasterPlantsFlowerModel<T extends LivingEntity> extends BipedMode
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         this.crouching = entityIn.isCrouching();
 
-        this.FlowerArmOverlay.copyFrom(this.body);
+        this.FlowerArmOverlay.copyFrom(this.leftArm);
 
 
         if(!(entityIn instanceof PlayerEntity))
@@ -44,7 +44,7 @@ public class DisasterPlantsFlowerModel<T extends LivingEntity> extends BipedMode
 
         this.swimAmount = clientPlayer.getSwimAmount(ageInTicks);
 
-        this.FlowerArmOverlay.copyFrom(this.body);
+        this.FlowerArmOverlay.copyFrom(this.leftArm);
     }
 
 

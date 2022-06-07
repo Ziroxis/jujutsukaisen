@@ -9,8 +9,10 @@ import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -35,6 +37,7 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     private String displayName;
     private String textureName = "";
     private int cursedEnergyCost = 1;
+    private int experiencePoint = 0;
     private ITextComponent tooltip;
     protected double cooldown;
     protected double maxCooldown;
@@ -96,7 +99,12 @@ public class Ability extends ForgeRegistryEntry<Ability> {
 
             IEntityStats propsEntity = EntityStatsCapability.get(player);
             propsEntity.alterCursedEnergy(-cursedEnergyCost);
+            propsEntity.alterExperience(experiencePoint);
             PacketHandler.sendTo(new CursedEnergySync(propsEntity.returnCursedEnergy()), player);
+            PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), propsEntity), player);
+            ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, experiencePoint);
+            MinecraftForge.EVENT_BUS.post(eventExperience);
+
 
             this.startCooldown(player);
             props.setPreviouslyUsedAbility(this);
@@ -282,6 +290,17 @@ public class Ability extends ForgeRegistryEntry<Ability> {
     {
         return this.cooldown;
     }
+
+    public void setExperiencePoint(int experiencePoint)
+    {
+        this.experiencePoint = experiencePoint;
+    }
+
+    public int getExperiencePoint()
+    {
+        return this.experiencePoint;
+    }
+
 
     public void setCursedEnergyCost(int cursedEnergy)
     {

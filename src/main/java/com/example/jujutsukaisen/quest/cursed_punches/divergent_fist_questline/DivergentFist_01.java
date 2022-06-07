@@ -6,6 +6,7 @@ import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.init.ModEffects;
 import com.example.jujutsukaisen.init.ModEntities;
 import com.example.jujutsukaisen.networking.PacketHandler;
@@ -16,6 +17,7 @@ import com.example.jujutsukaisen.quest.Quest;
 import com.example.jujutsukaisen.quest.objectives.KillEntityObjective;
 import com.example.jujutsukaisen.quest.objectives.SharedKillChecks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 public class DivergentFist_01 extends Quest {
 
@@ -37,6 +39,8 @@ public class DivergentFist_01 extends Quest {
         IAbilityData propsAbility = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
         propsStats.alterExperience(50);
+        ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, 50);
+        MinecraftForge.EVENT_BUS.post(eventExperience);
         propsAbility.addUnlockedAbility(DivergentFistAbility.INSTANCE);
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));
         PacketHandler.sendToServer(new CSyncAbilityDataPacket(propsAbility));

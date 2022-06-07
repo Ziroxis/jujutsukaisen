@@ -12,6 +12,7 @@ import com.example.jujutsukaisen.abilities.heavenly_restriction.KihonZukiAbility
 import com.example.jujutsukaisen.abilities.heavenly_restriction.ManjiKickAbility;
 import com.example.jujutsukaisen.abilities.heavenly_restriction.ShiranuiGataAbility;
 import com.example.jujutsukaisen.abilities.projection_sorcery.FrameSpeedAbility;
+import com.example.jujutsukaisen.abilities.straw_doll.NailShotAbility;
 import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.client.gui.CursedSpiritAcceptanceScreen;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
@@ -72,7 +73,7 @@ public class GetStatsFirstTimeEvent {
             props.setCursedEnergy(50);
             props.setMaxCursedEnergy(50);
 
-            int rng_clan = Beapi.RNG(5);
+            int rng_clan = Beapi.RNG(6);
             switch (rng_clan)
             {
                 case 0:
@@ -97,9 +98,16 @@ public class GetStatsFirstTimeEvent {
                     props.setCurse(ModValues.HUMAN);
                     break;
                 case 3:
-                    PacketHandler.sendTo(new SOpenCursedSpiritAcceptanceScreenPacket(), player);
+                    props.setClan(ModValues.NONE);
+                    props.setTechnique(ModValues.STRAW_DOLL);
+                    abilityProps.addUnlockedAbility(NailShotAbility.INSTANCE);
+                    props.setRestriction(ModValues.NONE);
+                    props.setCurse(ModValues.HUMAN);
                     break;
                 case 4:
+                    PacketHandler.sendTo(new SOpenCursedSpiritAcceptanceScreenPacket(), player);
+                    break;
+                case 5:
                     int rng_restriction = Beapi.RNG(2);
                     if (rng_restriction == 0)
                         props.setRestriction(ModValues.RESTRICTION_HEAVENLY);
@@ -112,7 +120,7 @@ public class GetStatsFirstTimeEvent {
             {
                 player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
                 player.setHealth(10);
-                int rng_restriction_constitution = Beapi.RNG(3);
+                int rng_restriction_constitution = Beapi.RNG(4);
                 switch (rng_restriction_constitution)
                 {
                     case 0:
@@ -131,6 +139,13 @@ public class GetStatsFirstTimeEvent {
                         props.setClan(ModValues.Zenin);
                         props.setTechnique(ModValues.PROJECTION_SORCERY);
                         abilityProps.addUnlockedAbility(FrameSpeedAbility.INSTANCE);
+                        props.setCurse(ModValues.HUMAN);
+                        break;
+                    case 3:
+                        props.setClan(ModValues.NONE);
+                        props.setTechnique(ModValues.STRAW_DOLL);
+                        abilityProps.addUnlockedAbility(NailShotAbility.INSTANCE);
+                        props.setRestriction(ModValues.NONE);
                         props.setCurse(ModValues.HUMAN);
                         break;
                 }

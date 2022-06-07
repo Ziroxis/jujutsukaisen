@@ -74,7 +74,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<PossesedPuppetEntity>> POSSESED_PUPPET = ENTITIES
             .register("possesedpuppet_entity",
                     () -> EntityType.Builder.of(PossesedPuppetEntity::new, EntityClassification.CREATURE)
-                            .sized(2f, 2f)
+                            .sized(1f, 2f)
                             .setTrackingRange(2)
                             .build(new ResourceLocation(Main.MODID, "possesedpuppet_entity").toString()));
 
