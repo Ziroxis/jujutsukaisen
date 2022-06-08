@@ -21,7 +21,7 @@ public class DisasterPlantsFlowerModel<T extends LivingEntity> extends BipedMode
         texHeight = 16;
 
         FlowerArmOverlay = new ModelRenderer(this);
-        FlowerArmOverlay.setPos(6.0F, 0.0F, 0.0F);
+        FlowerArmOverlay.setPos(6.0F, 1.0F, 0.0F);
         FlowerArmOverlay.texOffs(0, 0).addBox(-2.0F, -1.0F, -2.0F, 4.0F, 1.0F, 4.0F, 0.0F, false);
         FlowerArmOverlay.texOffs(0, 5).addBox(-1.0F, -3.0F, -1.0F, 2.0F, 2.0F, 2.0F, 0.0F, false);
         FlowerArmOverlay.texOffs(6, 10).addBox(-1.0F, -2.0F, 1.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);

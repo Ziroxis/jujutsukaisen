@@ -5,11 +5,15 @@ import com.example.jujutsukaisen.abilities.reverse_cursed_energy.RejuvinationAbi
 import com.example.jujutsukaisen.abilities.reverse_cursed_energy.SelfHealingAbility;
 import com.example.jujutsukaisen.abilities.reverse_cursed_energy.SelfHealingRegenerationAbility;
 import com.example.jujutsukaisen.abilities.reverse_cursed_energy.SelfHealingRegenerationPassive;
+import com.example.jujutsukaisen.api.Beapi;
 import com.example.jujutsukaisen.data.ability.AbilityDataCapability;
 import com.example.jujutsukaisen.data.ability.IAbilityData;
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.init.ModValues;
+import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.client.CSyncentityStatsPacket;
+import com.example.jujutsukaisen.networking.client.ability.CSyncAbilityDataPacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
@@ -46,6 +50,8 @@ public class CursedEvents {
     {
         Entity entity = event.getEntity();
 
+        if (entity.level.isClientSide)
+            return;
         if (!(entity instanceof PlayerEntity))
             return;
         PlayerEntity player = (PlayerEntity) entity;
@@ -56,11 +62,16 @@ public class CursedEvents {
         if (statsProps.getLevel() < 20 || abilityProps.hasUnlockedAbility(SelfHealingAbility.INSTANCE))
             return;
 
-        player.sendMessage(new StringTextComponent("You have just reached a higher understanding of cursed energy as a whole."), player.getUUID());
-        abilityProps.addUnlockedAbility(RejuvinationAbility.INSTANCE);
-        abilityProps.addUnlockedAbility(SelfHealingAbility.INSTANCE);
-        abilityProps.addUnlockedAbility(SelfHealingRegenerationPassive.INSTANCE);
-        abilityProps.addUnlockedAbility(SelfHealingRegenerationAbility.INSTANCE);
+        int random = Beapi.RNG(5);
+        if (random == 0)
+        {
+            player.sendMessage(new StringTextComponent("You have just reached a higher understanding of cursed energy as a whole."), player.getUUID());
+            abilityProps.addUnlockedAbility(RejuvinationAbility.INSTANCE);
+            abilityProps.addUnlockedAbility(SelfHealingAbility.INSTANCE);
+            abilityProps.addUnlockedAbility(SelfHealingRegenerationPassive.INSTANCE);
+            abilityProps.addUnlockedAbility(SelfHealingRegenerationAbility.INSTANCE);
+            PacketHandler.sendToServer(new CSyncAbilityDataPacket(abilityProps));
+        }
 
     }
 }
