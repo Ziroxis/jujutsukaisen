@@ -24,7 +24,7 @@ public class EveningMoon_01 extends Quest {
     {
         return target.getType() == ModEntities.ROPPONGI.get();
     };
-    private Objective killObjective = new KillEntityObjective("Kill 20 zombies", 20, TARGET_CHECK.and(SharedKillChecks.HAS_SWORD));
+    private Objective killObjective = new KillEntityObjective("Kill 20 roppongis", 20, TARGET_CHECK.and(SharedKillChecks.HAS_SWORD));
 
     public EveningMoon_01()
     {

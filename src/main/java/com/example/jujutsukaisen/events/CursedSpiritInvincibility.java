@@ -15,12 +15,15 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.lwjgl.system.CallbackI;
 
 import java.util.Map;
 
@@ -36,20 +39,23 @@ public class CursedSpiritInvincibility {
             return;
 
         DamageSource source = event.getSource();
+        System.out.println(source.getDirectEntity());
         if (source.getDirectEntity() instanceof LivingEntity && source.getDirectEntity() instanceof PlayerEntity)
         {
             LivingEntity target = event.getEntityLiving();
             PlayerEntity attacker = (PlayerEntity) source.getDirectEntity();
             IEntityStats statsProps = EntityStatsCapability.get(attacker);
-
-            if (!(target instanceof CurseEntity))
-                return;
             ItemStack item = attacker.getMainHandItem();
             Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(item);
 
-            if (!(source instanceof AbilityDamageSource) && !(item.getItem() instanceof CursedWeapon) && !statsProps.getCurse().equals(ModValues.HUMAN)
-                    && !(enchantment.get(Enchantments.BINDING_CURSE) != null)
-                    && !(enchantment.get(Enchantments.VANISHING_CURSE) != null))
+            if (!(target instanceof CurseEntity))
+                return;
+
+            if (item.getItem() instanceof CursedWeapon)
+                return;
+            else if (!(source instanceof AbilityDamageSource) || !statsProps.getCurse().equals(ModValues.HUMAN) || !(item.getItem().asItem() instanceof CursedWeapon)
+                    || !(enchantment.get(Enchantments.BINDING_CURSE) != null)
+                    || !(enchantment.get(Enchantments.VANISHING_CURSE) != null))
             {
                 System.out.println(source);
                 event.setAmount(0);
