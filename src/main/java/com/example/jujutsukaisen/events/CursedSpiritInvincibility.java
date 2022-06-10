@@ -35,30 +35,28 @@ public class CursedSpiritInvincibility {
     @SubscribeEvent
     public static void cursedSpiritInvincibility(LivingHurtEvent event)
     {
-        if (event.getEntity().level.isClientSide)
-            return;
 
-        DamageSource source = event.getSource();
-        System.out.println(source.getDirectEntity());
-        if (source.getDirectEntity() instanceof LivingEntity && source.getDirectEntity() instanceof PlayerEntity)
+        if (!event.getEntity().level.isClientSide)
         {
-            LivingEntity target = event.getEntityLiving();
-            PlayerEntity attacker = (PlayerEntity) source.getDirectEntity();
-            IEntityStats statsProps = EntityStatsCapability.get(attacker);
-            ItemStack item = attacker.getMainHandItem();
-            Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(item);
+            DamageSource source = event.getSource();
+            System.out.println(source.getDirectEntity());
+            if (source.getDirectEntity() instanceof PlayerEntity) {
+                LivingEntity target = event.getEntityLiving();
+                PlayerEntity attacker = (PlayerEntity) source.getDirectEntity();
+                IEntityStats statsProps = EntityStatsCapability.get(attacker);
+                ItemStack item = attacker.getMainHandItem();
+                Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(item);
 
-            if (!(target instanceof CurseEntity))
-                return;
+                if (!(target instanceof CurseEntity))
+                    return;
 
-            if (item.getItem() instanceof CursedWeapon)
-                return;
-            else if (!(source instanceof AbilityDamageSource) || !statsProps.getCurse().equals(ModValues.HUMAN) || !(item.getItem().asItem() instanceof CursedWeapon)
-                    || !(enchantment.get(Enchantments.BINDING_CURSE) != null)
-                    || !(enchantment.get(Enchantments.VANISHING_CURSE) != null))
-            {
-                System.out.println(source);
-                event.setAmount(0);
+                if (item.getItem() instanceof CursedWeapon)
+                    return;
+                else if (!(source instanceof AbilityDamageSource) || !statsProps.getCurse().equals(ModValues.HUMAN) || !(item.getItem().asItem() instanceof CursedWeapon)
+                        || !(enchantment.get(Enchantments.BINDING_CURSE) != null)
+                        || !(enchantment.get(Enchantments.VANISHING_CURSE) != null)) {
+                    event.setAmount(0);
+                }
             }
         }
     }

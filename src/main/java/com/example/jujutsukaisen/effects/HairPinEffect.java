@@ -12,7 +12,7 @@ public class HairPinEffect extends SpecialEffect{
 
     @Override
     public float[] getOverlayColor() {
-        return new float[0];
+        return new float[] { 0.0f, 0.0f, 0.0f, 0f };
     }
 
     @Override

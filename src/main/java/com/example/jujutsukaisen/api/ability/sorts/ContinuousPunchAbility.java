@@ -25,11 +25,10 @@ public abstract class ContinuousPunchAbility extends ContinuousAbility
 	 */
 	public float hitEntity(PlayerEntity player, LivingEntity target)
 	{
-		float result = this.onHitEntityEvent.onHitEntity(player, target);
 
 
 		//this.stopContinuity(player);
-		return result;
+		return this.onHitEntityEvent.onHitEntity(player, target);
 	}
 	
 	/*

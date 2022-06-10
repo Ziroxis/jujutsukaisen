@@ -14,6 +14,7 @@ import com.example.jujutsukaisen.init.ModDamageSource;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.DamageSource;
@@ -336,7 +337,7 @@ public class AbilitiesEvents
 						float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
 						float finalDamage = (damage + strength) * (float)statProps.getDamageMultiplier();
 						System.out.println("Final damage is +" + finalDamage);
-						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
+						target.hurt(ModDamageSource.causeAbilityDamage((ServerPlayerEntity) player, ability), finalDamage);
 					}
 					if (ability instanceof PunchAbility && ability.isContinuous())
 					{
@@ -353,7 +354,10 @@ public class AbilitiesEvents
 						float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
 						float finalDamage = (damage + strength) * (float)statProps.getDamageMultiplier();
 						System.out.println("Final damage is +" + finalDamage);
-						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
+						System.out.println(player);
+						ModDamageSource damageSource = ModDamageSource.causeAbilityDamage(player, ability);
+						target.hurt(damageSource, finalDamage);
+						System.out.println(damageSource.getSource().getEntity());
 					}
 					if (ability instanceof ContinuousSwordAbility && ability.isContinuous())
 					{
@@ -370,7 +374,9 @@ public class AbilitiesEvents
 						float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
 						float finalDamage = (damage + strength) * (float)statProps.getDamageMultiplier();
 						System.out.println("Final damage is +" + finalDamage);
-						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
+						ModDamageSource damageSource = ModDamageSource.causeAbilityDamage(player, ability);
+						target.hurt(damageSource, finalDamage);
+						damageSource.getSource().getEntity();
 					}
 				}
 				catch (Exception e)
