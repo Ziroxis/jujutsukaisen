@@ -29,18 +29,18 @@ public class MaidQuesterEntity extends Quester {
     {
         if (hand != Hand.MAIN_HAND)
             return ActionResultType.PASS;
-
-        IQuestData questProps = QuestDataCapability.get(player);
-        IEntityStats statsProps = EntityStatsCapability.get(player);
         if (!player.level.isClientSide)
         {
+            IQuestData questProps = QuestDataCapability.get(player);
+            IEntityStats statsProps = EntityStatsCapability.get(player);
+
             Quest[] quests = questProps.getInProgressQuests();
             if (questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
             {
                 player.sendMessage(new StringTextComponent("Thank you for the big help! I'll talk to you when I need you again"), player.getUUID());
                 return ActionResultType.PASS;
             }
-            else if (questProps.hasInProgressQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
+            if (questProps.hasInProgressQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
             {
                 player.sendMessage(new StringTextComponent("Come back when you killed them! I'll give you a reward"), player.getUUID());
                 for (int i = 0; i < quests.length; i++)
@@ -59,13 +59,13 @@ public class MaidQuesterEntity extends Quester {
                 }
                     return ActionResultType.PASS;
             }
-            else if (!acceptanceMaidQuester_01)
+            if (!acceptanceMaidQuester_01 && !questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !questProps.hasInProgressQuest(ModQuests.OBTAIN_SWORD_01))
             {
                 player.sendMessage(new StringTextComponent("Hey, could you help me with something if you can? I'll definitely give you a reward!"), player.getUUID());
                 acceptanceMaidQuester_01 = true;
                 return ActionResultType.PASS;
             }
-            else
+            if (acceptanceMaidQuester_01 && !questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !questProps.hasInProgressQuest(ModQuests.OBTAIN_SWORD_01))
             {
                 player.sendMessage(new StringTextComponent("Thank you! Could you please get rid of those small annoying spirits?"), player.getUUID());
                 for (int i = 0; i < quests.length; i++)

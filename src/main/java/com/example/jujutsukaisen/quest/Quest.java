@@ -61,10 +61,16 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 	@Override
 	public boolean equals(Object quest)
 	{
+		if(quest == null)
+			return false;
+
 		if(!(quest instanceof Quest))
 			return false;
-		
-		return this.getId().equalsIgnoreCase(((Quest) quest).getId());
+
+		if(this.getRegistryName() == null || ((Quest)quest).getRegistryName() == null)
+			return false;
+
+		return this.getRegistryName().equals(((Quest) quest).getRegistryName());
 	}
 	public boolean addQuestItem(PlayerEntity player, Item item, int amount)
 	{

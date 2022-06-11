@@ -55,12 +55,13 @@ public class SwordSenseiEntity extends Quester {
         if (hand != Hand.MAIN_HAND)
             return ActionResultType.PASS;
 
-        IQuestData questProps = QuestDataCapability.get(player);
-        IEntityStats statsProps = EntityStatsCapability.get(player);
 
 
         if (!player.level.isClientSide)
         {
+            IQuestData questProps = QuestDataCapability.get(player);
+            IEntityStats statsProps = EntityStatsCapability.get(player);
+
             if (statsProps.getRestriction().equals(ModValues.RESTRICTION_HEAVENLY))
             {
                 player.sendMessage(new StringTextComponent("Kid, I don't know what the heck is wrong with you but you got 0, absolutely 0 cursed energy in ya. Can't help ya"), player.getUUID());
@@ -70,10 +71,10 @@ public class SwordSenseiEntity extends Quester {
             Quest[] quests = questProps.getInProgressQuests();
             for (int i = 0; i < quests.length; i++)
             {
-                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                || quests[i] != null && quests[i].equals(ModQuests.BATTO_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                || quests[i] != null && quests[i].equals(ModQuests.EVENING_MOON_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
+                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_01) && quests[i].isComplete()
+                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_SWORD_02) && quests[i].isComplete()
+                || quests[i] != null && quests[i].equals(ModQuests.BATTO_SWORD_01) && quests[i].isComplete()
+                || quests[i] != null && quests[i].equals(ModQuests.EVENING_MOON_01) && quests[i].isComplete())
                 {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
@@ -81,6 +82,8 @@ public class SwordSenseiEntity extends Quester {
                     player.sendMessage(new StringTextComponent("GOOD JOB!!! So proud of you! *Headpats you*"), player.getUUID());
                     return ActionResultType.PASS;
                 }
+                return ActionResultType.PASS;
+
             }
             if (questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_01) && questProps.hasFinishedQuest(ModQuests.CURSED_SWORD_02) && questProps.hasFinishedQuest(ModQuests.BATTO_SWORD_01) && questProps.hasFinishedQuest(ModQuests.EVENING_MOON_01))
             {

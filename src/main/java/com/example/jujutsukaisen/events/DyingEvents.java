@@ -36,7 +36,7 @@ public class DyingEvents {
     public static final AttributeModifier HEAVENLY_STRENGTH = new AttributeModifier(UUID.fromString("9cd5ec6c-dcd7-11ec-9d64-0242ac120002"),
             "Heavenly", 3, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier HEAVENLY_SPEED = new AttributeModifier(UUID.fromString("b7b47dd2-dcd7-11ec-9d64-0242ac120002"),
-            "Heavenly", 0.5, AttributeModifier.Operation.ADDITION);
+            "Heavenly", 0.2, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier HEAVENLY_JUMP = new AttributeModifier(UUID.fromString("d058ad40-dcd7-11ec-9d64-0242ac120002"),
             "Heavenly", 1, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier HEAVENLY_HASTE = new AttributeModifier(UUID.fromString("f41bd7ac-dcd7-11ec-9d64-0242ac120002"),
@@ -46,6 +46,28 @@ public class DyingEvents {
     public static final AttributeModifier RESTRICTION_CONSTITUTION = new AttributeModifier(UUID.fromString("21624492-dce4-11ec-9d64-0242ac120002"),
             "Constitution", -10, AttributeModifier.Operation.ADDITION);
 
+    @SubscribeEvent
+    public static void onRelogging(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        PlayerEntity player = event.getPlayer();
+        IEntityStats statsProps = EntityStatsCapability.get(player);
+        if (statsProps.getRestriction().equals(ModValues.RESTRICTION_HEAVENLY))
+        {
+            player.getAttribute(Attributes.ATTACK_DAMAGE).addTransientModifier(HEAVENLY_STRENGTH);
+            player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(HEAVENLY_SPEED);
+            player.getAttribute(ModAttributes.JUMP_HEIGHT.get()).addTransientModifier(HEAVENLY_JUMP);
+            player.getAttribute(Attributes.ATTACK_SPEED).addTransientModifier(HEAVENLY_HASTE);
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30);
+            player.setHealth(30);
+        }
+        else if (statsProps.getRestriction().equals(ModValues.RESTRICTION_CONSTITUTION))
+        {
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(10);
+            player.setHealth(10);
+        }
+        else
+            return;
+    }
 
     @SubscribeEvent
     public static void onClonePlayer(PlayerEvent.Clone event)

@@ -153,8 +153,8 @@ public class QuestEvents
     @SubscribeEvent
     public static void onEntityDies(LivingDeathEvent event)
     {
-        //System.out.println(event.getSource());
-        //System.out.println(event.getSource().getEntity());
+        System.out.println(event.getSource());
+        System.out.println(event.getSource().getEntity());
 
 
         if (!(event.getSource().getEntity() instanceof PlayerEntity) || event.getSource().getEntity().level.isClientSide)
