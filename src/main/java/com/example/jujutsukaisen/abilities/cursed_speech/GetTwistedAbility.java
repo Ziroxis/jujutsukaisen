@@ -60,7 +60,7 @@ public class GetTwistedAbility extends Ability {
             if (distance <= 32)
                 player.sendMessage(new StringTextComponent("GET TWISTED!"), Util.NIL_UUID);
             target.addEffect(new EffectInstance(Effects.CONFUSION, 80, 10));
-            target.hurt(ModDamageSource.causeAbilityDamage(player, this), 10);
+            target.hurt(ModDamageSource.causeAbilityDamage(player, this, "player"), 10);
         }
 
         return true;

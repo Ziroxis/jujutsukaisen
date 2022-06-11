@@ -48,7 +48,7 @@ public class ShiranuiGataAbilityEvent {
                     float damage = event.getAmount();
                     Entity attacker = event.getSource().getEntity();
                     assert attacker != null;
-                    attacker.hurt(ModDamageSource.causeAbilityDamage(player, ShiranuiGataAbility.INSTANCE), damage * 2);
+                    attacker.hurt(ModDamageSource.causeAbilityDamage(player, ShiranuiGataAbility.INSTANCE, "player"), damage * 2);
                     ability.setState(Ability.State.COOLDOWN);
                     PacketHandler.sendTo(new SSyncAbilityDataPacket(player.getId(), abilityProps), player);
                     event.setCanceled(true);

@@ -39,7 +39,6 @@ public class CursedSpiritInvincibility {
         if (!event.getEntity().level.isClientSide)
         {
             DamageSource source = event.getSource();
-            System.out.println(source.getDirectEntity());
             if (source.getDirectEntity() instanceof PlayerEntity) {
                 LivingEntity target = event.getEntityLiving();
                 PlayerEntity attacker = (PlayerEntity) source.getDirectEntity();

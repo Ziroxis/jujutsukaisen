@@ -67,7 +67,7 @@ public class ExplodeAbility extends Ability {
             explosionAbility.setStaticDamage(15);
             explosionAbility.setExplosionSound(true);
             explosionAbility.setSmokeParticles(new CommonExplosionParticleEffect(8));
-            explosionAbility.setDamageSource(ModDamageSource.causeAbilityDamage(player, this));
+            explosionAbility.setDamageSource(ModDamageSource.causeAbilityDamage(player, this, "player"));
             explosionAbility.doExplosion();
         }
 

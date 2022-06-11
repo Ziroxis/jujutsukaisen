@@ -6,18 +6,15 @@ import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.AbilityHelper;
 import com.example.jujutsukaisen.api.ability.sorts.ExplosionAbility;
 import com.example.jujutsukaisen.init.ModDamageSource;
-import com.example.jujutsukaisen.init.ModEffects;
 import com.example.jujutsukaisen.particles.CommonExplosionParticleEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.Explosion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +66,7 @@ public class BlastAwayAbility extends Ability {
             explosionAbility.setStaticDamage(5);
             explosionAbility.setExplosionSound(true);
             explosionAbility.setSmokeParticles(new CommonExplosionParticleEffect(5));
-            explosionAbility.setDamageSource(ModDamageSource.causeAbilityDamage(player, this));
+            explosionAbility.setDamageSource(ModDamageSource.causeAbilityDamage(player, this, "player"));
             explosionAbility.doExplosion();
         }
 

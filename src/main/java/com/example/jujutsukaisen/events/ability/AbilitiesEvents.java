@@ -337,7 +337,7 @@ public class AbilitiesEvents
 						float strength = (float) player.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
 						float finalDamage = (damage + strength) * (float)statProps.getDamageMultiplier();
 						System.out.println("Final damage is +" + finalDamage);
-						target.hurt(ModDamageSource.causeAbilityDamage((ServerPlayerEntity) player, ability), finalDamage);
+						target.hurt(ModDamageSource.causeAbilityDamage(player, ability), finalDamage);
 					}
 					if (ability instanceof PunchAbility && ability.isContinuous())
 					{
@@ -357,7 +357,7 @@ public class AbilitiesEvents
 						System.out.println(player);
 						ModDamageSource damageSource = ModDamageSource.causeAbilityDamage(player, ability);
 						target.hurt(damageSource, finalDamage);
-						System.out.println(damageSource.getSource().getEntity());
+						System.out.println(damageSource.getSource().getDirectEntity());
 					}
 					if (ability instanceof ContinuousSwordAbility && ability.isContinuous())
 					{

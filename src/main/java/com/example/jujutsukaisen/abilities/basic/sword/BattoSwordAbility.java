@@ -71,7 +71,7 @@ public class BattoSwordAbility extends Ability implements IMultiTargetAbility {
             list.forEach(entity ->
             {
                 if(this.isTarget(entity) && player.canSee(entity))
-                    entity.hurt(ModDamageSource.causeAbilityDamage(player, INSTANCE), 10);
+                    entity.hurt(ModDamageSource.causeAbilityDamage(player, this, "player"), 10);
             });
         }
     }

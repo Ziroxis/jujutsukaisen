@@ -35,7 +35,7 @@ public class PurpleFlamesAbility extends Ability {
 
         for(LivingEntity target : this.entities)
         {
-            target.hurt(ModDamageSource.causeAbilityDamage(player, this), 10);
+            target.hurt(ModDamageSource.causeAbilityDamage(player, this, "player"), 10);
             target.setSecondsOnFire(12);
         }
         return true;

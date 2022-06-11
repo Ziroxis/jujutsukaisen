@@ -37,7 +37,7 @@ public class FlameBallProjectile extends AbilityProjectileEntity {
         explosion.setDamageOwner(false);
         explosion.setDestroyBlocks(true);
         explosion.setFireAfterExplosion(false);
-        explosion.setDamageSource(ModDamageSource.causeAbilityDamage(this.getThrower(), FlameBallAbility.INSTANCE));
+        explosion.setDamageSource(ModDamageSource.causeAbilityDamage(this.getThrower(), FlameBallAbility.INSTANCE, "player"));
         explosion.setSmokeParticles(new CommonExplosionParticleEffect(3));
         explosion.setDamageEntities(true);
         explosion.doExplosion();

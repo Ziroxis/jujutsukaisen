@@ -208,10 +208,13 @@ public class AbilityProjectileEntity extends ThrowableEntity
 						if(this.bypassingSource == null)
 							this.bypassingSource = new IndirectEntityDamageSource("ability_projectile", this, this.getOwner()).setProjectile().bypassArmor();
 						
-						if (!this.canBlockDamageSource(this.source, hitEntity))
-						{
-							this.damage *= statProps.getDamageMultiplier();
+						if (!this.canBlockDamageSource(this.source, hitEntity)) {
+							if (this.isPhysical() && this.getOwner() != null && this.applyOnlyOnce)
+							{
 
+							}
+
+							this.damage *= statProps.getDamageMultiplier();
 							if (this.armorPiercing)
 							{
 								float reduction = this.getArmorDamage();

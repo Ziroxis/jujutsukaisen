@@ -38,7 +38,7 @@ public class HairpinAbility extends Ability {
         {
             if (target.hasEffect(ModEffects.HAIR_PIN.get()))
             {
-                target.hurt(ModDamageSource.causeAbilityDamage(player, INSTANCE), 15);
+                target.hurt(ModDamageSource.causeAbilityDamage(player, this, "player"), 15);
                 target.removeEffect(ModEffects.HAIR_PIN.get());
             }
         }

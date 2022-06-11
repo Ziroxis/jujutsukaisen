@@ -49,7 +49,7 @@ public class CursedEnergyContinuousSwordAbility extends ContinuousSwordAbility {
         if (target instanceof CurseEntity)
         {
             target.invulnerableTime = 0;
-            target.hurt(ModDamageSource.causeAbilityDamage(player, new Ability("Cursed sword attack", AbilityCategories.AbilityCategory.ALL)), 5);
+            target.hurt(ModDamageSource.causeAbilityDamage(player, new Ability("Cursed sword attack", AbilityCategories.AbilityCategory.ALL), "player"), 5);
         }
         Vector3d speed = Beapi.propulsion(target, -1, -1);
         target.setDeltaMovement(speed.x, 0.2, speed.z);
