@@ -2,12 +2,21 @@ package com.example.jujutsukaisen.api.ability.sorts;
 
 import com.example.jujutsukaisen.api.ability.AbilityCategories;
 import com.example.jujutsukaisen.api.ability.interfaces.IParallelContinuousAbility;
+import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
+import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
 import com.example.jujutsukaisen.data.world.ExtendedWorldData;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
+import com.example.jujutsukaisen.networking.CursedEnergySync;
 import com.example.jujutsukaisen.networking.PacketHandler;
+import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.ability.SUpdateEquippedAbilityPacket;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 public abstract class RepeaterAbility extends ContinuousAbility implements IParallelContinuousAbility {
+
+    private int experiencePoint = 0;
+    private int experienceGainLevelCap = 0;
 
     private int repeaterCount;
     private int maxRepeaterCount;
@@ -99,6 +108,16 @@ public abstract class RepeaterAbility extends ContinuousAbility implements IPara
             return;
         if(this.onEndContinuityEvent.onEndContinuity(player))
         {
+            IEntityStats propsEntity = EntityStatsCapability.get(player);
+            if (propsEntity.getLevel() < experienceGainLevelCap)
+            {
+                propsEntity.alterExperience(experiencePoint);
+
+                ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, experiencePoint);
+                MinecraftForge.EVENT_BUS.post(eventExperience);
+            }
+            PacketHandler.sendTo(new SSyncEntityStatsPacket(player.getId(), propsEntity), player);
+
             this.continueTime = 0;
             this.repeaterCount = this.maxRepeaterCount;
             this.startCooldown(player);

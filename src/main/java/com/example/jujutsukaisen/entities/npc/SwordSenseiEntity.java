@@ -10,6 +10,7 @@ import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
 import com.example.jujutsukaisen.networking.server.SSyncEntityStatsPacket;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
+import com.example.jujutsukaisen.networking.server.SSyncTriggerQuest;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.CreatureEntity;
@@ -75,14 +76,13 @@ public class SwordSenseiEntity extends Quester {
                 || quests[i] != null && quests[i].equals(ModQuests.BATTO_SWORD_01) && quests[i].isComplete()
                 || quests[i] != null && quests[i].equals(ModQuests.EVENING_MOON_01) && quests[i].isComplete())
                 {
-                    if (quests[i].triggerCompleteEvent(player))
-                    {
-                        questProps.addFinishedQuest(quests[i]);
-                        questProps.removeInProgressQuest(quests[i]);
-                        PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
-                        player.sendMessage(new StringTextComponent("GOOD JOB!!! So proud of you! *Headpats you*"), player.getUUID());
-                        return ActionResultType.PASS;
-                    }
+                    PacketHandler.sendTo(new SSyncTriggerQuest(i, player.getId()), player);
+                    questProps.addFinishedQuest(quests[i]);
+                    questProps.removeInProgressQuest(quests[i]);
+                    PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
+                    player.sendMessage(new StringTextComponent("GOOD JOB!!! So proud of you! *Headpats you*"), player.getUUID());
+                    return ActionResultType.PASS;
+
                 }
 
             }

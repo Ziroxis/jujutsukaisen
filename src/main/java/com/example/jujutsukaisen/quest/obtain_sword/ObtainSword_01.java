@@ -2,6 +2,7 @@ package com.example.jujutsukaisen.quest.obtain_sword;
 
 import com.example.jujutsukaisen.data.entity.entitystats.EntityStatsCapability;
 import com.example.jujutsukaisen.data.entity.entitystats.IEntityStats;
+import com.example.jujutsukaisen.events.leveling.ExperienceUpEvent;
 import com.example.jujutsukaisen.init.ModEntities;
 import com.example.jujutsukaisen.init.ModItems;
 import com.example.jujutsukaisen.networking.PacketHandler;
@@ -14,6 +15,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ObtainSword_01 extends Quest {
     private static final KillEntityObjective.ICheckKill TARGET_CHECK = (player, target, source) ->
@@ -32,6 +34,10 @@ public class ObtainSword_01 extends Quest {
     public boolean giveReward(PlayerEntity player)
     {
         IEntityStats propsStats = EntityStatsCapability.get(player);
+        propsStats.alterExperience(200);
+        ExperienceUpEvent eventExperience = new ExperienceUpEvent(player, 200);
+        MinecraftForge.EVENT_BUS.post(eventExperience);
+
         if (!this.addQuestItem(player, ModItems.DEMON_SLAUGHTERER.get(), 1))
             return false;
         PacketHandler.sendToServer(new CSyncentityStatsPacket(propsStats));

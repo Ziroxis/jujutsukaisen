@@ -31,7 +31,7 @@ public class CursedEnergyContinuousSwordAbility extends ContinuousSwordAbility {
         super("Cursed Sword", AbilityCategories.AbilityCategory.BASIC);
         this.setDescription("Imbue your sword with cursed energy");
         this.setMaxCooldown(5);
-        this.setCursedEnergyCost(41);
+        this.setCursedEnergyCost(4);
         this.setExperiencePoint(2);
         this.setExperienceGainLevelCap(10);
         this.onHitEntityEvent = this::onHitEntity;

@@ -9,6 +9,7 @@ import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.client.CRequestSyncQuestDataPacket;
 import com.example.jujutsukaisen.networking.client.CSyncQuestDataPacket;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
+import com.example.jujutsukaisen.networking.server.SSyncTriggerQuest;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
@@ -29,10 +30,11 @@ public class MaidQuesterEntity extends Quester {
     {
         if (hand != Hand.MAIN_HAND)
             return ActionResultType.PASS;
+        IQuestData questProps = QuestDataCapability.get(player);
+        IEntityStats statsProps = EntityStatsCapability.get(player);
+
         if (!player.level.isClientSide)
         {
-            IQuestData questProps = QuestDataCapability.get(player);
-            IEntityStats statsProps = EntityStatsCapability.get(player);
 
             Quest[] quests = questProps.getInProgressQuests();
             if (questProps.hasFinishedQuest(ModQuests.OBTAIN_SWORD_01) && !acceptanceMaidQuester_01)
@@ -48,9 +50,9 @@ public class MaidQuesterEntity extends Quester {
                     System.out.println(quests[i]);
                     if (quests[i] != null && quests[i].equals(ModQuests.OBTAIN_SWORD_01) && quests[i].isComplete())
                     {
+                        PacketHandler.sendTo(new SSyncTriggerQuest(i, player.getId()), player);
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);
-                        statsProps.alterLevel(1);
                         PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         player.sendMessage(new StringTextComponent("HUGE THANKS!!!! HERE IS A REWARD!"), player.getUUID());
                         player.sendMessage(new StringTextComponent("I'll see you around!!!"), player.getUUID());
@@ -72,7 +74,7 @@ public class MaidQuesterEntity extends Quester {
                 {
                     if (quests[i] == null)
                     {
-                        questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01.create());
+                        questProps.addInProgressQuest(ModQuests.OBTAIN_SWORD_01);
                         PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
                         break;
                     }

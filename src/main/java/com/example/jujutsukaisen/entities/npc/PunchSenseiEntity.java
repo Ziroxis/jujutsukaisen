@@ -8,6 +8,7 @@ import com.example.jujutsukaisen.init.ModQuests;
 import com.example.jujutsukaisen.init.ModValues;
 import com.example.jujutsukaisen.networking.PacketHandler;
 import com.example.jujutsukaisen.networking.server.SSyncQuestDataPacket;
+import com.example.jujutsukaisen.networking.server.SSyncTriggerQuest;
 import com.example.jujutsukaisen.quest.Quest;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -74,6 +75,7 @@ public class PunchSenseiEntity extends Quester {
                 || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCH_01) && quests[i].isComplete()
                 || quests[i] != null && quests[i].equals(ModQuests.DIVERGENT_FIST_01) && quests[i].isComplete())
                 {
+                    PacketHandler.sendTo(new SSyncTriggerQuest(i, player.getId()), player);
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
                     PacketHandler.sendTo(new SSyncQuestDataPacket(player.getId(), questProps), player);
