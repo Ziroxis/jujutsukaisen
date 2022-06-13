@@ -69,10 +69,10 @@ public class PunchSenseiEntity extends Quester {
             for (int i = 0; i < quests.length; i++)
             {
                 //TODO check if you can delete is complete or triggerComplete event
-                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_02) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCH_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player)
-                || quests[i] != null && quests[i].equals(ModQuests.DIVERGENT_FIST_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
+                if (quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_01) && quests[i].isComplete()
+                        || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCHES_02) && quests[i].isComplete()
+                || quests[i] != null && quests[i].equals(ModQuests.CURSED_PUNCH_01) && quests[i].isComplete()
+                || quests[i] != null && quests[i].equals(ModQuests.DIVERGENT_FIST_01) && quests[i].isComplete())
                 {
                     questProps.addFinishedQuest(quests[i]);
                     questProps.removeInProgressQuest(quests[i]);
@@ -80,6 +80,7 @@ public class PunchSenseiEntity extends Quester {
                     player.sendMessage(new StringTextComponent("Good job kid, gotta give it to ya"), player.getUUID());
                     return ActionResultType.PASS;
                 }
+
             }
             if (questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_01) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCHES_02) && questProps.hasFinishedQuest(ModQuests.CURSED_PUNCH_01) && questProps.hasFinishedQuest(ModQuests.DIVERGENT_FIST_01))
             {

@@ -46,7 +46,7 @@ public class MaidQuesterEntity extends Quester {
                 for (int i = 0; i < quests.length; i++)
                 {
                     System.out.println(quests[i]);
-                    if (quests[i] != null && quests[i].equals(ModQuests.OBTAIN_SWORD_01) && quests[i].isComplete() && quests[i].triggerCompleteEvent(player))
+                    if (quests[i] != null && quests[i].equals(ModQuests.OBTAIN_SWORD_01) && quests[i].isComplete())
                     {
                         questProps.addFinishedQuest(quests[i]);
                         questProps.removeInProgressQuest(quests[i]);

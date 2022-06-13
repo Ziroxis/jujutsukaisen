@@ -11,7 +11,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public class WaterFlowAbility extends RepeaterAbility {
 
-    public static final Ability INSTANCE = new WaterFlowAbility();
+    public static final WaterFlowAbility INSTANCE = new WaterFlowAbility();
 
     public WaterFlowAbility()
     {

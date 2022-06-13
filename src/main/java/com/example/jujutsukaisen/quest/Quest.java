@@ -75,26 +75,21 @@ public abstract class Quest extends ForgeRegistryEntry<Quest>
 	public boolean addQuestItem(PlayerEntity player, Item item, int amount)
 	{
 		ItemStack stack = new ItemStack(item);
-		System.out.println("Check 1");
 		for (int i = 0; i < 35; i++)
 		{
-			System.out.println("Check 2");
 			if (player.inventory.getItem(i).isEmpty())
 			{
-				System.out.println("Check 3");
 				free = true;
 				break;
 			}
 		}
 		if (free)
 		{
-			System.out.println("Check 4");
 			PacketHandler.sendToServer(new CGiveItemStackPacket(stack));
 			return true;
 		}
 		else
 		{
-			System.out.println("Check 5");
 			player.sendMessage(new TranslationTextComponent("You need free space in your inventory!"), Util.NIL_UUID);
 			return false;
 		}

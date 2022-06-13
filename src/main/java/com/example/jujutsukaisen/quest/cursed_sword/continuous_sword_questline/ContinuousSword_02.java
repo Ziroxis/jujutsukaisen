@@ -30,6 +30,7 @@ public class ContinuousSword_02 extends Quest {
 
     public boolean giveReward(PlayerEntity player)
     {
+        System.out.println("Check 1");
         IAbilityData props = AbilityDataCapability.get(player);
         IEntityStats propsStats = EntityStatsCapability.get(player);
         //TODO doesn't give xp fix it
